@@ -1,0 +1,16 @@
+[
+  {
+    "id": "asi_000001",
+    "nombre": "COMPETENCIAS DIGITALES Y ESTRATEGIAS TEGNOLOGICAS",
+    "descripcion": "Desarrollo de competencias digitales avanzadas y estrategias tecno-pedagógicas aplicadas al aprendizaje.",
+    "nivel": "MAESTRÍA",
+    "fecha": "2026-10-25T12:00:00.000Z"
+  },
+  {
+    "nombre": "Sistema contra Incendios",
+    "nivel": "PREGRADO",
+    "descripcion": "Materia complementaria para estudiantes de Ingeniería Civil e Industrial",
+    "id": "asi_000002",
+    "fecha": "2026-10-26T23:07:45.721Z"
+  }
+]

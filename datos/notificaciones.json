@@ -1,0 +1,20 @@
+[
+  {
+    "usuarioId": "usu_000002",
+    "tipo": "alerta",
+    "mensaje": "El banco de preguntas para \"Alfabetización Digital y Mediación Pedagógica\" (Nivel 1) necesita más reactivos: un estudiante completó el quiz con preguntas repetidas.",
+    "enlace": "/paginas/banco-preguntas.html?temaId=tem_000001",
+    "leida": false,
+    "id": "not_000001",
+    "fecha": "2026-10-27T05:50:45.395Z"
+  },
+  {
+    "usuarioId": "usu_000002",
+    "tipo": "alerta",
+    "mensaje": "El banco de preguntas para \"Alfabetización Digital y Mediación Pedagógica\" (Nivel 1) necesita más reactivos: un estudiante completó el quiz con preguntas repetidas.",
+    "enlace": "/paginas/banco-preguntas.html?temaId=tem_000001",
+    "leida": false,
+    "id": "not_000002",
+    "fecha": "2026-10-28T03:17:55.952Z"
+  }
+]

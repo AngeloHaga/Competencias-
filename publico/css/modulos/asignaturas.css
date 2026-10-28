@@ -1,0 +1,80 @@
+/* publico/css/modulos/asignaturas.css · Estilos para las tarjetas de asignaturas y avance */
+
+.asignaturas-layout {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-l);
+  padding: var(--espacio-m) 0 var(--espacio-2xl) 0;
+}
+
+.asignaturas-cabecera {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-xs);
+}
+
+.asignaturas-cabecera__titulo {
+  font-size: var(--tamano-2xl);
+  font-weight: var(--peso-extranegrita);
+  color: var(--color-primario);
+  margin: 0;
+}
+
+.asignaturas-cabecera__subtitulo {
+  font-size: var(--tamano-m);
+  color: var(--color-texto-suave);
+  margin: 0;
+}
+
+/* Tarjeta individual de asignatura */
+.tarjeta-estudiante-asig {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--espacio-m);
+  height: 100%;
+}
+
+.tarjeta-estudiante-asig__cabecera {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--espacio-s);
+}
+
+.tarjeta-estudiante-asig__titulo {
+  font-size: var(--tamano-l);
+  font-weight: var(--peso-negrita);
+  color: var(--color-primario);
+  margin: 0;
+  line-height: var(--interlineado-compacto);
+}
+
+.tarjeta-estudiante-asig__descripcion {
+  font-size: var(--tamano-s);
+  color: var(--color-texto);
+  line-height: var(--interlineado-base);
+  margin: 0;
+}
+
+.tarjeta-estudiante-asig__avance {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-2xs);
+  padding-top: var(--espacio-s);
+  border-top: 1px solid var(--color-borde);
+}
+
+.tarjeta-estudiante-asig__avance-fila {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: var(--tamano-xs);
+  font-weight: var(--peso-seminegrita);
+  color: var(--color-texto-suave);
+}
+
+.tarjeta-estudiante-asig__avance-porcentaje {
+  font-weight: var(--peso-extranegrita);
+  color: var(--color-primario);
+}

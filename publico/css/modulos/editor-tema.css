@@ -1,0 +1,380 @@
+/* publico/css/modulos/editor-tema.css · Estilos para la ficha del tema y glosario */
+
+.ficha-layout {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-l);
+  padding: var(--espacio-m) 0 var(--espacio-2xl) 0;
+}
+
+/* Cabecera superior */
+.ficha-cabecera {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--espacio-m);
+  flex-wrap: wrap;
+  border-bottom: 1px solid var(--color-borde);
+  padding-bottom: var(--espacio-m);
+}
+
+.ficha-cabecera__izq {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-2xs);
+  flex: 1;
+  min-width: 280px;
+}
+
+.enlace-volver {
+  color: var(--color-info);
+  font-size: var(--tamano-s);
+  font-weight: var(--peso-seminegrita);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--espacio-2xs);
+  margin-bottom: var(--espacio-2xs);
+  width: fit-content;
+}
+
+.enlace-volver:hover {
+  text-decoration: underline;
+  color: var(--color-primario);
+}
+
+.ficha-cabecera__titulo {
+  font-size: var(--tamano-xl);
+  font-weight: var(--peso-extranegrita);
+  color: var(--color-primario);
+  margin: 0;
+  line-height: var(--interlineado-compacto);
+}
+
+.ficha-cabecera__subtitulo {
+  font-size: var(--tamano-s);
+  color: var(--color-texto-suave);
+  margin: 0;
+}
+
+.ficha-cabecera__der {
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-s);
+  flex-wrap: wrap;
+}
+
+/* Pestañas de navegación interna */
+.pestanas-nav {
+  display: flex;
+  gap: var(--espacio-xs);
+  border-bottom: 2px solid var(--color-borde);
+  margin-bottom: var(--espacio-xs);
+}
+
+.pestana-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--espacio-xs);
+  padding: var(--espacio-s) var(--espacio-l);
+  font-family: var(--fuente-base);
+  font-size: var(--tamano-s);
+  font-weight: var(--peso-seminegrita);
+  color: var(--color-texto-suave);
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid transparent;
+  cursor: pointer;
+  transition: var(--transicion);
+  position: relative;
+  bottom: -2px;
+}
+
+.pestana-btn:hover {
+  color: var(--color-primario);
+}
+
+.pestana-btn--activa {
+  color: var(--color-primario);
+  border-bottom-color: var(--color-primario);
+}
+
+/* Grilla para formularios */
+.grid-form-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--espacio-m);
+}
+
+/* Resumen formativo */
+.resumen-cabecera {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--espacio-s);
+  flex-wrap: wrap;
+}
+
+.resumen-contador-badge {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  font-size: var(--tamano-s);
+  font-weight: var(--peso-negrita);
+  padding: var(--espacio-xs) var(--espacio-s);
+  border-radius: var(--radio-m);
+  background-color: var(--color-fondo);
+  border: 1px solid var(--color-borde);
+}
+
+.resumen-contador-badge--exito {
+  background-color: var(--color-exito-fondo);
+  color: var(--color-exito);
+  border-color: var(--color-exito);
+}
+
+.resumen-contador-badge--advertencia {
+  background-color: var(--color-advertencia-fondo);
+  color: var(--color-advertencia);
+  border-color: var(--color-advertencia);
+}
+
+.resumen-herramientas {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: var(--espacio-2xs);
+}
+
+.resumen-vista-previa {
+  padding: var(--espacio-m);
+  background-color: var(--color-fondo);
+  border-radius: var(--radio-m);
+  border: 1px solid var(--color-borde);
+  font-size: var(--tamano-s);
+  line-height: var(--interlineado-base);
+  color: var(--color-texto);
+  min-height: 100px;
+}
+
+.resumen-vista-previa p {
+  margin-bottom: var(--espacio-s);
+}
+
+.resumen-vista-previa ul {
+  padding-left: var(--espacio-l);
+  margin-bottom: var(--espacio-s);
+}
+
+.resumen-vista-previa li {
+  margin-bottom: var(--espacio-2xs);
+}
+
+/* Listas dinámicas (Objetivos, Ejemplos, Errores, Preguntas) */
+.tarjeta-lista-cabecera {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--espacio-s);
+}
+
+.campo-agregar-fila {
+  display: flex;
+  gap: var(--espacio-s);
+  align-items: center;
+}
+
+.campo-agregar-fila input {
+  flex: 1;
+  min-height: 44px;
+  padding: var(--espacio-s) var(--espacio-m);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-m);
+  font-size: var(--tamano-s);
+  background-color: var(--color-superficie);
+  color: var(--color-texto);
+}
+
+.campo-agregar-fila input:focus {
+  border-color: var(--color-anillo);
+  outline: 3px solid rgba(20, 112, 168, 0.2);
+}
+
+.lista-elementos {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-xs);
+}
+
+.item-lista {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--espacio-s);
+  padding: var(--espacio-s) var(--espacio-m);
+  border-radius: var(--radio-m);
+  background-color: var(--color-fondo);
+  border: 1px solid var(--color-borde);
+  font-size: var(--tamano-s);
+  color: var(--color-texto);
+}
+
+.item-lista__texto {
+  flex: 1;
+}
+
+.btn-eliminar-item {
+  background: none;
+  border: none;
+  color: var(--color-error);
+  cursor: pointer;
+  padding: var(--espacio-2xs) var(--espacio-xs);
+  font-size: var(--tamano-m);
+  font-weight: var(--peso-negrita);
+  line-height: 1;
+  border-radius: var(--radio-s);
+  transition: var(--transicion);
+}
+
+.btn-eliminar-item:hover {
+  background-color: var(--color-error-fondo);
+}
+
+/* Lista de Recursos */
+.lista-recursos {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-s);
+}
+
+.tarjeta-recurso {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-s);
+  padding: var(--espacio-m);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-m);
+  background-color: var(--color-fondo);
+}
+
+.tarjeta-recurso__fila {
+  display: grid;
+  grid-template-columns: 140px 1fr 1fr auto;
+  gap: var(--espacio-s);
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .tarjeta-recurso__fila {
+    grid-template-columns: 1fr;
+  }
+}
+
+.tarjeta-recurso__url-bloque {
+  display: flex;
+  gap: var(--espacio-xs);
+  align-items: center;
+}
+
+.tarjeta-recurso__url-bloque input {
+  flex: 1;
+}
+
+/* Métricas del Glosario */
+.glosario-metricas-card {
+  padding: var(--espacio-m) var(--espacio-l);
+  background-color: var(--color-superficie);
+}
+
+.glosario-metricas-grid {
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  gap: var(--espacio-xl);
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .glosario-metricas-grid {
+    grid-template-columns: 1fr;
+    gap: var(--espacio-m);
+  }
+}
+
+.metrica-bloque {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--espacio-s) var(--espacio-m);
+  background-color: var(--color-fondo);
+  border-radius: var(--radio-m);
+  min-width: 110px;
+}
+
+.metrica-valor {
+  font-size: var(--tamano-2xl);
+  font-weight: var(--peso-extranegrita);
+  color: var(--color-primario);
+  line-height: 1;
+}
+
+.metrica-etiqueta {
+  font-size: var(--tamano-xs);
+  color: var(--color-texto-suave);
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+.indicador-juegos {
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-m);
+  padding: var(--espacio-s) var(--espacio-m);
+  border-radius: var(--radio-m);
+  border: 1px solid var(--color-borde);
+  background-color: var(--color-fondo);
+}
+
+.indicador-juegos--apto {
+  background-color: var(--color-exito-fondo);
+  border-color: var(--color-exito);
+  color: var(--color-exito);
+}
+
+.indicador-juegos--incompleto {
+  background-color: var(--color-advertencia-fondo);
+  border-color: var(--color-advertencia);
+  color: var(--color-texto);
+}
+
+.indicador-juegos__icono {
+  font-size: var(--tamano-xl);
+  line-height: 1;
+}
+
+/* Glosario cabecera y tabla */
+.glosario-cabecera {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--espacio-s);
+}
+
+.insignia-longitud {
+  font-family: monospace;
+  font-size: var(--tamano-xs);
+  padding: 2px 6px;
+  border-radius: var(--radio-s);
+  background-color: var(--color-fondo);
+  border: 1px solid var(--color-borde);
+}
+
+.insignia-longitud--seis {
+  background-color: var(--color-exito-fondo);
+  color: var(--color-exito);
+  border-color: var(--color-exito);
+  font-weight: var(--peso-negrita);
+}

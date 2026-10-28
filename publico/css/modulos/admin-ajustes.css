@@ -1,0 +1,65 @@
+/* publico/css/modulos/admin-ajustes.css · Estilos de la página de administración de ajustes e IA */
+
+.admin-ajustes-layout {
+  gap: var(--espacio-lg);
+}
+
+.ajustes-cabecera {
+  margin-bottom: var(--espacio-md);
+}
+
+.ajustes-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: var(--espacio-lg);
+  align-items: start;
+}
+
+@media (max-width: 800px) {
+  .ajustes-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.grupo-clave {
+  display: flex;
+  gap: var(--espacio-sm);
+  align-items: center;
+}
+
+.grupo-clave input {
+  flex: 1;
+}
+
+.acciones-formulario {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--espacio-md);
+  margin-top: var(--espacio-md);
+  flex-wrap: wrap;
+}
+
+.lista-detalles {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-md);
+}
+
+.detalle-fila {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-2xs);
+  padding-bottom: var(--espacio-xs);
+  border-bottom: 1px solid var(--color-borde);
+}
+
+.detalle-etiqueta {
+  font-size: var(--tamano-texto-sm);
+  font-weight: var(--peso-negrita);
+  color: var(--color-texto-suave);
+}
+
+.detalle-valor {
+  font-size: var(--tamano-texto-base);
+  color: var(--color-texto);
+}

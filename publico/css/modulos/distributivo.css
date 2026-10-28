@@ -1,0 +1,123 @@
+/* publico/css/modulos/distributivo.css · Estilos para el distributivo académico */
+.distributivo-layout {
+  gap: var(--espacio-l);
+  margin-top: var(--espacio-m);
+}
+
+.distributivo-cabecera {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--espacio-m);
+  flex-wrap: wrap;
+}
+
+.distributivo-cabecera__titulo {
+  color: var(--color-primario);
+  font-size: var(--tamano-2xl);
+  margin-bottom: var(--espacio-xs);
+}
+
+.distributivo-cabecera__subtitulo {
+  color: var(--color-texto-suave);
+  font-size: var(--tamano-s);
+}
+
+.distributivo-tabla-tarjeta {
+  padding: 0;
+  overflow: hidden;
+}
+
+.form-modal-distributivo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-m);
+  max-width: 520px;
+}
+
+.fila-modal {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--espacio-m);
+}
+
+@media (max-width: 480px) {
+  .fila-modal {
+    grid-template-columns: 1fr;
+  }
+}
+
+.selector-estudiantes-caja {
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-m);
+  background-color: var(--color-fondo);
+  padding: var(--espacio-s);
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-s);
+}
+
+.selector-estudiantes-cabecera {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--espacio-s);
+  padding-bottom: var(--espacio-xs);
+  border-bottom: 1px solid var(--color-borde);
+}
+
+.lista-estudiantes-scroll {
+  max-height: 180px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-xs);
+  padding-right: var(--espacio-xs);
+}
+
+.item-estudiante {
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-s);
+  padding: var(--espacio-xs) var(--espacio-s);
+  border-radius: var(--radio-s);
+  background-color: var(--color-superficie);
+  cursor: pointer;
+  font-size: var(--tamano-xs);
+  user-select: none;
+  transition: var(--transicion);
+}
+
+.item-estudiante:hover {
+  background-color: #f0f4f8;
+}
+
+.item-estudiante input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  accent-color: var(--color-primario);
+}
+
+.item-estudiante-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.item-estudiante-nombre {
+  font-weight: var(--peso-seminegrita);
+  color: var(--color-texto);
+}
+
+.item-estudiante-correo {
+  font-size: 11px;
+  color: var(--color-texto-suave);
+}
+
+.texto-derecha {
+  text-align: right;
+}
+
+.texto-centro {
+  text-align: center;
+}

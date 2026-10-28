@@ -1,0 +1,82 @@
+[
+  {
+    "usuarioId": "usu_000004",
+    "actividad": "quiz",
+    "temaId": "tem_000001",
+    "nivel": 1,
+    "puntaje": 100,
+    "maximo": 100,
+    "errores": 0,
+    "duracionSeg": 45,
+    "detalle": {
+      "aprobado": true
+    },
+    "puntos": 120,
+    "id": "int_000001",
+    "fecha": "2026-10-27T03:16:08.814Z"
+  },
+  {
+    "usuarioId": "usu_000004",
+    "actividad": "glosario",
+    "temaId": "tem_000001",
+    "nivel": null,
+    "puntaje": 10,
+    "maximo": 10,
+    "errores": 0,
+    "duracionSeg": 20,
+    "detalle": {
+      "termino": "Algoritmo"
+    },
+    "puntos": 70,
+    "id": "int_000002",
+    "fecha": "2026-10-27T03:16:08.856Z"
+  },
+  {
+    "usuarioId": "usu_000004",
+    "actividad": "glosario",
+    "temaId": "tem_000001",
+    "nivel": null,
+    "puntaje": 10,
+    "maximo": 10,
+    "errores": 0,
+    "duracionSeg": 20,
+    "detalle": {
+      "termino": "Algoritmo"
+    },
+    "puntos": 0,
+    "id": "int_000003",
+    "fecha": "2026-10-27T03:16:08.880Z"
+  },
+  {
+    "usuarioId": "usu_000004",
+    "actividad": "quiz",
+    "temaId": "tem_000001",
+    "nivel": 1,
+    "puntaje": 6,
+    "maximo": 6,
+    "errores": 0,
+    "duracionSeg": 0,
+    "detalle": {
+      "aprobado": true
+    },
+    "puntos": 0,
+    "id": "int_000004",
+    "fecha": "2026-10-27T05:50:45.543Z"
+  },
+  {
+    "usuarioId": "usu_000004",
+    "actividad": "quiz",
+    "temaId": "tem_000001",
+    "nivel": 1,
+    "puntaje": 3,
+    "maximo": 6,
+    "errores": 3,
+    "duracionSeg": 94,
+    "detalle": {
+      "aprobado": false
+    },
+    "puntos": 0,
+    "id": "int_000005",
+    "fecha": "2026-10-28T03:19:30.027Z"
+  }
+]

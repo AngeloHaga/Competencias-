@@ -1,0 +1,105 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mi Perfil · Ecosistema Educativo</title>
+<link rel="stylesheet" href="/css/tokens.css"><link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/componentes.css">
+<link rel="stylesheet" href="/css/modulos/perfil.css"></head>
+<body><div id="plantilla"></div><main id="contenido" class="contenedor">
+  <div class="perfil-layout">
+    <!-- Tarjeta de datos del perfil -->
+    <article class="tarjeta perfil-tarjeta">
+      <header class="perfil-tarjeta__cabecera">
+        <h1 class="perfil-tarjeta__titulo">Mi Perfil</h1>
+        <p class="perfil-tarjeta__subtitulo">Actualiza tu información personal y foto de perfil.</p>
+      </header>
+
+      <form id="formPerfil" novalidate class="pila">
+        <div class="perfil-avatar-seccion">
+          <div class="perfil-avatar-contenedor">
+            <img id="imgAvatar" class="perfil-avatar" src="" alt="Foto de perfil">
+            <div id="avatarPlaceholder" class="perfil-avatar-placeholder" aria-hidden="true">U</div>
+          </div>
+          <div class="perfil-avatar-acciones">
+            <label for="inputFoto" class="btn btn--secundario btn--pequeno">
+              Cambiar foto
+            </label>
+            <input type="file" id="inputFoto" name="archivo" accept="image/jpeg,image/png,image/webp" class="sr-only">
+            <span class="texto-ayuda">JPG, PNG o WEBP. Máx. 2 MB</span>
+            <span class="campo__error" id="errorFoto" aria-live="polite"></span>
+          </div>
+        </div>
+
+        <div class="fila-campos">
+          <div class="campo" id="grupoNombre">
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre">
+            <span class="campo__error" id="errorNombre" aria-live="polite"></span>
+          </div>
+
+          <div class="campo" id="grupoApellido">
+            <label for="apellido">Apellido</label>
+            <input type="text" id="apellido" name="apellido" required placeholder="Tu apellido">
+            <span class="campo__error" id="errorApellido" aria-live="polite"></span>
+          </div>
+        </div>
+
+        <div class="campo">
+          <label for="correo">Correo electrónico</label>
+          <input type="email" id="correo" name="correo" disabled aria-describedby="ayudaCorreo">
+          <span class="texto-ayuda" id="ayudaCorreo">El correo no se puede modificar directamente.</span>
+        </div>
+
+        <div class="campo">
+          <label>Rol asignado</label>
+          <div>
+            <span id="badgeRol" class="insignia insignia--secundario"></span>
+          </div>
+        </div>
+
+        <div class="perfil-acciones">
+          <button type="submit" class="btn btn--primario" id="btnGuardarPerfil">
+            Guardar cambios
+          </button>
+        </div>
+      </form>
+    </article>
+
+    <!-- Tarjeta de cambio de contraseña -->
+    <article class="tarjeta perfil-tarjeta">
+      <header class="perfil-tarjeta__cabecera">
+        <h2 class="perfil-tarjeta__titulo">Seguridad y Contraseña</h2>
+        <p class="perfil-tarjeta__subtitulo">Modifica tu contraseña periódicamente para proteger tu cuenta.</p>
+      </header>
+
+      <form id="formClave" novalidate class="pila">
+        <div class="campo" id="grupoClaveActual">
+          <label for="claveActual">Contraseña actual</label>
+          <input type="password" id="claveActual" name="actual" required autocomplete="current-password" placeholder="Tu contraseña actual">
+          <span class="campo__error" id="errorClaveActual" aria-live="polite"></span>
+        </div>
+
+        <div class="campo" id="grupoClaveNueva">
+          <label for="claveNueva">Nueva contraseña</label>
+          <input type="password" id="claveNueva" name="nueva" required autocomplete="new-password" placeholder="Mínimo 8 caracteres (letras y números)">
+          <span class="campo__error" id="errorClaveNueva" aria-live="polite"></span>
+        </div>
+
+        <div class="campo" id="grupoClaveRepetir">
+          <label for="claveRepetir">Repetir nueva contraseña</label>
+          <input type="password" id="claveRepetir" name="repetir" required autocomplete="new-password" placeholder="Repite la nueva contraseña">
+          <span class="campo__error" id="errorClaveRepetir" aria-live="polite"></span>
+        </div>
+
+        <div class="perfil-acciones">
+          <button type="submit" class="btn btn--secundario" id="btnCambiarClave">
+            Cambiar contraseña
+          </button>
+        </div>
+      </form>
+    </article>
+
+    <!-- Sección de logros para el Sprint 5 -->
+    <section id="logros"></section>
+  </div>
+</main>
+<script type="module" src="/js/modulos/perfil.js"></script></body></html>

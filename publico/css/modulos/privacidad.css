@@ -1,0 +1,64 @@
+/* publico/css/modulos/privacidad.css · Estilos para el aviso de privacidad */
+.seccion-privacidad {
+  max-width: 760px;
+  margin: var(--espacio-l) auto;
+  padding: var(--espacio-xl);
+}
+
+.seccion-privacidad__cabecera {
+  margin-bottom: var(--espacio-l);
+  border-bottom: 1px solid var(--color-borde);
+  padding-bottom: var(--espacio-m);
+}
+
+.seccion-privacidad__titulo {
+  color: var(--color-primario);
+  font-size: var(--tamano-2xl);
+  margin-bottom: var(--espacio-xs);
+}
+
+.seccion-privacidad__subtitulo {
+  color: var(--color-texto-suave);
+  font-size: var(--tamano-m);
+}
+
+.seccion-privacidad__cuerpo h2 {
+  color: var(--color-secundario);
+  font-size: var(--tamano-l);
+  margin-top: var(--espacio-m);
+  margin-bottom: var(--espacio-xs);
+}
+
+.seccion-privacidad__cuerpo p,
+.seccion-privacidad__cuerpo li {
+  color: var(--color-texto);
+  line-height: var(--interlineado-relajado);
+  font-size: var(--tamano-base);
+}
+
+.seccion-privacidad__cuerpo ul {
+  padding-left: var(--espacio-l);
+  margin-top: var(--espacio-xs);
+  margin-bottom: var(--espacio-s);
+}
+
+.seccion-privacidad__cuerpo li {
+  margin-bottom: var(--espacio-xs);
+}
+
+.seccion-privacidad__contacto {
+  background-color: var(--color-info-fondo);
+  border-left: 4px solid var(--color-info);
+  padding: var(--espacio-m);
+  border-radius: var(--radio-m);
+}
+
+.seccion-privacidad__acciones {
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-m);
+  margin-top: var(--espacio-xl);
+  padding-top: var(--espacio-m);
+  border-top: 1px solid var(--color-borde);
+  flex-wrap: wrap;
+}

@@ -1,0 +1,65 @@
+/* publico/css/modulos/editor-cancion.css · Estilos para el editor de canciones */
+
+.editor-cancion-layout {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-l);
+  padding: var(--espacio-m) 0 var(--espacio-2xl) 0;
+}
+
+.editor-cancion-cabecera {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--espacio-m);
+  flex-wrap: wrap;
+  border-bottom: 1px solid var(--color-borde);
+  padding-bottom: var(--espacio-m);
+}
+
+.editor-cancion-cabecera__titulo {
+  font-size: var(--tamano-2xl);
+  font-weight: var(--peso-extranegrita);
+  color: var(--color-primario);
+  margin: 0;
+  line-height: var(--interlineado-compacto);
+}
+
+.editor-cancion-cabecera__subtitulo {
+  font-size: var(--tamano-s);
+  color: var(--color-texto-suave);
+  margin: var(--espacio-2xs) 0 0 0;
+}
+
+.editor-cancion-cabecera__acciones {
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-s);
+  flex-wrap: wrap;
+}
+
+.campo-audio-fila {
+  display: flex;
+  gap: var(--espacio-s);
+  align-items: center;
+}
+
+.campo-audio-fila input[type="text"] {
+  flex: 1;
+}
+
+.preview-audio-caja {
+  margin-top: var(--espacio-s);
+  padding: var(--espacio-s);
+  background-color: var(--color-fondo);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-m);
+}
+
+.lrc-cabecera {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--espacio-s);
+  flex-wrap: wrap;
+}

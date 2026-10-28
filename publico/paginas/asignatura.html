@@ -1,0 +1,127 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contenido de la Asignatura · Ecosistema Educativo</title>
+<link rel="stylesheet" href="/css/tokens.css"><link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/componentes.css">
+<link rel="stylesheet" href="/css/modulos/asignatura.css"></head>
+<body><div id="plantilla"></div><main id="contenido" class="contenedor">
+  <div class="asignatura-layout pila">
+    <!-- Migas de pan y cabecera -->
+    <header class="asignatura-cabecera">
+      <nav class="migas-pan" aria-label="Ruta de navegación">
+        <a href="/paginas/asignaturas.html" class="enlace-volver">← Mis asignaturas</a>
+      </nav>
+
+      <div class="asignatura-cabecera__fila">
+        <div>
+          <h1 class="asignatura-cabecera__titulo" id="tituloAsignatura">Cargando asignatura...</h1>
+          <p class="asignatura-cabecera__descripcion" id="descripcionAsignatura"></p>
+        </div>
+        <div class="asignatura-cabecera__meta">
+          <span class="insignia insignia--secundario" id="badgeNivel"></span>
+          <div class="asignatura-resumen-avance" id="boxAvanceGeneral" style="display: none;">
+            <span class="texto-xs texto-suave" id="textoProgresoGlobal">Avance: 0%</span>
+            <div class="progreso" role="progressbar" id="barraProgresoGlobal" style="width: 140px;">
+              <span id="fillProgresoGlobal" style="width: 0%;"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Tarjeta destacada de Tutoría Socrática con IA -->
+    <section class="tutor-hero-card" aria-label="Tutor Virtual Socrático">
+      <div class="tutor-hero-card__icono-box">
+        <span class="tutor-hero-card__icono" aria-hidden="true">🎓🤖</span>
+      </div>
+      <div class="tutor-hero-card__info">
+        <div class="tutor-hero-card__titulos">
+          <div class="tutor-hero-card__etiquetas">
+            <span class="insignia insignia--acento">Inteligencia Artificial</span>
+            <span class="insignia insignia--primario">Metodología Socrática</span>
+          </div>
+          <h2 class="tutor-hero-card__titulo">Tutor Virtual Socrático de la Asignatura</h2>
+        </div>
+        <p class="tutor-hero-card__descripcion">
+          ¿Tienes dudas o deseas consolidar tus aprendizajes? Tu tutor virtual no te dará respuestas directas, sino que te guiará con pistas, analogías y preguntas reflexivas basadas estrictamente en los contenidos de este curso.
+        </p>
+        <div class="tutor-hero-card__acciones">
+          <button id="btnAbrirTutorHero" class="btn btn--primario" type="button">
+            💬 Iniciar tutoría socrática
+          </button>
+          <div class="tutor-hero-card__sugerencias" id="heroSugerencias" aria-label="Consultas rápidas sugeridas">
+            <!-- Sugerencias dinámicas según la materia -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contenedor de Unidades y Temas -->
+    <section class="asignatura-unidades pila" aria-label="Estructura curricular">
+      <div id="contenedorUnidades" class="pila">
+        <div class="tarjeta texto-centro">Cargando estructura curricular...</div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Botón flotante para acceso rápido al Tutor (FAB) -->
+  <button id="btnAbrirTutorFlotante" class="tutor-fab" type="button" aria-label="Abrir Tutor Virtual Socrático" title="Abrir Tutor Virtual Socrático">
+    <span class="tutor-fab__avatar">🤖</span>
+    <span class="tutor-fab__label">Tutor Socrático</span>
+    <span class="tutor-fab__pulso" aria-hidden="true"></span>
+  </button>
+
+  <!-- Ventana interactiva de Chat del Tutor Socrático -->
+  <aside id="panelTutorChat" class="tutor-chat-panel tutor-chat-panel--oculto" role="dialog" aria-modal="false" aria-label="Chat con Tutor Virtual Socrático">
+    <!-- Cabecera del Chat -->
+    <header class="tutor-chat-header">
+      <div class="tutor-chat-header__perfil">
+        <div class="tutor-chat-avatar">
+          <span>🎓</span>
+          <span class="tutor-chat-estado" title="En línea"></span>
+        </div>
+        <div class="tutor-chat-titulos">
+          <h3 class="tutor-chat-nombre">Tutor Socrático IA</h3>
+          <span class="tutor-chat-subtexto" id="tutorSubtextoAsignatura">Asignatura</span>
+        </div>
+      </div>
+      <div class="tutor-chat-header__controles">
+        <button id="btnReiniciarTutor" class="tutor-chat-btn-icono" type="button" title="Reiniciar conversación" aria-label="Reiniciar conversación">
+          🔄
+        </button>
+        <button id="btnCerrarTutor" class="tutor-chat-btn-icono" type="button" title="Minimizar chat" aria-label="Minimizar chat">
+          ✖
+        </button>
+      </div>
+    </header>
+
+    <!-- Área de Mensajes -->
+    <div id="tutorMensajesContenedor" class="tutor-chat-cuerpo" role="log" aria-live="polite">
+      <!-- Los mensajes se renderizan dinámicamente -->
+    </div>
+
+    <!-- Indicador de razonamiento / tipeo del tutor -->
+    <div id="tutorIndicadorPensando" class="tutor-chat-escribiendo" style="display: none;" aria-hidden="true">
+      <span class="tutor-chat-avatar-mini">🤖</span>
+      <div class="tutor-puntos-animados">
+        <span></span><span></span><span></span>
+      </div>
+      <span class="texto-xs texto-suave">El tutor está formulando una pregunta orientadora...</span>
+    </div>
+
+    <!-- Sugerencias contextuales de preguntas -->
+    <div id="tutorPildorasContenedor" class="tutor-chat-pildoras" aria-label="Preguntas sugeridas">
+      <!-- Píldoras interactivas -->
+    </div>
+
+    <!-- Formulario de Entrada -->
+    <form id="formTutorChat" class="tutor-chat-footer">
+      <label for="inputMensajeTutor" class="sr-only">Tu consulta o reflexión académica</label>
+      <textarea id="inputMensajeTutor" class="tutor-chat-input" rows="1" placeholder="Escribe tu consulta o razonamiento sobre la asignatura..." required></textarea>
+      <button id="btnEnviarMensajeTutor" class="btn btn--primario tutor-chat-enviar" type="submit" title="Enviar mensaje (Enter)" aria-label="Enviar mensaje">
+        ➤
+      </button>
+    </form>
+  </aside>
+</main>
+<script type="module" src="/js/modulos/asignatura.js"></script></body></html>

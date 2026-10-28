@@ -1,0 +1,45 @@
+/* publico/css/modulos/prueba-datos.css · Estilos para la página de prueba de datos */
+.panel-prueba {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-xl);
+}
+
+.lista-registros {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-s);
+}
+
+.registro-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--espacio-s) var(--espacio-m);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-m);
+  background-color: var(--color-superficie);
+  gap: var(--espacio-m);
+  flex-wrap: wrap;
+}
+
+.registro-item__id {
+  font-family: monospace;
+  font-size: var(--tamano-xs);
+  color: var(--color-texto-suave);
+  background-color: var(--color-fondo);
+  padding: var(--espacio-xs) var(--espacio-s);
+  border-radius: var(--radio-s);
+}
+
+.registro-item__texto {
+  font-weight: var(--peso-medio);
+  color: var(--color-texto);
+  flex: 1;
+  min-width: 150px;
+}
+
+.registro-item__fecha {
+  font-size: var(--tamano-xs);
+  color: var(--color-texto-suave);
+}

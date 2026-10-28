@@ -1,0 +1,18 @@
+[
+  {
+    "id": "pt_01",
+    "usuarioId": "usu_est1",
+    "temaId": "tem_01"
+  },
+  {
+    "id": "pt_02",
+    "usuarioId": "usu_est3",
+    "temaId": "tem_04"
+  },
+  {
+    "temaId": "tem_000001",
+    "usuarioId": "usu_000004",
+    "id": "pro_000003",
+    "fecha": "2026-10-26T07:31:10.612Z"
+  }
+]

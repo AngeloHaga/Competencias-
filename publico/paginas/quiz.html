@@ -1,0 +1,106 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quiz por Niveles · Ecosistema Educativo</title>
+<link rel="stylesheet" href="/css/tokens.css"><link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/componentes.css">
+<link rel="stylesheet" href="/css/modulos/quiz.css"></head>
+<body><div id="plantilla"></div><main id="contenido" class="contenedor">
+  <div class="quiz-layout pila">
+    <!-- Encabezado del tema y navegación -->
+    <header class="quiz-cabecera">
+      <div class="quiz-cabecera__info">
+        <span class="insignia insignia--primario" id="badge-actividad">Evaluación Formativa</span>
+        <h1 class="texto-h1" id="titulo-quiz">Quiz por Niveles</h1>
+        <p class="texto-suave" id="tema-activo-titulo">Cargando tema...</p>
+      </div>
+      <div class="quiz-cabecera__acciones">
+        <button type="button" id="btn-cambiar-tema" class="btn btn--secundario btn--pequeno">🔄 Cambiar tema</button>
+      </div>
+    </header>
+
+    <!-- SECCIÓN 1: Selección de Niveles (Bloom 1 a 5) -->
+    <section id="seccion-niveles" class="pila" aria-label="Niveles de Bloom del Quiz">
+      <div class="niveles-intro">
+        <h2 class="texto-h2">Niveles Cognitivos de Bloom</h2>
+        <p class="texto-suave">Supera cada nivel con al menos 70% de aciertos para desbloquear el siguiente y obtener diplomas oficiales de acreditación.</p>
+      </div>
+
+      <div class="niveles-grid" id="contenedor-niveles">
+        <!-- Renderizado dinámico de las 5 tarjetas de nivel -->
+        <p class="texto-suave">Cargando estado de los niveles...</p>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 2: Cuestionario en curso (Una pregunta a la vez) -->
+    <section id="seccion-cuestionario" class="pila oculto" aria-label="Pregunta en curso">
+      <div class="cuestionario-cabecera">
+        <div>
+          <span class="insignia insignia--secundario" id="cuestionario-nivel-nombre">Nivel 1 · Recordar</span>
+          <span class="cuestionario-contador" id="cuestionario-contador">Pregunta 1 de 10</span>
+        </div>
+        <button type="button" id="btn-abandonar-quiz" class="btn btn--secundario btn--pequeno" aria-label="Salir del quiz">✕ Salir</button>
+      </div>
+
+      <!-- Barra de progreso -->
+      <div class="barra-progreso" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="barra-progreso-quiz">
+        <div class="barra-progreso__relleno" id="barra-progreso-relleno" style="width: 0%;"></div>
+      </div>
+
+      <!-- Tarjeta de la pregunta -->
+      <article class="tarjeta quiz-tarjeta-pregunta">
+        <div class="quiz-tipo-reactivo">
+          <span class="insignia insignia--suave" id="tipo-reactivo-badge">Opción Múltiple</span>
+        </div>
+
+        <h2 id="pregunta-enunciado" class="quiz-enunciado">Cargando pregunta...</h2>
+
+        <!-- Contenedor dinámico según tipo de pregunta -->
+        <form id="form-respuesta" novalidate class="pila">
+          <div id="contenedor-opciones" class="opciones-interactivas"></div>
+
+          <div class="quiz-acciones">
+            <button type="submit" id="btn-responder" class="btn btn--primario">Responder</button>
+            <button type="button" id="btn-siguiente" class="btn btn--acento oculto">Siguiente pregunta →</button>
+          </div>
+        </form>
+      </article>
+    </section>
+
+    <!-- SECCIÓN 3: Vista de resultados y diploma -->
+    <section id="seccion-resultados" class="pila oculto" aria-label="Resultados del nivel">
+      <div class="tarjeta resultado-tarjeta">
+        <div id="resultado-icono" class="resultado-icono">🏆</div>
+        <h2 id="resultado-titulo" class="texto-h2">¡Nivel Superado!</h2>
+        <p id="resultado-mensaje" class="texto-suave">Has demostrado dominio en este nivel cognitivo.</p>
+
+        <div class="resultado-metricas">
+          <div class="metrica-caja">
+            <span class="metrica-valor" id="res-porcentaje">100%</span>
+            <span class="metrica-etiqueta">Calificación</span>
+          </div>
+          <div class="metrica-caja">
+            <span class="metrica-valor" id="res-aciertos">10</span>
+            <span class="metrica-etiqueta">Aciertos</span>
+          </div>
+          <div class="metrica-caja">
+            <span class="metrica-valor" id="res-errores">0</span>
+            <span class="metrica-etiqueta">Errores</span>
+          </div>
+        </div>
+
+        <!-- Recomendaciones o temas a repasar si hubo fallas -->
+        <div id="bloque-repasar" class="bloque-repasar oculto">
+          <h3 class="texto-h3">Recomendaciones pedagógicas para reforzar:</h3>
+          <ul id="lista-repasar" class="lista-repasar"></ul>
+        </div>
+
+        <div class="resultado-acciones">
+          <button type="button" id="btn-descargar-diploma" class="btn btn--acento oculto">🎓 Descargar diploma</button>
+          <button type="button" id="btn-reintentar" class="btn btn--secundario oculto">🔄 Reintentar nivel</button>
+          <button type="button" id="btn-volver-niveles" class="btn btn--primario">Volver a los niveles</button>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+<script type="module" src="/js/modulos/quiz.js"></script></body></html>

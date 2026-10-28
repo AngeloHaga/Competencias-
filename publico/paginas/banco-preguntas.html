@@ -1,0 +1,256 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Banco de Preguntas · Ecosistema Educativo</title>
+<link rel="stylesheet" href="/css/tokens.css"><link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/componentes.css">
+<link rel="stylesheet" href="/css/modulos/banco-preguntas.css"></head>
+<body><div id="plantilla"></div><main id="contenido" class="contenedor">
+  <div class="banco-cabecera">
+    <div>
+      <h1 class="texto-h1">Banco de Preguntas</h1>
+      <p class="texto-suave">Gestión curricular de reactivos evaluativos por niveles cognitivos de Bloom.</p>
+    </div>
+    <div class="banco-acciones-cabecera">
+      <button type="button" id="btn-configurar-ia" class="btn btn--secundario oculto" title="Configurar modelo y API de Gemini">⚙️ Configurar IA</button>
+      <button type="button" id="btn-generar-ia" class="btn btn--acento">✨ Generar con IA</button>
+      <button type="button" id="btn-nueva-pregunta" class="btn btn--primario">+ Nueva pregunta</button>
+    </div>
+  </div>
+
+  <section class="tarjeta seccion-filtro-tema" aria-label="Selección de tema">
+    <div class="campo" style="margin-bottom: 0;">
+      <label for="select-tema" class="etiqueta">Tema curricular:</label>
+      <select id="select-tema" class="entrada">
+        <option value="">Cargando temas disponibles...</option>
+      </select>
+    </div>
+  </section>
+
+  <!-- Pestañas de Nivel 1 a 5 -->
+  <nav class="banco-pestanas" aria-label="Niveles cognitivos">
+    <button type="button" class="pestana-btn pestana-btn--activa" data-nivel="1">
+      <span class="pestana-titulo">Nivel 1 · Recordar</span>
+      <span class="pestana-contador" id="contador-nivel-1">0 aprobadas</span>
+    </button>
+    <button type="button" class="pestana-btn" data-nivel="2">
+      <span class="pestana-titulo">Nivel 2 · Comprender</span>
+      <span class="pestana-contador" id="contador-nivel-2">0 aprobadas</span>
+    </button>
+    <button type="button" class="pestana-btn" data-nivel="3">
+      <span class="pestana-titulo">Nivel 3 · Aplicar</span>
+      <span class="pestana-contador" id="contador-nivel-3">0 aprobadas</span>
+    </button>
+    <button type="button" class="pestana-btn" data-nivel="4">
+      <span class="pestana-titulo">Nivel 4 · Analizar</span>
+      <span class="pestana-contador" id="contador-nivel-4">0 aprobadas</span>
+    </button>
+    <button type="button" class="pestana-btn" data-nivel="5">
+      <span class="pestana-titulo">Nivel 5 · Evaluar</span>
+      <span class="pestana-contador" id="contador-nivel-5">0 aprobadas</span>
+    </button>
+  </nav>
+
+  <!-- Aviso si hay menos de 20 preguntas aprobadas -->
+  <div id="aviso-minimo-preguntas" class="alerta alerta--advertencia oculto" role="status">
+    <strong>⚠️ Recomendación pedagógica:</strong>
+    <span id="texto-aviso-minimo">Este nivel tiene menos de 20 preguntas aprobadas. Para garantizar la variedad y confiabilidad de los cuestionarios, se recomienda generar o registrar al menos 20 preguntas.</span>
+  </div>
+
+  <!-- Lista de preguntas -->
+  <section class="seccion-lista-preguntas" aria-label="Lista de reactivos del nivel">
+    <div id="contenedor-preguntas" class="lista-preguntas-grid">
+      <p class="texto-suave">Selecciona un tema para ver las preguntas disponibles.</p>
+    </div>
+  </section>
+
+  <!-- Modal de Edición / Creación manual -->
+  <div id="modal-pregunta" class="modal-overlay oculto" role="dialog" aria-modal="true" aria-labelledby="modal-pregunta-titulo">
+    <div class="modal modal--grande">
+      <div class="modal__cabecera">
+        <h2 id="modal-pregunta-titulo" class="tarjeta__titulo">Nueva Pregunta</h2>
+        <button type="button" id="btn-cerrar-modal" class="btn-cerrar" aria-label="Cerrar modal">✕</button>
+      </div>
+
+      <form id="form-pregunta" novalidate>
+        <div class="fila-campos-modal">
+          <div class="campo">
+            <label for="input-nivel" class="etiqueta">Nivel de Bloom <span class="requerido">*</span></label>
+            <select id="input-nivel" class="entrada" required>
+              <option value="1">Nivel 1 · Recordar</option>
+              <option value="2">Nivel 2 · Comprender</option>
+              <option value="3">Nivel 3 · Aplicar</option>
+              <option value="4">Nivel 4 · Analizar</option>
+              <option value="5">Nivel 5 · Evaluar</option>
+            </select>
+          </div>
+
+          <div class="campo">
+            <label for="input-tipo" class="etiqueta">Tipo de reactivo <span class="requerido">*</span></label>
+            <select id="input-tipo" class="entrada" required>
+              <option value="opcion">Opción múltiple (4 opciones)</option>
+              <option value="vf">Verdadero / Falso</option>
+              <option value="completar">Completar texto (espacio en blanco)</option>
+            </select>
+          </div>
+
+          <div class="campo">
+            <label for="input-estado" class="etiqueta">Estado <span class="requerido">*</span></label>
+            <select id="input-estado" class="entrada" required>
+              <option value="aprobado">Aprobado</option>
+              <option value="borrador">Borrador</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="campo">
+          <label for="input-enunciado" class="etiqueta">Enunciado de la pregunta <span class="requerido">*</span></label>
+          <textarea id="input-enunciado" class="entrada" rows="3" required placeholder="Escribe el enunciado o consigna. Para completar, usa '____' para el espacio."></textarea>
+        </div>
+
+        <!-- Bloque dinámico para Opciones Múltiples -->
+        <fieldset id="seccion-opciones" class="grupo-opciones">
+          <legend class="etiqueta">Opciones de respuesta (marca la opción correcta):</legend>
+          <div class="opcion-fila">
+            <input type="radio" name="opcion-correcta" value="0" id="correcta-0" checked aria-label="Opción 1 correcta">
+            <input type="text" id="opcion-texto-0" class="entrada" placeholder="Opción 1" required>
+          </div>
+          <div class="opcion-fila">
+            <input type="radio" name="opcion-correcta" value="1" id="correcta-1" aria-label="Opción 2 correcta">
+            <input type="text" id="opcion-texto-1" class="entrada" placeholder="Opción 2" required>
+          </div>
+          <div class="opcion-fila">
+            <input type="radio" name="opcion-correcta" value="2" id="correcta-2" aria-label="Opción 3 correcta">
+            <input type="text" id="opcion-texto-2" class="entrada" placeholder="Opción 3" required>
+          </div>
+          <div class="opcion-fila">
+            <input type="radio" name="opcion-correcta" value="3" id="correcta-3" aria-label="Opción 4 correcta">
+            <input type="text" id="opcion-texto-3" class="entrada" placeholder="Opción 4" required>
+          </div>
+        </fieldset>
+
+        <!-- Bloque dinámico para Verdadero / Falso -->
+        <div id="seccion-vf" class="campo oculto">
+          <label for="select-vf-correcta" class="etiqueta">Respuesta correcta <span class="requerido">*</span></label>
+          <select id="select-vf-correcta" class="entrada">
+            <option value="true">Verdadero</option>
+            <option value="false">Falso</option>
+          </select>
+        </div>
+
+        <!-- Bloque dinámico para Completar -->
+        <div id="seccion-completar" class="campo oculto">
+          <label for="input-completar-correcta" class="etiqueta">Palabra o frase correcta <span class="requerido">*</span></label>
+          <input type="text" id="input-completar-correcta" class="entrada" placeholder="Ej: mediación">
+        </div>
+
+        <div class="campo">
+          <label for="input-retroalimentacion" class="etiqueta">Retroalimentación explicativa</label>
+          <textarea id="input-retroalimentacion" class="entrada" rows="2" placeholder="Explica brevemente por qué es la respuesta correcta..."></textarea>
+        </div>
+
+        <div class="modal__pie">
+          <button type="button" id="btn-cancelar-modal" class="btn btn--secundario">Cancelar</button>
+          <button type="submit" id="btn-guardar-pregunta" class="btn btn--primario">Guardar pregunta</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal de Generación y Propuestas de IA -->
+  <div id="modal-ia" class="modal-overlay oculto" role="dialog" aria-modal="true" aria-labelledby="modal-ia-titulo">
+    <div class="modal modal--grande">
+      <div class="modal__cabecera">
+        <h2 id="modal-ia-titulo" class="tarjeta__titulo">Generar Reactivos con IA</h2>
+        <button type="button" id="btn-cerrar-ia" class="btn-cerrar" aria-label="Cerrar modal">✕</button>
+      </div>
+
+      <div id="ia-formulario-parametros" class="pila">
+        <p class="texto-suave">La IA generará propuestas pedagógicas adaptadas al nivel de Bloom activo usando el contenido y glosario del tema.</p>
+        <div class="campo">
+          <label for="ia-cantidad" class="etiqueta">Cantidad de preguntas a generar (5 a 15):</label>
+          <input type="number" id="ia-cantidad" class="entrada" min="5" max="15" value="5">
+        </div>
+        <div class="modal__pie">
+          <button type="button" id="btn-cancelar-ia-form" class="btn btn--secundario">Cancelar</button>
+          <button type="button" id="btn-iniciar-generacion" class="btn btn--acento">Generar reactivos</button>
+        </div>
+      </div>
+
+      <!-- Revisión de propuestas generadas -->
+      <div id="ia-bloque-propuestas" class="pila oculto">
+        <div class="cabecera-propuestas">
+          <div>
+            <h3 class="texto-h3">Propuestas generadas</h3>
+            <p class="texto-suave" id="ia-contador-propuestas">Revisa, aprueba, edita o descarta cada pregunta antes de incorporarla al banco.</p>
+          </div>
+          <button type="button" id="btn-aprobar-todas-ia" class="btn btn--secundario btn--pequeno">Aprobar todas</button>
+        </div>
+        <div id="contenedor-propuestas-ia" class="lista-propuestas-ia"></div>
+        <div class="modal__pie">
+          <button type="button" id="btn-finalizar-ia" class="btn btn--primario">Finalizar revisión</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de Configuración de IA (Solo Administrador) -->
+  <div id="modal-config-ia" class="modal-overlay oculto" role="dialog" aria-modal="true" aria-labelledby="modal-config-ia-titulo">
+    <div class="modal">
+      <div class="modal__cabecera">
+        <h2 id="modal-config-ia-titulo" class="tarjeta__titulo">Configuración de IA (Gemini)</h2>
+        <button type="button" id="btn-cerrar-config-ia" class="btn-cerrar" aria-label="Cerrar modal">✕</button>
+      </div>
+
+      <form id="form-config-ia" novalidate class="pila">
+        <p class="texto-suave">Configura el modelo y credencial de la API para las tareas generativas con IA.</p>
+
+        <div class="campo">
+          <label for="cfg-ia-proveedor" class="etiqueta">Proveedor de IA</label>
+          <select id="cfg-ia-proveedor" class="entrada">
+            <option value="gemini">Google Gemini</option>
+          </select>
+        </div>
+
+        <div class="campo">
+          <label for="cfg-ia-modelo" class="etiqueta">Modelo de Gemini <span class="requerido">*</span></label>
+          <select id="cfg-ia-modelo" class="entrada">
+            <option value="gemini-1.5-flash">Gemini 1.5 Flash (Recomendado - Rápido y Estable)</option>
+            <option value="gemini-1.5-pro">Gemini 1.5 Pro (Razonamiento Complejo)</option>
+            <option value="gemini-2.0-flash">Gemini 2.0 Flash (Nueva Generación)</option>
+            <option value="gemini-2.0-flash-lite">Gemini 2.0 Flash Lite (Baja Latencia)</option>
+            <option value="gemini-1.0-pro">Gemini 1.0 Pro (Clásico)</option>
+            <option value="gemini-3.8-flash">Gemini 3.8 Flash</option>
+            <option value="gemini-4-argon">Gemini 4 Argon</option>
+            <option value="otro">Otro modelo (especificar)...</option>
+          </select>
+          <div id="cfg-contenedor-otro-modelo" class="oculto" style="margin-top: var(--espacio-xs);">
+            <input type="text" id="cfg-ia-modelo-otro" class="entrada" placeholder="Escribe el nombre del modelo personalizado">
+          </div>
+          <small class="texto-suave">Selecciona directamente de la lista de modelos siempre disponibles.</small>
+        </div>
+
+        <div class="campo">
+          <label for="cfg-ia-clave" class="etiqueta">Clave de API / Token <span class="requerido">*</span></label>
+          <div style="display: flex; gap: var(--espacio-sm); align-items: center;">
+            <input type="password" id="cfg-ia-clave" class="entrada" placeholder="AIzaSy... o AQ.Ab8RN..." style="flex: 1;" autocomplete="off">
+            <button type="button" id="btn-toggle-ver-clave" class="btn btn--secundario btn--pequeno" title="Mostrar u ocultar clave">👁️</button>
+          </div>
+          <small class="texto-suave">💡 Recomendado: API Key gratuita sin expiración de <strong>Google AI Studio</strong> (inicia con <code>AIzaSy...</code>). Si usas tokens OAuth (<code>AQ...</code> o <code>ya29...</code>) asegúrate de que no hayan expirado.</small>
+        </div>
+
+        <div class="campo">
+          <label for="cfg-ia-limite" class="etiqueta">Límite diario de consultas por usuario</label>
+          <input type="number" id="cfg-ia-limite" class="entrada" min="1" max="500" value="30">
+        </div>
+
+        <div id="cfg-ia-resultado-prueba" class="alerta oculto" role="status"></div>
+
+        <div class="modal__pie">
+          <button type="button" id="btn-probar-ia" class="btn btn--secundario">🧪 Probar conexión</button>
+          <button type="submit" id="btn-guardar-config-ia" class="btn btn--primario">Guardar cambios</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</main>
+<script type="module" src="/js/modulos/banco-preguntas.js"></script></body></html>

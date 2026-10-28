@@ -1,0 +1,72 @@
+/* publico/css/modulos/registro.css · Estilos para la página de registro */
+.auth-tarjeta {
+  max-width: 520px;
+  margin: var(--espacio-xl) auto;
+  padding: var(--espacio-xl);
+}
+
+.auth-tarjeta__cabecera {
+  text-align: center;
+  margin-bottom: var(--espacio-l);
+}
+
+.auth-tarjeta__titulo {
+  color: var(--color-primario);
+  font-size: var(--tamano-xl);
+  margin-bottom: var(--espacio-xs);
+}
+
+.auth-tarjeta__subtitulo {
+  color: var(--color-texto-suave);
+  font-size: var(--tamano-s);
+}
+
+.fila-campos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--espacio-m);
+}
+
+@media (max-width: 480px) {
+  .fila-campos {
+    grid-template-columns: 1fr;
+  }
+}
+
+.campo--checkbox {
+  margin-top: var(--espacio-xs);
+}
+
+.etiqueta-checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--espacio-s);
+  cursor: pointer;
+  font-size: var(--tamano-s);
+  color: var(--color-texto);
+}
+
+.etiqueta-checkbox input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  min-height: 20px;
+  cursor: pointer;
+  accent-color: var(--color-primario);
+}
+
+.auth-tarjeta__acciones {
+  margin-top: var(--espacio-m);
+}
+
+.btn--completo {
+  width: 100%;
+}
+
+.auth-tarjeta__pie {
+  margin-top: var(--espacio-xl);
+  padding-top: var(--espacio-m);
+  border-top: 1px solid var(--color-borde);
+  text-align: center;
+  font-size: var(--tamano-s);
+  color: var(--color-texto-suave);
+}

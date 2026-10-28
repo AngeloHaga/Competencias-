@@ -1,0 +1,17 @@
+{
+  "name": "ecosistema-educativo",
+  "version": "1.0.0",
+  "description": "Plataforma web educativa",
+  "type": "module",
+  "scripts": {
+    "start": "node servidor/server.js",
+    "semilla": "node servidor/semilla.js",
+    "crear-admin": "node servidor/crear-admin.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "multer": "^2.1.1"
+  }
+}

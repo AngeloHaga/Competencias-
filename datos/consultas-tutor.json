@@ -1,0 +1,42 @@
+[
+  {
+    "id": "cnt_1793157326388_full",
+    "usuarioId": "usu_000004",
+    "asignaturaId": "asi_000001",
+    "temaId": null,
+    "dia": "2026-10-28",
+    "mensajes": [
+      {
+        "rol": "estudiante",
+        "texto": "Hola",
+        "fecha": "2026-10-28T03:15:26.388Z"
+      },
+      {
+        "rol": "tutor",
+        "texto": "¡Hola, Ana! Qué gusto saludarte. Te doy la más cálida bienvenida a nuestra asignatura de **Competencias Digitales y Estrategias Tecnológicas** de la maestría. Es un verdadero placer acompañarte en este espacio de aprendizaje.\n\nCuéntame, Ana, ¿cómo te sientes al iniciar este recorrido y qué aspectos de nuestra materia te llaman más la atención o te gustaría que comencemos a explorar hoy?",
+        "fecha": "2026-10-28T03:15:26.388Z"
+      },
+      {
+        "rol": "estudiante",
+        "texto": "¿Por qué es importante la gamificación y cómo se relaciona con las competencias?",
+        "fecha": "2026-10-28T03:15:27.780Z"
+      },
+      {
+        "rol": "tutor",
+        "texto": "¡Hola, Ana! Qué gusto saludarte en este espacio de nuestra maestría. Me alegra muchísimo ver tu interés por comprender cómo la gamificación se conecta con el desarrollo de nuestras capacidades profesionales. \n\nPara empezar a reflexionar sobre esto, te invito a pensar en una ocasión en la que hayas participado en una actividad lúdica o un reto donde estuvieras muy motivada: ¿qué sentiste que te impulsaba a continuar y a superar cada obstáculo? \n\nY pensando ya en nuestro rol docente y en el concepto de **competencia** (esa capacidad compleja de movilizar conocimientos, habilidades y actitudes en contextos diversos), ¿de qué manera crees que el uso de retos o dinámicas lúdicas podría ayudar a un estudiante a *saber actuar de manera fundamentada* frente a un problema real? \n\n¡Cuéntame qué ideas te vienen a la mente!",
+        "fecha": "2026-10-28T03:15:27.780Z"
+      },
+      {
+        "rol": "estudiante",
+        "texto": "¿Cómo preparo una receta de pizza napolitana con queso?",
+        "fecha": "2026-10-28T03:15:28.886Z"
+      },
+      {
+        "rol": "tutor",
+        "texto": "¡Hola, Ana! Qué gusto saludarte. \n\nComprendo que te interese la cocina, pero como tutor virtual exclusivo de la asignatura **\"Competencias Digitales y Estrategias Tecnológicas\"** de tu maestría, mi función es acompañarte y guiarte estrictamente en los contenidos de nuestro programa curricular. \n\nEn nuestra materia, por ejemplo, exploramos temas fascinantes como la **Alfabetización Digital y Mediación Pedagógica** (para aprender a evaluar recursos y herramientas digitales para el aula) o las **Estrategias Tecnológicas y Gamificación en Educación** (para diseñar experiencias de aprendizaje motivadoras y dinámicas lúdicas).\n\n¿Hay alguno de estos temas de nuestra asignatura en el que te gustaría que profundicemos hoy, Ana? ¡Estoy aquí para ayudarte a avanzar en tu maestría!",
+        "fecha": "2026-10-28T03:15:28.886Z"
+      }
+    ],
+    "fecha": "2026-10-28T03:15:26.388Z"
+  }
+]

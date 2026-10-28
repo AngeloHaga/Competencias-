@@ -1,0 +1,63 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Noticias y Novedades · Ecosistema Educativo</title>
+<link rel="stylesheet" href="/css/tokens.css"><link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/componentes.css">
+<link rel="stylesheet" href="/css/modulos/noticias.css"></head>
+<body><div id="plantilla"></div><main id="contenido" class="contenedor">
+  <div class="noticias-layout pila">
+    <!-- Cabecera -->
+    <header class="noticias-cabecera">
+      <div>
+        <h1 class="noticias-cabecera__titulo">Noticias y Novedades</h1>
+        <p class="noticias-cabecera__subtitulo">Mantente al día con los comunicados institucionales y actualizaciones académicas.</p>
+      </div>
+
+      <div id="contenedorBotonNueva" style="display: none;">
+        <a href="/paginas/editor-noticia.html" class="btn btn--primario" id="btnNuevaNoticia">
+          + Nueva noticia
+        </a>
+      </div>
+    </header>
+
+    <!-- Barra de Filtros -->
+    <section class="tarjeta noticias-filtros" aria-label="Filtros de noticias">
+      <div class="noticias-filtros__grid">
+        <div class="campo" style="margin-bottom: 0;">
+          <label for="filtroCategoria" class="texto-xs">Filtrar por categoría</label>
+          <select id="filtroCategoria">
+            <option value="">Todas las categorías</option>
+            <option value="Institucional">Institucional</option>
+            <option value="Académica">Académica</option>
+            <option value="Eventos">Eventos</option>
+            <option value="Logros">Logros</option>
+          </select>
+        </div>
+
+        <div class="campo" style="margin-bottom: 0;">
+          <label for="filtroTema" class="texto-xs">Filtrar por tema relacionado</label>
+          <select id="filtroTema">
+            <option value="">Todos los temas</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <!-- Grilla de Noticias -->
+    <div id="gridNoticias" class="noticias-grid">
+      <div class="tarjeta texto-centro" style="grid-column: 1 / -1;">Cargando noticias...</div>
+    </div>
+
+    <!-- Paginación -->
+    <nav class="paginacion-contenedor" id="contenedorPaginacion" aria-label="Paginación de noticias" style="display: none;">
+      <button type="button" class="btn btn--secundario btn--pequeno" id="btnPaginaAnterior" disabled>
+        ← Anterior
+      </button>
+      <span class="texto-s texto-suave" id="indicadorPaginacion">Página 1 de 1</span>
+      <button type="button" class="btn btn--secundario btn--pequeno" id="btnPaginaSiguiente" disabled>
+        Siguiente →
+      </button>
+    </nav>
+  </div>
+</main>
+<script type="module" src="/js/modulos/noticias.js"></script></body></html>

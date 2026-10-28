@@ -1,0 +1,677 @@
+/* publico/css/modulos/asignatura.css · Estilos para la vista de temas de una asignatura */
+
+.asignatura-layout {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-l);
+  padding: var(--espacio-m) 0 var(--espacio-2xl) 0;
+}
+
+.asignatura-cabecera {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-s);
+  border-bottom: 1px solid var(--color-borde);
+  padding-bottom: var(--espacio-m);
+}
+
+.asignatura-cabecera__fila {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--espacio-m);
+  flex-wrap: wrap;
+}
+
+.asignatura-cabecera__titulo {
+  font-size: var(--tamano-2xl);
+  font-weight: var(--peso-extranegrita);
+  color: var(--color-primario);
+  margin: 0;
+  line-height: var(--interlineado-compacto);
+}
+
+.asignatura-cabecera__descripcion {
+  font-size: var(--tamano-m);
+  color: var(--color-texto-suave);
+  margin: var(--espacio-xs) 0 0 0;
+  max-width: 780px;
+}
+
+.asignatura-cabecera__meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--espacio-xs);
+}
+
+.asignatura-resumen-avance {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+/* Bloque de Unidad */
+.bloque-unidad {
+  background-color: var(--color-superficie);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-l);
+  padding: var(--espacio-l);
+  box-shadow: var(--sombra-1);
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-m);
+}
+
+.bloque-unidad__cabecera {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--espacio-s);
+  border-bottom: 1px solid var(--color-borde);
+  padding-bottom: var(--espacio-s);
+}
+
+.bloque-unidad__titulo {
+  font-size: var(--tamano-l);
+  font-weight: var(--peso-negrita);
+  color: var(--color-primario);
+  margin: 0;
+}
+
+/* Lista de Temas */
+.lista-temas-curso {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-s);
+}
+
+.tarjeta-tema-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--espacio-m);
+  padding: var(--espacio-m);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-m);
+  background-color: var(--color-fondo);
+  transition: var(--transicion);
+  flex-wrap: wrap;
+}
+
+.tarjeta-tema-item:hover {
+  border-color: var(--color-primario);
+  box-shadow: var(--sombra-1);
+}
+
+.tarjeta-tema-item__izq {
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-m);
+  flex: 1;
+  min-width: 240px;
+}
+
+.tarjeta-tema-item__numero {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radio-completo);
+  background-color: var(--color-superficie);
+  border: 1px solid var(--color-borde);
+  font-weight: var(--peso-negrita);
+  font-size: var(--tamano-s);
+  color: var(--color-primario);
+}
+
+.tarjeta-tema-item__titulo {
+  font-size: var(--tamano-m);
+  font-weight: var(--peso-negrita);
+  color: var(--color-primario);
+  margin: 0;
+}
+
+.tarjeta-tema-item__der {
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-s);
+  flex-wrap: wrap;
+}
+
+.insignia--revisado {
+  background-color: var(--color-exito-fondo);
+  color: var(--color-exito);
+  border: 1px solid var(--color-exito);
+}
+
+.insignia--pendiente {
+  background-color: var(--color-advertencia-fondo);
+  color: var(--color-advertencia);
+  border: 1px solid var(--color-advertencia);
+}
+
+/* ==========================================================================
+   TUTOR VIRTUAL SOCRÁTICO · Hero Card, FAB y Panel Interactivo de Chat
+   ========================================================================== */
+
+/* Tarjeta Hero de Tutoría en la Asignatura */
+.tutor-hero-card {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--espacio-l);
+  padding: var(--espacio-l);
+  background: linear-gradient(135deg, var(--color-superficie) 0%, var(--color-info-fondo) 100%);
+  border: 1px solid var(--color-borde);
+  border-left: 4px solid var(--color-acento);
+  border-radius: var(--radio-l);
+  box-shadow: var(--sombra-1);
+}
+
+.tutor-hero-card__icono-box {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radio-completo);
+  background: var(--color-superficie);
+  border: 1px solid var(--color-borde);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--sombra-1);
+  flex-shrink: 0;
+}
+
+.tutor-hero-card__icono {
+  font-size: 2rem;
+}
+
+.tutor-hero-card__info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-s);
+  flex: 1;
+}
+
+.tutor-hero-card__etiquetas {
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-xs);
+  flex-wrap: wrap;
+  margin-bottom: 4px;
+}
+
+.tutor-hero-card__titulo {
+  font-size: var(--tamano-xl);
+  font-weight: var(--peso-negrita);
+  color: var(--color-primario);
+  margin: 0;
+  line-height: var(--interlineado-compacto);
+}
+
+.tutor-hero-card__descripcion {
+  font-size: var(--tamano-s);
+  color: var(--color-texto);
+  line-height: var(--interlineado-normal);
+  margin: 0;
+  max-width: 820px;
+}
+
+.tutor-hero-card__acciones {
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-m);
+  flex-wrap: wrap;
+  margin-top: var(--espacio-xs);
+}
+
+.tutor-hero-card__sugerencias {
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-xs);
+  flex-wrap: wrap;
+}
+
+.tutor-chip-sugerencia {
+  background: var(--color-superficie);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-completo);
+  padding: 4px 12px;
+  font-size: var(--tamano-xs);
+  color: var(--color-primario);
+  cursor: pointer;
+  transition: var(--transicion);
+  font-family: inherit;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.tutor-chip-sugerencia:hover,
+.tutor-chip-sugerencia:focus-visible {
+  border-color: var(--color-acento);
+  color: var(--color-acento);
+  background-color: #fff9f4;
+  transform: translateY(-1px);
+}
+
+/* Botón de consultar tutor en cada tema */
+.btn-consultar-tutor-tema {
+  background: transparent;
+  border: 1px solid var(--color-borde);
+  color: var(--color-primario);
+  border-radius: var(--radio-m);
+  padding: 6px 12px;
+  font-size: var(--tamano-xs);
+  font-weight: var(--peso-medio);
+  cursor: pointer;
+  transition: var(--transicion);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: inherit;
+}
+
+.btn-consultar-tutor-tema:hover,
+.btn-consultar-tutor-tema:focus-visible {
+  border-color: var(--color-primario);
+  background-color: var(--color-superficie);
+  color: var(--color-acento);
+}
+
+/* Botón Flotante (FAB) */
+.tutor-fab {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 120;
+  background-color: var(--color-primario);
+  color: var(--color-texto-inverso);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radio-completo);
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-s);
+  cursor: pointer;
+  box-shadow: var(--sombra-3);
+  font-family: inherit;
+  font-size: var(--tamano-s);
+  font-weight: var(--peso-seminegrita);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tutor-fab:hover,
+.tutor-fab:focus-visible {
+  background-color: var(--color-primario-oscuro);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 46, 69, 0.35);
+}
+
+.tutor-fab__avatar {
+  font-size: 1.3rem;
+  line-height: 1;
+}
+
+.tutor-fab__pulso {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radio-completo);
+  background-color: var(--color-acento);
+  box-shadow: 0 0 0 rgba(255, 105, 0, 0.7);
+  animation: pulso-fab 2s infinite;
+}
+
+@keyframes pulso-fab {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 105, 0, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(255, 105, 0, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 105, 0, 0); }
+}
+
+/* Panel / Ventana de Chat Flotante */
+.tutor-chat-panel {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: min(440px, calc(100vw - 32px));
+  height: min(620px, calc(100vh - 48px));
+  max-height: 85vh;
+  z-index: 130;
+  background-color: var(--color-superficie);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-l);
+  box-shadow: var(--sombra-3);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.tutor-chat-panel--oculto {
+  transform: translateY(24px) scale(0.95);
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+/* Cabecera del Chat */
+.tutor-chat-header {
+  background-color: var(--color-primario);
+  color: var(--color-texto-inverso);
+  padding: var(--espacio-s) var(--espacio-m);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--espacio-s);
+  border-top-left-radius: var(--radio-l);
+  border-top-right-radius: var(--radio-l);
+}
+
+.tutor-chat-header__perfil {
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-s);
+}
+
+.tutor-chat-avatar {
+  position: relative;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radio-completo);
+  background-color: var(--color-secundario);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+}
+
+.tutor-chat-estado {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: var(--radio-completo);
+  background-color: #22c55e;
+  border: 2px solid var(--color-primario);
+}
+
+.tutor-chat-titulos {
+  display: flex;
+  flex-direction: column;
+}
+
+.tutor-chat-nombre {
+  font-size: var(--tamano-s);
+  font-weight: var(--peso-negrita);
+  margin: 0;
+  color: var(--color-texto-inverso);
+  line-height: 1.2;
+}
+
+.tutor-chat-subtexto {
+  font-size: var(--tamano-xs);
+  color: #c5d8e6;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 220px;
+}
+
+.tutor-chat-header__controles {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.tutor-chat-btn-icono {
+  background: transparent;
+  border: none;
+  color: var(--color-texto-inverso);
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radio-completo);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: var(--transicion);
+}
+
+.tutor-chat-btn-icono:hover,
+.tutor-chat-btn-icono:focus-visible {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Cuerpo de Mensajes */
+.tutor-chat-cuerpo {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--espacio-m);
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-m);
+  background-color: #fafbfc;
+}
+
+/* Mensajes */
+.tutor-msg {
+  display: flex;
+  gap: var(--espacio-xs);
+  max-width: 90%;
+  animation: fadeInMsg 0.2s ease;
+}
+
+@keyframes fadeInMsg {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.tutor-msg--estudiante {
+  align-self: flex-end;
+  flex-direction: row-reverse;
+}
+
+.tutor-msg--tutor {
+  align-self: flex-start;
+}
+
+.tutor-msg__avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radio-completo);
+  background-color: var(--color-superficie);
+  border: 1px solid var(--color-borde);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+.tutor-msg__contenido {
+  display: flex;
+  flex-direction: column;
+}
+
+.tutor-msg__burbuja {
+  padding: var(--espacio-s) var(--espacio-m);
+  font-size: var(--tamano-s);
+  line-height: var(--interlineado-normal);
+  word-break: break-word;
+}
+
+.tutor-msg--estudiante .tutor-msg__burbuja {
+  background-color: var(--color-primario);
+  color: var(--color-texto-inverso);
+  border-radius: var(--radio-m) var(--radio-m) 2px var(--radio-m);
+}
+
+.tutor-msg--tutor .tutor-msg__burbuja {
+  background-color: var(--color-superficie);
+  color: var(--color-texto);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-m) var(--radio-m) var(--radio-m) 2px;
+  box-shadow: var(--sombra-1);
+}
+
+.tutor-msg__burbuja p {
+  margin: 0 0 var(--espacio-xs) 0;
+}
+
+.tutor-msg__burbuja p:last-child {
+  margin-bottom: 0;
+}
+
+.tutor-msg__burbuja ul {
+  margin: var(--espacio-xs) 0;
+  padding-left: var(--espacio-m);
+}
+
+.tutor-msg__burbuja strong {
+  color: inherit;
+  font-weight: var(--peso-negrita);
+}
+
+.tutor-msg__hora {
+  font-size: 0.7rem;
+  color: var(--color-texto-suave);
+  margin-top: 2px;
+}
+
+.tutor-msg--estudiante .tutor-msg__hora {
+  text-align: right;
+}
+
+/* Indicador de tipeo */
+.tutor-chat-escribiendo {
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-s);
+  padding: 6px var(--espacio-m);
+  background-color: #fafbfc;
+}
+
+.tutor-chat-avatar-mini {
+  font-size: 1rem;
+}
+
+.tutor-puntos-animados {
+  display: inline-flex;
+  gap: 4px;
+}
+
+.tutor-puntos-animados span {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radio-completo);
+  background-color: var(--color-secundario);
+  animation: bot-bounce 1.4s infinite ease-in-out both;
+}
+
+.tutor-puntos-animados span:nth-child(1) { animation-delay: -0.32s; }
+.tutor-puntos-animados span:nth-child(2) { animation-delay: -0.16s; }
+
+@keyframes bot-bounce {
+  0%, 80%, 100% { transform: scale(0); }
+  40% { transform: scale(1); }
+}
+
+/* Píldoras de sugerencias rápidas en el chat */
+.tutor-chat-pildoras {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 4px var(--espacio-m) var(--espacio-xs);
+  background-color: #fafbfc;
+  border-top: 1px dashed var(--color-borde);
+  max-height: 90px;
+  overflow-y: auto;
+}
+
+.tutor-chat-pildoras .tutor-chip-sugerencia {
+  font-size: 0.75rem;
+  padding: 3px 10px;
+}
+
+/* Footer / Input */
+.tutor-chat-footer {
+  padding: var(--espacio-s) var(--espacio-m);
+  background-color: var(--color-superficie);
+  border-top: 1px solid var(--color-borde);
+  display: flex;
+  align-items: flex-end;
+  gap: var(--espacio-s);
+}
+
+.tutor-chat-input {
+  flex: 1;
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-m);
+  padding: 8px 12px;
+  font-family: inherit;
+  font-size: var(--tamano-s);
+  line-height: 1.4;
+  color: var(--color-texto);
+  background-color: var(--color-fondo);
+  resize: none;
+  max-height: 100px;
+  transition: var(--transicion);
+}
+
+.tutor-chat-input:focus {
+  outline: none;
+  border-color: var(--color-primario);
+  background-color: var(--color-superficie);
+  box-shadow: 0 0 0 3px rgba(0, 46, 69, 0.1);
+}
+
+.tutor-chat-enviar {
+  border-radius: var(--radio-completo);
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 1rem;
+}
+
+/* Ajustes Responsive */
+@media (max-width: 640px) {
+  .tutor-hero-card {
+    flex-direction: column;
+    padding: var(--espacio-m);
+  }
+
+  .tutor-hero-card__icono-box {
+    width: 48px;
+    height: 48px;
+  }
+
+  .tutor-hero-card__icono {
+    font-size: 1.5rem;
+  }
+
+  .tutor-chat-panel {
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100vw;
+    height: 80vh;
+    max-height: 80vh;
+    border-radius: var(--radio-l) var(--radio-l) 0 0;
+  }
+
+  .tutor-fab {
+    bottom: 16px;
+    right: 16px;
+    padding: 10px 16px;
+    font-size: var(--tamano-xs);
+  }
+}
+

@@ -1,0 +1,127 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Editor de Contenidos · Ecosistema Educativo</title>
+<link rel="stylesheet" href="/css/tokens.css"><link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/componentes.css">
+<link rel="stylesheet" href="/css/modulos/editor-contenidos.css"></head>
+<body><div id="plantilla"></div><main id="contenido" class="contenedor">
+  <div class="editor-layout pila">
+    <!-- Encabezado de la página -->
+    <header class="editor-cabecera">
+      <div>
+        <h1 class="editor-cabecera__titulo">Editor de Contenidos</h1>
+        <p class="editor-cabecera__subtitulo">Estructura y gestiona las unidades curriculares y los temas de aprendizaje.</p>
+      </div>
+    </header>
+
+    <!-- Selector de Asignatura -->
+    <section class="tarjeta editor-selector-card" aria-labelledby="tituloSelectorAsignatura">
+      <div class="editor-selector-fila">
+        <label for="selectorAsignatura" id="tituloSelectorAsignatura" class="editor-selector-label">
+          Asignatura:
+        </label>
+        <select id="selectorAsignatura" class="editor-selector-select" aria-label="Seleccionar asignatura para editar contenidos">
+          <option value="" disabled selected>Cargando asignaturas...</option>
+        </select>
+        <span id="badgeNivelAsignatura" class="insignia insignia--secundario" style="display: none;"></span>
+      </div>
+    </section>
+
+    <!-- Panel de trabajo: Unidades y Temas -->
+    <div id="panelTrabajo" class="editor-columnas" style="display: none;">
+      <!-- Columna Izquierda: Unidades -->
+      <section class="tarjeta editor-columna" aria-labelledby="tituloColumnaUnidades">
+        <div class="editor-columna__cabecera">
+          <div>
+            <h2 id="tituloColumnaUnidades" class="editor-columna__titulo">Unidades</h2>
+            <span id="contadorUnidades" class="texto-suave texto-xs">0 unidades</span>
+          </div>
+          <button type="button" class="btn btn--primario btn--pequeno" id="btnNuevaUnidad">
+            + Nueva unidad
+          </button>
+        </div>
+
+        <div id="listaUnidades" class="editor-lista" role="list">
+          <div class="tarjeta-vacia">Cargando unidades...</div>
+        </div>
+      </section>
+
+      <!-- Columna Derecha: Temas -->
+      <section class="tarjeta editor-columna" aria-labelledby="tituloColumnaTemas">
+        <div class="editor-columna__cabecera">
+          <div>
+            <h2 id="tituloColumnaTemas" class="editor-columna__titulo">Temas</h2>
+            <span id="contadorTemas" class="texto-suave texto-xs">Selecciona una unidad</span>
+          </div>
+          <button type="button" class="btn btn--primario btn--pequeno" id="btnNuevoTema" disabled>
+            + Nuevo tema
+          </button>
+        </div>
+
+        <div id="listaTemas" class="editor-lista" role="list">
+          <div class="tarjeta-vacia">Selecciona una unidad para ver sus temas.</div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Mensaje si no tiene asignaturas asignadas -->
+    <div id="mensajeSinAsignaturas" class="alerta alerta--info" style="display: none;">
+      <strong>Sin asignaturas disponibles</strong>
+      <p>No tienes asignaturas asignadas en el distributivo académico actualmente.</p>
+    </div>
+  </div>
+
+  <!-- Modal para Crear/Renombrar Unidad -->
+  <div id="modalUnidad" class="modal-overlay" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="tituloModalUnidad">
+    <div class="modal">
+      <header class="modal-cabecera">
+        <h2 id="tituloModalUnidad" class="modal-titulo">Nueva Unidad</h2>
+        <button type="button" class="modal-cerrar" id="btnCerrarModalUnidad" aria-label="Cerrar ventana">×</button>
+      </header>
+
+      <form id="formUnidad" class="pila" novalidate>
+        <div class="modal-cuerpo">
+          <div class="campo" id="campoTituloUnidad">
+            <label for="inputTituloUnidad">Título de la unidad *</label>
+            <input type="text" id="inputTituloUnidad" name="titulo" required maxlength="150" placeholder="Ej: Unidad 1: Fundamentos de..." autocomplete="off">
+            <span class="campo__error" id="errorTituloUnidad" style="display: none;"></span>
+          </div>
+        </div>
+
+        <footer class="modal-pie">
+          <button type="button" class="btn btn--secundario" id="btnCancelarUnidad">Cancelar</button>
+          <button type="submit" class="btn btn--primario" id="btnGuardarUnidad">Guardar</button>
+        </footer>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal para Crear Tema -->
+  <div id="modalTema" class="modal-overlay" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="tituloModalTema">
+    <div class="modal">
+      <header class="modal-cabecera">
+        <h2 id="tituloModalTema" class="modal-titulo">Nuevo Tema</h2>
+        <button type="button" class="modal-cerrar" id="btnCerrarModalTema" aria-label="Cerrar ventana">×</button>
+      </header>
+
+      <form id="formTema" class="pila" novalidate>
+        <div class="modal-cuerpo">
+          <div class="campo" id="campoTituloTema">
+            <label for="inputTituloTema">Título del tema *</label>
+            <input type="text" id="inputTituloTema" name="titulo" required maxlength="150" placeholder="Ej: Alfabetización digital y entornos..." autocomplete="off">
+            <span class="campo__error" id="errorTituloTema" style="display: none;"></span>
+          </div>
+          <p class="texto-suave texto-xs" style="margin-top: var(--espacio-xs);">
+            El tema se creará en estado <strong>borrador</strong>. Podrás completar su ficha y publicarlo cuando esté listo.
+          </p>
+        </div>
+
+        <footer class="modal-pie">
+          <button type="button" class="btn btn--secundario" id="btnCancelarTema">Cancelar</button>
+          <button type="submit" class="btn btn--primario" id="btnGuardarTema">Guardar tema</button>
+        </footer>
+      </form>
+    </div>
+  </div>
+</main>
+<script type="module" src="/js/modulos/editor-contenidos.js"></script></body></html>

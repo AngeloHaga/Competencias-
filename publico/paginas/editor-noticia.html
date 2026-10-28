@@ -1,0 +1,133 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Editor de Noticia · Ecosistema Educativo</title>
+<link rel="stylesheet" href="/css/tokens.css"><link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/componentes.css">
+<link rel="stylesheet" href="/css/modulos/editor-noticia.css"></head>
+<body><div id="plantilla"></div><main id="contenido" class="contenedor">
+  <div class="editor-noticia-layout pila">
+    <!-- Cabecera -->
+    <header class="editor-noticia-cabecera">
+      <div>
+        <a href="/paginas/noticias.html" class="enlace-volver">← Volver a Noticias</a>
+        <h1 class="editor-noticia-cabecera__titulo" id="tituloPagina">Nueva Noticia</h1>
+        <p class="editor-noticia-cabecera__subtitulo">Publica comunicados, novedades académicas, eventos o logros institucionales.</p>
+      </div>
+
+      <div class="editor-noticia-cabecera__acciones">
+        <button type="button" class="btn btn--secundario" id="btnAlternarVistaPrevia">
+          Vista previa
+        </button>
+        <button type="submit" form="formNoticia" class="btn btn--primario" id="btnGuardarNoticia">
+          Guardar noticia
+        </button>
+      </div>
+    </header>
+
+    <!-- Formulario principal -->
+    <form id="formNoticia" class="pila" novalidate>
+      <div class="tarjeta pila">
+        <h2 class="tarjeta__titulo texto-l">Datos Principales</h2>
+
+        <div class="campo">
+          <label for="campoTitulo">Título de la noticia *</label>
+          <input type="text" id="campoTitulo" required maxlength="150" placeholder="Ej: Convocatoria para el concurso de robótica e innovación">
+          <span class="campo__error" id="errorTitulo" style="display: none;"></span>
+        </div>
+
+        <div class="grid-form-3">
+          <div class="campo">
+            <label for="campoCategoria">Categoría *</label>
+            <select id="campoCategoria" required>
+              <option value="Institucional">Institucional</option>
+              <option value="Académica">Académica</option>
+              <option value="Eventos">Eventos</option>
+              <option value="Logros">Logros</option>
+            </select>
+          </div>
+
+          <div class="campo">
+            <label for="campoTema">Tema relacionado (opcional)</label>
+            <select id="campoTema">
+              <option value="">Ninguno (noticia general)</option>
+            </select>
+          </div>
+
+          <div class="campo">
+            <label for="campoEstado">Estado de publicación</label>
+            <select id="campoEstado">
+              <option value="borrador">Borrador</option>
+              <option value="publicado">Publicado</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="campo-checkbox">
+          <label class="etiqueta-casilla">
+            <input type="checkbox" id="campoDestacada">
+            <span>Marcar como <strong>noticia destacada</strong> (se mostrará en los primeros lugares)</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Resumen breve (hasta 200 caracteres) -->
+      <div class="tarjeta pila">
+        <div class="cabecera-contador-fila">
+          <h2 class="tarjeta__titulo texto-l">Resumen breve *</h2>
+          <span class="texto-xs texto-suave" id="contadorCaracteresResumen">0 / 200 caracteres</span>
+        </div>
+        <div class="campo" style="margin-bottom: 0;">
+          <textarea id="campoResumen" rows="3" maxlength="200" required placeholder="Texto sintético introductorio para las tarjetas de noticias..."></textarea>
+          <span class="campo__error" id="errorResumen" style="display: none;"></span>
+        </div>
+      </div>
+
+      <!-- Imagen representativa -->
+      <div class="tarjeta pila">
+        <h2 class="tarjeta__titulo texto-l">Imagen de Portada</h2>
+        <div class="campo-imagen-subida">
+          <div class="campo-imagen-fila">
+            <input type="text" id="campoImagen" placeholder="/recursos/subidas/... o URL de imagen" aria-label="URL de la imagen">
+            <button type="button" class="btn btn--secundario" id="btnSubirImagen">
+              Subir imagen
+            </button>
+            <input type="file" id="inputArchivoImagen" accept="image/png,image/jpeg,image/webp" style="display: none;">
+          </div>
+          <div id="vistaPreviaImagenContenedor" class="imagen-preview-caja" style="display: none;">
+            <img id="imgVistaPrevia" src="" alt="Vista previa de portada">
+            <button type="button" class="btn btn--peligro btn--pequeno" id="btnQuitarImagen">Quitar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cuerpo completo con formato básico -->
+      <div class="tarjeta pila">
+        <div class="cabecera-contador-fila">
+          <h2 class="tarjeta__titulo texto-l">Cuerpo de la Noticia *</h2>
+          <span class="texto-xs texto-suave">Admite negritas (**texto**) y viñetas (- elemento)</span>
+        </div>
+
+        <div class="campo" style="margin-bottom: 0;">
+          <textarea id="campoCuerpo" rows="12" required placeholder="Desarrollo completo de la noticia o comunicado..."></textarea>
+          <div id="contenedorVistaPreviaCuerpo" class="cuerpo-vista-previa" style="display: none;"></div>
+          <span class="campo__error" id="errorCuerpo" style="display: none;"></span>
+        </div>
+      </div>
+
+      <!-- Modal o contenedor de vista previa completa -->
+      <div id="modalVistaPreviaCompleta" class="modal-overlay" style="display: none;" role="dialog" aria-modal="true">
+        <div class="modal" style="max-width: 720px;">
+          <header class="modal-cabecera">
+            <h2 class="modal-titulo">Vista Previa de la Noticia</h2>
+            <button type="button" class="modal-cerrar" id="btnCerrarVistaPrevia">×</button>
+          </header>
+          <div class="modal-cuerpo pila" id="contenidoVistaPreviaModal"></div>
+          <footer class="modal-pie">
+            <button type="button" class="btn btn--secundario" id="btnVolverEdicion">Cerrar vista previa</button>
+          </footer>
+        </div>
+      </div>
+    </form>
+  </div>
+</main>
+<script type="module" src="/js/modulos/editor-noticia.js"></script></body></html>

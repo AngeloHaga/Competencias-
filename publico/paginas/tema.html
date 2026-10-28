@@ -1,0 +1,78 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tema de Aprendizaje · Ecosistema Educativo</title>
+<link rel="stylesheet" href="/css/tokens.css"><link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/componentes.css">
+<link rel="stylesheet" href="/css/modulos/tema.css"></head>
+<body><div id="plantilla"></div><main id="contenido" class="contenedor">
+  <div class="tema-layout pila">
+    <!-- Migas de pan -->
+    <nav class="migas-pan" aria-label="Ruta de navegación" id="migasPan">
+      <a href="/index.html">Inicio</a>
+      <span class="miga-separador">/</span>
+      <a href="/paginas/asignaturas.html">Mis asignaturas</a>
+      <span class="miga-separador" id="sepAsignatura" style="display: none;">/</span>
+      <a href="#" id="migaAsignatura" style="display: none;">Asignatura</a>
+      <span class="miga-separador" id="sepUnidad" style="display: none;">/</span>
+      <span id="migaUnidad" style="display: none;">Unidad</span>
+      <span class="miga-separador">/</span>
+      <span id="migaTema" aria-current="page">Cargando...</span>
+    </nav>
+
+    <!-- Cabecera del tema y acción de revisión -->
+    <header class="tema-cabecera">
+      <div class="tema-cabecera__info">
+        <h1 class="tema-cabecera__titulo" id="tituloTema">Cargando tema...</h1>
+        <div class="tema-cabecera__meta">
+          <span class="insignia insignia--secundario" id="badgeDificultad" style="display: none;"></span>
+          <span class="insignia" id="badgeEstadoRevisado" style="display: none;"></span>
+        </div>
+      </div>
+
+      <div class="tema-cabecera__acciones">
+        <button type="button" class="btn btn--primario" id="btnMarcarRevisado">
+          Marcar como revisado
+        </button>
+      </div>
+    </header>
+
+    <!-- Objetivos de Aprendizaje -->
+    <section class="tarjeta tema-seccion" id="seccionObjetivos" style="display: none;" aria-labelledby="tituloObjetivos">
+      <h2 class="tema-seccion__titulo" id="tituloObjetivos">Objetivos de aprendizaje</h2>
+      <ul class="tema-lista-objetivos" id="listaObjetivos"></ul>
+    </section>
+
+    <!-- Resumen Formativo con formato básico -->
+    <section class="tarjeta tema-seccion" id="seccionResumen" aria-labelledby="tituloResumen">
+      <h2 class="tema-seccion__titulo" id="tituloResumen">Desarrollo y conceptualización</h2>
+      <div class="tema-resumen-cuerpo" id="cuerpoResumen">
+        <p class="texto-suave">Cargando contenido...</p>
+      </div>
+    </section>
+
+    <!-- Ejemplos Prácticos -->
+    <section class="tarjeta tema-seccion" id="seccionEjemplos" style="display: none;" aria-labelledby="tituloEjemplos">
+      <h2 class="tema-seccion__titulo" id="tituloEjemplos">Ejemplos de aplicación</h2>
+      <div class="tema-grid-ejemplos" id="gridEjemplos"></div>
+    </section>
+
+    <!-- Recursos de Apoyo (Video, PDF, Imágenes, Enlaces) -->
+    <section class="tarjeta tema-seccion" id="seccionRecursos" style="display: none;" aria-labelledby="tituloRecursos">
+      <h2 class="tema-seccion__titulo" id="tituloRecursos">Recursos complementarios</h2>
+      <div class="tema-grid-recursos" id="gridRecursos"></div>
+    </section>
+
+    <!-- Bloque Practica este tema -->
+    <section class="tarjeta tema-practica" aria-labelledby="tituloPractica">
+      <div class="tema-practica__cabecera">
+        <h2 class="tema-seccion__titulo" id="tituloPractica">Practica este tema</h2>
+        <p class="texto-suave texto-xs">Refuerza lo aprendido mediante actividades formativas y dinámicas interactivas.</p>
+      </div>
+
+      <div id="contenedorActividades" class="tema-actividades-grid">
+        <p class="texto-suave">No hay actividades disponibles para este tema actualmente.</p>
+      </div>
+    </section>
+  </div>
+</main>
+<script type="module" src="/js/modulos/tema.js"></script></body></html>

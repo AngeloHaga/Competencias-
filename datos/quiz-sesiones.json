@@ -1,0 +1,56 @@
+[
+  {
+    "usuarioId": "usu_000004",
+    "temaId": "tem_000001",
+    "nivel": 1,
+    "preguntasIds": [
+      "pre_000003",
+      "pre_000004",
+      "pre_000006",
+      "pre_000005",
+      "pre_000001",
+      "pre_000002"
+    ],
+    "respuestas": {
+      "pre_000003": {
+        "respuesta": true,
+        "correcto": true,
+        "fecha": "2026-10-28T03:17:58.961Z"
+      },
+      "pre_000004": {
+        "respuesta": "API",
+        "correcto": false,
+        "fecha": "2026-10-28T03:18:34.722Z"
+      },
+      "pre_000006": {
+        "respuesta": true,
+        "correcto": true,
+        "fecha": "2026-10-28T03:18:45.569Z"
+      },
+      "pre_000005": {
+        "respuesta": 2,
+        "correcto": true,
+        "fecha": "2026-10-28T03:18:56.356Z"
+      },
+      "pre_000001": {
+        "respuesta": 1,
+        "correcto": false,
+        "fecha": "2026-10-28T03:19:09.842Z"
+      },
+      "pre_000002": {
+        "respuesta": 0,
+        "correcto": false,
+        "fecha": "2026-10-28T03:19:26.163Z"
+      }
+    },
+    "inicio": "2026-10-28T03:17:55.955Z",
+    "finalizada": true,
+    "id": "qui_000001",
+    "fecha": "2026-10-28T03:17:55.956Z",
+    "fechaFin": "2026-10-28T03:19:30.039Z",
+    "aciertos": 3,
+    "total": 6,
+    "porcentaje": 50,
+    "aprobado": false
+  }
+]

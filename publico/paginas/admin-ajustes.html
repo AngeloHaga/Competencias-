@@ -1,0 +1,104 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ajustes de Plataforma e IA · Ecosistema Educativo</title>
+<link rel="stylesheet" href="/css/tokens.css"><link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/componentes.css">
+<link rel="stylesheet" href="/css/modulos/admin-ajustes.css"></head>
+<body><div id="plantilla"></div><main id="contenido" class="contenedor">
+  <div class="admin-ajustes-layout pila">
+    <header class="ajustes-cabecera">
+      <h1 class="texto-h1">Ajustes del Sistema e Inteligencia Artificial</h1>
+      <p class="texto-suave">Configuración de parámetros globales, credenciales de API y modelos de IA generativa.</p>
+    </header>
+
+    <div class="ajustes-grid">
+      <!-- Tarjeta Configuración de Inteligencia Artificial -->
+      <section class="tarjeta tarjeta--destacada pila" aria-labelledby="titulo-ia">
+        <div class="tarjeta__cabecera">
+          <div>
+            <h2 id="titulo-ia" class="tarjeta__titulo">Inteligencia Artificial (Google Gemini)</h2>
+            <p class="texto-suave">Configura el modelo y la clave API para generar preguntas, glosarios y retroalimentación.</p>
+          </div>
+          <span class="insignia insignia--primario" id="badge-estado-ia">Activo</span>
+        </div>
+
+        <form id="form-ajustes-ia" novalidate class="pila">
+          <div class="campo">
+            <label for="input-ia-proveedor" class="etiqueta">Proveedor de IA:</label>
+            <select id="input-ia-proveedor" class="entrada">
+              <option value="gemini" selected>Google Gemini (Recomendado)</option>
+            </select>
+          </div>
+
+          <div class="campo">
+            <label for="input-ia-modelo" class="etiqueta">Modelo de Gemini: <span class="requerido">*</span></label>
+            <select id="input-ia-modelo" class="entrada">
+              <option value="gemini-1.5-flash">Gemini 1.5 Flash (Recomendado - Rápido y Estable)</option>
+              <option value="gemini-1.5-pro">Gemini 1.5 Pro (Razonamiento Complejo)</option>
+              <option value="gemini-2.0-flash">Gemini 2.0 Flash (Nueva Generación)</option>
+              <option value="gemini-2.0-flash-lite">Gemini 2.0 Flash Lite (Baja Latencia)</option>
+              <option value="gemini-1.0-pro">Gemini 1.0 Pro (Clásico)</option>
+              <option value="gemini-3.8-flash">Gemini 3.8 Flash</option>
+              <option value="gemini-4-argon">Gemini 4 Argon</option>
+              <option value="otro">Otro modelo (especificar)...</option>
+            </select>
+            <div id="contenedor-otro-modelo" class="oculto" style="margin-top: var(--espacio-xs);">
+              <input type="text" id="input-ia-modelo-otro" class="entrada" placeholder="Escribe el nombre del modelo personalizado">
+            </div>
+            <small class="texto-suave">Selecciona directamente el modelo disponible a utilizar para todas las tareas de IA.</small>
+          </div>
+
+          <div class="campo">
+            <label for="input-ia-clave" class="etiqueta">Clave de API / Token de Gemini: <span class="requerido">*</span></label>
+            <div class="grupo-clave">
+              <input type="password" id="input-ia-clave" class="entrada" placeholder="AIzaSy... o AQ.Ab8RN..." autocomplete="off">
+              <button type="button" id="btn-ver-clave-admin" class="btn btn--secundario" title="Mostrar u ocultar clave">👁️</button>
+            </div>
+            <small class="texto-suave">💡 Clave recomendada: API Key gratuita de <strong>Google AI Studio</strong> (inicia con <code>AIzaSy...</code>). Si usas tokens OAuth (<code>AQ...</code> o <code>ya29...</code>) asegúrate de que no hayan expirado.</small>
+          </div>
+
+          <div class="campo">
+            <label for="input-ia-limite" class="etiqueta">Límite diario de consultas por usuario:</label>
+            <input type="number" id="input-ia-limite" class="entrada" min="1" max="500" value="30">
+            <small class="texto-suave">Previene consumo excesivo de cuota de API.</small>
+          </div>
+
+          <div id="resultado-prueba-ia" class="alerta oculto" role="status"></div>
+
+          <div class="acciones-formulario">
+            <button type="button" id="btn-probar-conexion" class="btn btn--secundario">🧪 Probar conexión con Gemini</button>
+            <button type="submit" id="btn-guardar-ia" class="btn btn--primario">Guardar configuración de IA</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Tarjeta Información del Sistema -->
+      <section class="tarjeta pila" aria-labelledby="titulo-sistema">
+        <h2 id="titulo-sistema" class="tarjeta__titulo">Información del Entorno</h2>
+        <div class="lista-detalles">
+          <div class="detalle-fila">
+            <span class="detalle-etiqueta">Motor de Tareas:</span>
+            <span class="detalle-valor" id="info-motor">servidor/ia.js</span>
+          </div>
+          <div class="detalle-fila">
+            <span class="detalle-etiqueta">Archivo de Configuración:</span>
+            <span class="detalle-valor"><code>datos/config/ajustes.json</code></span>
+          </div>
+          <div class="detalle-fila">
+            <span class="detalle-etiqueta">Plantillas de Prompts:</span>
+            <span class="detalle-valor"><code>servidor/prompts/</code></span>
+          </div>
+          <div class="detalle-fila">
+            <span class="detalle-etiqueta">Registro de Consumos:</span>
+            <span class="detalle-valor"><code>datos/consumo-ia.jsonl</code></span>
+          </div>
+          <div class="detalle-fila">
+            <span class="detalle-etiqueta">Modo de Respaldo:</span>
+            <span class="detalle-valor">Generador determinista activo si no hay API externa</span>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</main>
+<script type="module" src="/js/modulos/admin-ajustes.js"></script></body></html>

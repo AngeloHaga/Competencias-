@@ -1,0 +1,118 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Editor de Canción Educativa · Ecosistema Educativo</title>
+<link rel="stylesheet" href="/css/tokens.css"><link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/componentes.css">
+<link rel="stylesheet" href="/css/modulos/editor-cancion.css"></head>
+<body><div id="plantilla"></div><main id="contenido" class="contenedor">
+  <div class="editor-cancion-layout pila">
+    <!-- Cabecera -->
+    <header class="editor-cancion-cabecera">
+      <div>
+        <a href="/paginas/canciones.html" class="enlace-volver">← Volver a Canciones</a>
+        <h1 class="editor-cancion-cabecera__titulo" id="tituloPagina">Nueva Canción Educativa</h1>
+        <p class="editor-cancion-cabecera__subtitulo">Sube piezas musicales didácticas y sincroniza su letra para incentivar el aprendizaje auditivo.</p>
+      </div>
+
+      <div class="editor-cancion-cabecera__acciones">
+        <button type="submit" form="formCancion" class="btn btn--primario" id="btnGuardarCancion">
+          Guardar canción
+        </button>
+      </div>
+    </header>
+
+    <!-- Formulario -->
+    <form id="formCancion" class="pila" novalidate>
+      <!-- Metadatos de la canción -->
+      <div class="tarjeta pila">
+        <h2 class="tarjeta__titulo texto-l">Información de la Canción</h2>
+
+        <div class="grid-form-2">
+          <div class="campo">
+            <label for="campoTitulo">Título de la canción *</label>
+            <input type="text" id="campoTitulo" required maxlength="150" placeholder="Ej: La balada de las competencias digitales">
+            <span class="campo__error" id="errorTitulo" style="display: none;"></span>
+          </div>
+
+          <div class="campo">
+            <label for="campoTema">Tema de aprendizaje asociado *</label>
+            <select id="campoTema" required>
+              <option value="" disabled selected>Selecciona un tema...</option>
+            </select>
+            <span class="campo__error" id="errorTema" style="display: none;"></span>
+          </div>
+        </div>
+
+        <!-- Archivo MP3 -->
+        <div class="campo">
+          <label for="campoAudio">Archivo de audio MP3 *</label>
+          <div class="campo-audio-fila">
+            <input type="text" id="campoAudio" required placeholder="/recursos/subidas/... o enlace al audio MP3">
+            <button type="button" class="btn btn--secundario" id="btnSubirAudio">
+              Subir MP3
+            </button>
+            <input type="file" id="inputArchivoAudio" accept=".mp3,audio/mpeg,audio/mp3" style="display: none;">
+          </div>
+          <span class="campo__error" id="errorAudio" style="display: none;"></span>
+
+          <div id="contenedorReproductorAudio" class="preview-audio-caja" style="display: none;">
+            <audio id="audioPreview" controls preload="metadata" style="width: 100%;"></audio>
+          </div>
+        </div>
+
+        <div class="grid-form-2">
+          <div class="campo">
+            <label for="campoAutoria">Autoría y créditos de la canción *</label>
+            <input type="text" id="campoAutoria" required placeholder="Ej: Docente Juan Pérez / Colectivo UNEMI">
+            <span class="campo__error" id="errorAutoria" style="display: none;"></span>
+          </div>
+
+          <div class="campo">
+            <label for="campoLicencia">Licencia de uso *</label>
+            <select id="campoLicencia" required>
+              <option value="Propia">Propia (derechos reservados institucionales)</option>
+              <option value="CC BY">Creative Commons Reconocimiento (CC BY)</option>
+              <option value="CC BY-SA">Creative Commons CompartirIgual (CC BY-SA)</option>
+              <option value="Otra">Otra licencia (especificar)</option>
+            </select>
+            <span class="campo__error" id="errorLicencia" style="display: none;"></span>
+          </div>
+        </div>
+
+        <div class="campo" id="contenedorLicenciaOtra" style="display: none;">
+          <label for="campoLicenciaOtra">Descripción de la licencia personalizada *</label>
+          <input type="text" id="campoLicenciaOtra" placeholder="Especifica términos o enlace a la licencia...">
+          <span class="campo__error" id="errorLicenciaOtra" style="display: none;"></span>
+        </div>
+      </div>
+
+      <!-- Letra en texto plano -->
+      <div class="tarjeta pila">
+        <h2 class="tarjeta__titulo texto-l">Letra de la Canción *</h2>
+        <p class="texto-suave texto-xs">Escribe o pega la letra completa para que los estudiantes puedan seguirla.</p>
+        <div class="campo" style="margin-bottom: 0;">
+          <textarea id="campoLetra" rows="8" required placeholder="Pega aquí la letra estrofa por estrofa..."></textarea>
+          <span class="campo__error" id="errorLetra" style="display: none;"></span>
+        </div>
+      </div>
+
+      <!-- Letra sincronizada en formato LRC (opcional) -->
+      <div class="tarjeta pila">
+        <div class="lrc-cabecera">
+          <div>
+            <h2 class="tarjeta__titulo texto-l">Letra Sincronizada LRC (Opcional)</h2>
+            <p class="texto-suave texto-xs">Formato con marcas de tiempo [mm:ss.xx] para resaltar en tiempo real durante la reproducción.</p>
+          </div>
+          <button type="button" class="btn btn--texto btn--pequeno" id="btnEjemploLRC">
+            Cargar ejemplo LRC
+          </button>
+        </div>
+
+        <div class="campo" style="margin-bottom: 0;">
+          <textarea id="campoLRC" rows="8" placeholder="[00:04.12] En la era de la red y el conocimiento&#10;[00:08.50] Las competencias digitales son el fundamento&#10;[00:13.20] Navegamos con destreza y pensamiento crítico..."></textarea>
+        </div>
+      </div>
+    </form>
+  </div>
+</main>
+<script type="module" src="/js/modulos/editor-cancion.js"></script></body></html>

@@ -1,0 +1,309 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ficha del Tema y Glosario · Ecosistema Educativo</title>
+<link rel="stylesheet" href="/css/tokens.css"><link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/componentes.css">
+<link rel="stylesheet" href="/css/modulos/editor-tema.css"></head>
+<body><div id="plantilla"></div><main id="contenido" class="contenedor">
+  <div class="ficha-layout pila">
+    <!-- Navegación superior y acciones de cabecera -->
+    <header class="ficha-cabecera">
+      <div class="ficha-cabecera__izq">
+        <a href="/paginas/editor-contenidos.html" id="enlaceVolver" class="enlace-volver" aria-label="Volver al editor de contenidos">
+          ← Volver a Contenidos
+        </a>
+        <h1 class="ficha-cabecera__titulo" id="encabezadoTituloTema">Cargando tema...</h1>
+        <p class="ficha-cabecera__subtitulo" id="encabezadoSubtitulo">Editor pedagógico y glosario curricular</p>
+      </div>
+
+      <div class="ficha-cabecera__der">
+        <button type="button" class="btn btn--secundario" id="btn-generar-ia" disabled title="Generación asistida con Inteligencia Artificial (disponible próximamente)">
+          Generar con IA
+        </button>
+        <button type="button" class="btn btn--primario" id="btnGuardarTema">
+          Guardar cambios
+        </button>
+      </div>
+    </header>
+
+    <!-- Pestañas de navegación interna (Ficha del Tema / Glosario) -->
+    <nav class="pestanas-nav" role="tablist" aria-label="Secciones del tema">
+      <button type="button" class="pestana-btn pestana-btn--activa" id="tabBtnFicha" role="tab" aria-selected="true" aria-controls="panelFicha">
+        Ficha del Tema
+      </button>
+      <button type="button" class="pestana-btn" id="tabBtnGlosario" role="tab" aria-selected="false" aria-controls="panelGlosario">
+        Glosario de Términos
+        <span class="insignia insignia--secundario" id="badgeContadorGlosario">0</span>
+      </button>
+    </nav>
+
+    <!-- PANEL 1: FICHA DEL TEMA -->
+    <section id="panelFicha" class="panel-contenido" role="tabpanel" aria-labelledby="tabBtnFicha">
+      <form id="formFichaTema" class="pila" novalidate>
+        <!-- Tarjeta: Metadatos Principales -->
+        <div class="tarjeta pila">
+          <h2 class="tarjeta__titulo texto-l">Información General</h2>
+
+          <div class="grid-form-2">
+            <div class="campo">
+              <label for="campoTitulo">Título del tema *</label>
+              <input type="text" id="campoTitulo" name="titulo" required maxlength="180">
+            </div>
+
+            <div class="campo">
+              <label for="campoEstado">Estado de publicación</label>
+              <select id="campoEstado" name="estado">
+                <option value="borrador">Borrador</option>
+                <option value="publicado">Publicado</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="grid-form-2">
+            <div class="campo">
+              <label for="campoDificultad">Nivel de dificultad</label>
+              <select id="campoDificultad" name="dificultad">
+                <option value="1">1 - Básico / Introductorio</option>
+                <option value="2">2 - Principiante</option>
+                <option value="3">3 - Intermedio</option>
+                <option value="4">4 - Avanzado</option>
+                <option value="5">5 - Experto / Especializado</option>
+              </select>
+            </div>
+
+            <div class="campo">
+              <label for="campoPalabrasClave">Palabras clave (separadas por comas)</label>
+              <input type="text" id="campoPalabrasClave" name="palabrasClave" placeholder="ej: competencia, digital, entornos">
+            </div>
+          </div>
+
+          <div class="campo">
+            <label for="campoFuentes">Fuentes bibliográficas y referencias</label>
+            <input type="text" id="campoFuentes" name="fuentes" placeholder="ej: UNESCO (2022). Marco de competencias digitales docente.">
+          </div>
+        </div>
+
+        <!-- Tarjeta: Resumen Formativo -->
+        <div class="tarjeta pila">
+          <div class="resumen-cabecera">
+            <div>
+              <h2 class="tarjeta__titulo texto-l">Resumen Formativo</h2>
+              <p class="texto-suave texto-xs">Admite negritas (**texto**) y viñetas (- elemento). Recomendado de 300 a 800 palabras.</p>
+            </div>
+            <div class="resumen-contador-badge" id="contenedorContadorPalabras">
+              <span id="contadorPalabrasResumen">0 palabras</span>
+              <span id="indicadorRangoPalabras" class="texto-xs">(Recomendado: 300 - 800)</span>
+            </div>
+          </div>
+
+          <div class="campo">
+            <div class="resumen-herramientas">
+              <button type="button" class="btn btn--texto btn--pequeno" id="btnAlternarVistaPrevia">
+                Ver vista previa con formato
+              </button>
+            </div>
+            <textarea id="campoResumen" name="resumen" rows="10" placeholder="Escribe el desarrollo conceptual y explicativo del tema..."></textarea>
+            <div id="vistaPreviaResumen" class="resumen-vista-previa" style="display: none;"></div>
+          </div>
+        </div>
+
+        <!-- Tarjeta: Objetivos de Aprendizaje -->
+        <div class="tarjeta pila">
+          <div class="tarjeta-lista-cabecera">
+            <div>
+              <h2 class="tarjeta__titulo texto-l">Objetivos de Aprendizaje</h2>
+              <p class="texto-suave texto-xs">Capacidades y resultados formativos que alcanzará el estudiante.</p>
+            </div>
+          </div>
+
+          <div class="campo-agregar-fila">
+            <input type="text" id="inputNuevoObjetivo" placeholder="Nuevo objetivo formativo..." aria-label="Texto de nuevo objetivo">
+            <button type="button" class="btn btn--secundario" id="btnAgregarObjetivo">+ Agregar</button>
+          </div>
+
+          <ul id="listaObjetivos" class="lista-elementos" aria-label="Lista de objetivos"></ul>
+        </div>
+
+        <!-- Tarjeta: Ejemplos Prácticos -->
+        <div class="tarjeta pila">
+          <div class="tarjeta-lista-cabecera">
+            <div>
+              <h2 class="tarjeta__titulo texto-l">Ejemplos Prácticos</h2>
+              <p class="texto-suave texto-xs">Casos de aplicación contextualizados para reforzar el contenido.</p>
+            </div>
+          </div>
+
+          <div class="campo-agregar-fila">
+            <input type="text" id="inputNuevoEjemplo" placeholder="Nuevo caso o ejemplo práctico..." aria-label="Texto de nuevo ejemplo">
+            <button type="button" class="btn btn--secundario" id="btnAgregarEjemplo">+ Agregar</button>
+          </div>
+
+          <ul id="listaEjemplos" class="lista-elementos" aria-label="Lista de ejemplos"></ul>
+        </div>
+
+        <!-- Tarjeta: Errores Frecuentes -->
+        <div class="tarjeta pila">
+          <div class="tarjeta-lista-cabecera">
+            <div>
+              <h2 class="tarjeta__titulo texto-l">Errores Frecuentes</h2>
+              <p class="texto-suave texto-xs">Concepciones erróneas comunes y cómo prevenirlas o corregirlas.</p>
+            </div>
+          </div>
+
+          <div class="campo-agregar-fila">
+            <input type="text" id="inputNuevoError" placeholder="Error común o confusión frecuente..." aria-label="Texto de nuevo error frecuente">
+            <button type="button" class="btn btn--secundario" id="btnAgregarError">+ Agregar</button>
+          </div>
+
+          <ul id="listaErrores" class="lista-elementos" aria-label="Lista de errores frecuentes"></ul>
+        </div>
+
+        <!-- Tarjeta: Preguntas Guía -->
+        <div class="tarjeta pila">
+          <div class="tarjeta-lista-cabecera">
+            <div>
+              <h2 class="tarjeta__titulo texto-l">Preguntas Guía</h2>
+              <p class="texto-suave texto-xs">Interrogantes clave para la reflexión socrática y discusión.</p>
+            </div>
+          </div>
+
+          <div class="campo-agregar-fila">
+            <input type="text" id="inputNuevaPregunta" placeholder="¿Pregunta disparadora o de reflexión?..." aria-label="Texto de nueva pregunta guía">
+            <button type="button" class="btn btn--secundario" id="btnAgregarPregunta">+ Agregar</button>
+          </div>
+
+          <ul id="listaPreguntas" class="lista-elementos" aria-label="Lista de preguntas guía"></ul>
+        </div>
+
+        <!-- Tarjeta: Recursos Multimedia y Documentos -->
+        <div class="tarjeta pila">
+          <div class="tarjeta-lista-cabecera">
+            <div>
+              <h2 class="tarjeta__titulo texto-l">Recursos de Apoyo</h2>
+              <p class="texto-suave texto-xs">Enlaces, videos, documentos PDF e imágenes complementarias.</p>
+            </div>
+            <button type="button" class="btn btn--primario btn--pequeno" id="btnNuevoRecurso">
+              + Agregar recurso
+            </button>
+          </div>
+
+          <div id="listaRecursos" class="lista-recursos" role="list"></div>
+        </div>
+      </form>
+    </section>
+
+    <!-- PANEL 2: GLOSARIO DEL TEMA -->
+    <section id="panelGlosario" class="panel-contenido" role="tabpanel" aria-labelledby="tabBtnGlosario" style="display: none;">
+      <!-- Indicador y métricas del Glosario -->
+      <div class="tarjeta glosario-metricas-card">
+        <div class="glosario-metricas-grid">
+          <div class="metrica-bloque">
+            <span class="metrica-valor" id="metricaTotalTerminos">0</span>
+            <span class="metrica-etiqueta">Total términos</span>
+          </div>
+
+          <div class="metrica-bloque">
+            <span class="metrica-valor" id="metricaTerminosSeisLetras">0</span>
+            <span class="metrica-etiqueta">De 6 letras</span>
+          </div>
+
+          <div class="metrica-bloque-estado" id="bloqueIndicadorJuegos">
+            <div class="indicador-juegos" id="indicadorJuegos">
+              <span class="indicador-juegos__icono" id="iconoIndicadorJuegos">⏳</span>
+              <div>
+                <strong id="tituloIndicadorJuegos">Verificando aptitud...</strong>
+                <p id="detalleIndicadorJuegos" class="texto-xs">Se requieren 12+ términos y 3+ de 6 letras para juegos.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tabla y gestión del Glosario -->
+      <div class="tarjeta pila">
+        <div class="glosario-cabecera">
+          <div>
+            <h2 class="tarjeta__titulo texto-l">Términos Clave</h2>
+            <p class="texto-suave texto-xs">Vocabulario fundamental para crucigramas, ahorcado y dinámicas interactivas.</p>
+          </div>
+          <button type="button" class="btn btn--primario" id="btnNuevoTermino">
+            + Nuevo término
+          </button>
+        </div>
+
+        <div class="tabla-contenedor">
+          <table class="tabla" id="tablaGlosario" aria-label="Glosario del tema">
+            <thead>
+              <tr>
+                <th scope="col" style="min-width: 140px;">Término</th>
+                <th scope="col" style="width: 80px;">Longitud</th>
+                <th scope="col">Definición (hasta 25 pal.)</th>
+                <th scope="col">Pista (hasta 10 pal.)</th>
+                <th scope="col">Retroalimentación</th>
+                <th scope="col" style="text-align: right; min-width: 130px;">Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="cuerpoTablaGlosario">
+              <tr>
+                <td colspan="6" class="texto-centro">Cargando glosario...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Modal para Agregar/Editar Término de Glosario -->
+  <div id="modalTermino" class="modal-overlay" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="tituloModalTermino">
+    <div class="modal">
+      <header class="modal-cabecera">
+        <h2 id="tituloModalTermino" class="modal-titulo">Nuevo Término</h2>
+        <button type="button" class="modal-cerrar" id="btnCerrarModalTermino" aria-label="Cerrar ventana">×</button>
+      </header>
+
+      <form id="formTermino" class="pila" novalidate>
+        <div class="modal-cuerpo pila">
+          <div class="campo" id="campoTermino">
+            <label for="inputTermino">Término (palabra única) *</label>
+            <input type="text" id="inputTermino" required maxlength="30" placeholder="Ej: ACCESO" autocomplete="off">
+            <span class="texto-xs texto-suave" id="infoLongitudTermino">Longitud: 0 letras</span>
+            <span class="campo__error" id="errorTermino" style="display: none;"></span>
+          </div>
+
+          <div class="campo" id="campoDefinicion">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <label for="inputDefinicion">Definición (máximo 25 palabras) *</label>
+              <span class="texto-xs texto-suave" id="contadorPalabrasDefinicion">0 / 25 palabras</span>
+            </div>
+            <textarea id="inputDefinicion" rows="3" required placeholder="Definición precisa y concisa..."></textarea>
+            <span class="campo__error" id="errorDefinicion" style="display: none;"></span>
+          </div>
+
+          <div class="campo" id="campoPista">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <label for="inputPista">Pista para juegos (máximo 10 palabras) *</label>
+              <span class="texto-xs texto-suave" id="contadorPalabrasPista">0 / 10 palabras</span>
+            </div>
+            <input type="text" id="inputPista" required placeholder="Pista orientadora breve...">
+            <span class="campo__error" id="errorPista" style="display: none;"></span>
+          </div>
+
+          <div class="campo" id="campoRetroalimentacion">
+            <label for="inputRetroalimentacion">Retroalimentación formativa</label>
+            <textarea id="inputRetroalimentacion" rows="2" placeholder="Explicación formativa adicional para cuando el alumno responda..."></textarea>
+          </div>
+        </div>
+
+        <footer class="modal-pie">
+          <button type="button" class="btn btn--secundario" id="btnCancelarTermino">Cancelar</button>
+          <button type="submit" class="btn btn--primario" id="btnGuardarTermino">Guardar término</button>
+        </footer>
+      </form>
+    </div>
+  </div>
+
+  <!-- Input oculto para subida de archivos en recursos -->
+  <input type="file" id="inputSubirRecurso" style="display: none;" aria-hidden="true">
+</main>
+<script type="module" src="/js/modulos/editor-tema.js"></script></body></html>

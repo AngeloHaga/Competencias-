@@ -1,0 +1,7 @@
+{"usuarioId":"usu_000002","tarea":"generar-preguntas","entrada":{"tarea":"generar-preguntas","temaId":"tem_000001"},"salida":"5 elementos","ok":true,"fecha":"2026-10-27T04:36:39.775Z"}
+{"usuarioId":"usu_000002","tarea":"generar-preguntas","entrada":{"tarea":"generar-preguntas","temaId":"tem_000001","modelo":"gemini-3.5-flash-lite"},"salida":"5 elementos","ok":true,"fecha":"2026-10-27T05:42:01.138Z"}
+{"usuarioId":"usu_000004","tarea":"tutor","entrada":{"tarea":"tutor","asignaturaId":"asi_000001","modelo":"gemini-3.5-flash-lite"},"salida":"ok","ok":true,"fecha":"2026-10-28T03:15:26.382Z"}
+{"usuarioId":"usu_000004","tarea":"tutor","entrada":{"tarea":"tutor","asignaturaId":"asi_000001","modelo":"gemini-3.5-flash-lite"},"salida":"ok","ok":true,"fecha":"2026-10-28T03:15:27.775Z"}
+{"usuarioId":"usu_000004","tarea":"tutor","entrada":{"tarea":"tutor","asignaturaId":"asi_000001","modelo":"gemini-3.5-flash-lite"},"salida":"ok","ok":true,"fecha":"2026-10-28T03:15:28.883Z"}
+{"usuarioId":"usu_000001","tarea":"tutor","entrada":{"tarea":"tutor","modelo":"gemini-3.5-flash-lite"},"salida":"ok","ok":true,"fecha":"2026-10-28T03:23:33.201Z"}
+{"usuarioId":"usu_000004","tarea":"tutor","entrada":{"tarea":"tutor","modelo":"gemini-3.5-flash-lite"},"salida":"ok","ok":true,"fecha":"2026-10-28T03:26:05.560Z"}

@@ -1,0 +1,101 @@
+[
+  {
+    "temaId": "tem_000001",
+    "nivel": 1,
+    "tipo": "opcion",
+    "enunciado": "¿Cuál es la primera etapa del proceso de aprendizaje según la taxonomía de Bloom?",
+    "opciones": [
+      "Recordar",
+      "Comprender",
+      "Aplicar",
+      "Evaluar"
+    ],
+    "correcta": 0,
+    "retroalimentacion": "Recordar es el nivel base de recuperación de información.",
+    "estado": "aprobado",
+    "origen": "docente",
+    "id": "pre_000001",
+    "fecha": "2026-10-27T04:36:21.798Z"
+  },
+  {
+    "temaId": "tem_000001",
+    "nivel": 1,
+    "tipo": "opcion",
+    "enunciado": "Según el glosario proporcionado, ¿cómo se define el término que describe la posibilidad de ingresar y utilizar recursos informáticos o redes de información?",
+    "opciones": [
+      "ENLACE",
+      "ACCESO",
+      "REDES",
+      "NUBE"
+    ],
+    "correcta": 1,
+    "retroalimentacion": "El glosario establece textualmente que ACCESO es la posibilidad de ingresar y utilizar recursos informáticos o redes de información.",
+    "origen": "ia",
+    "estado": "aprobado",
+    "id": "pre_000002",
+    "fecha": "2026-10-27T05:42:59.512Z"
+  },
+  {
+    "temaId": "tem_000001",
+    "nivel": 1,
+    "tipo": "vf",
+    "enunciado": "De acuerdo con el glosario, la BRECHA se define como una desigualdad en el acceso, uso o impacto de las tecnologías de la información.",
+    "opciones": [
+      "Verdadero",
+      "Falso"
+    ],
+    "correcta": true,
+    "retroalimentacion": "La definición coincide exactamente con la descrita en el glosario institucional para el término brecha.",
+    "origen": "ia",
+    "estado": "aprobado",
+    "id": "pre_000003",
+    "fecha": "2026-10-27T05:43:00.728Z"
+  },
+  {
+    "temaId": "tem_000001",
+    "nivel": 1,
+    "tipo": "completar",
+    "enunciado": "El glosario define a los ____ como canales o soportes tecnológicos a través de los cuales se transmite contenido educativo.",
+    "opciones": [],
+    "correcta": "MEDIOS",
+    "retroalimentacion": "Los medios son identificados en el glosario como canales o soportes tecnológicos para la transmisión educativa.",
+    "origen": "ia",
+    "estado": "aprobado",
+    "id": "pre_000004",
+    "fecha": "2026-10-27T05:43:01.568Z"
+  },
+  {
+    "temaId": "tem_000001",
+    "nivel": 1,
+    "tipo": "opcion",
+    "enunciado": "Identifique el concepto del glosario que corresponde a un conjunto de equipos y nodos interconectados para compartir recursos e información:",
+    "opciones": [
+      "INTERNET",
+      "NUBE",
+      "REDES",
+      "CORREO"
+    ],
+    "correcta": 2,
+    "retroalimentacion": "El glosario define específicamente a las redes como el conjunto de equipos y nodos interconectados para compartir recursos e información.",
+    "origen": "ia",
+    "estado": "aprobado",
+    "id": "pre_000005",
+    "fecha": "2026-10-27T05:43:02.725Z"
+  },
+  {
+    "temaId": "tem_000001",
+    "nivel": 1,
+    "tipo": "vf",
+    "enunciado": "Según el contenido, el diseño de actividades de curaduría de contenidos en línea corresponde a los ejemplos de aplicación del tema.",
+    "opciones": [
+      "Verdadero",
+      "Falso"
+    ],
+    "correcta": true,
+    "retroalimentacion": "El apartado de ejemplos menciona explícitamente el diseño de actividades de curaduría de contenidos en línea junto con los repositorios abiertos.",
+    "origen": "ia",
+    "estado": "aprobado",
+    "id": "pre_000006",
+    "fecha": "2026-10-27T05:43:04.294Z"
+  }
+]

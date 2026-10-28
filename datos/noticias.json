@@ -1,0 +1,16 @@
+[
+  {
+    "titulo": "Competencias digitales News",
+    "categoria": "Académica",
+    "temaId": "tem_000001",
+    "destacada": true,
+    "estado": "publicado",
+    "resumen": "Las competencias digitales docentes son el conjunto de conocimientos, habilidades, capacidades y actitudes que el profesorado necesita para integrar las tecnologías de la información y la comunicación",
+    "imagen": "/recursos/subidas/536c660c3c90eb9ae97e1cf32f96413c.jpg",
+    "cuerpo": "• DigCompEdu: Marco de referencia de la Unión Europea para el desarrollo de la competencia digital de los educadores.\n• MRCDD: Marco Común de Competencia Digital Docente (utilizado en países como España) que divide las habilidades en 6 áreas y 6 niveles progresivos (desde A1 hasta C2).\n• UNESCO: Estándares sobre competencias en TIC para docentes orientados a transformar la práctica educativa.",
+    "autorId": "usu_000000",
+    "fechaPublicacion": "2026-10-27T01:27:48.393Z",
+    "id": "not_000001",
+    "fecha": "2026-10-27T01:27:48.394Z"
+  }
+]

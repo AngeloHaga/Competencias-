@@ -1,0 +1,301 @@
+/* publico/css/modulos/editor-contenidos.css · Estilos para el editor de unidades y temas */
+
+.editor-layout {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-l);
+  padding: var(--espacio-m) 0 var(--espacio-2xl) 0;
+}
+
+.editor-cabecera {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-xs);
+}
+
+.editor-cabecera__titulo {
+  font-size: var(--tamano-2xl);
+  font-weight: var(--peso-extranegrita);
+  color: var(--color-primario);
+  margin: 0;
+}
+
+.editor-cabecera__subtitulo {
+  font-size: var(--tamano-m);
+  color: var(--color-texto-suave);
+  margin: 0;
+}
+
+/* Tarjeta del selector de asignatura */
+.editor-selector-card {
+  padding: var(--espacio-m) var(--espacio-l);
+  background-color: var(--color-superficie);
+}
+
+.editor-selector-fila {
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-m);
+  flex-wrap: wrap;
+}
+
+.editor-selector-label {
+  font-size: var(--tamano-m);
+  font-weight: var(--peso-seminegrita);
+  color: var(--color-primario);
+  white-space: nowrap;
+}
+
+.editor-selector-select {
+  flex: 1;
+  min-width: 240px;
+  min-height: 44px;
+  padding: var(--espacio-s) var(--espacio-m);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-m);
+  background-color: var(--color-superficie);
+  color: var(--color-texto);
+  font-size: var(--tamano-s);
+  font-weight: var(--peso-medio);
+}
+
+.editor-selector-select:focus {
+  border-color: var(--color-anillo);
+  outline: 3px solid rgba(20, 112, 168, 0.2);
+}
+
+/* Columnas de trabajo (Unidades | Temas) */
+.editor-columnas {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: var(--espacio-l);
+  align-items: start;
+}
+
+@media (max-width: 820px) {
+  .editor-columnas {
+    grid-template-columns: 1fr;
+  }
+}
+
+.editor-columna {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-m);
+  min-height: 380px;
+}
+
+.editor-columna__cabecera {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--espacio-s);
+  border-bottom: 1px solid var(--color-borde);
+  padding-bottom: var(--espacio-s);
+}
+
+.editor-columna__titulo {
+  font-size: var(--tamano-l);
+  font-weight: var(--peso-negrita);
+  color: var(--color-primario);
+  margin: 0;
+}
+
+/* Lista de elementos */
+.editor-lista {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-s);
+}
+
+.tarjeta-vacia {
+  padding: var(--espacio-xl) var(--espacio-m);
+  text-align: center;
+  color: var(--color-texto-suave);
+  font-size: var(--tamano-s);
+  background-color: var(--color-fondo);
+  border-radius: var(--radio-m);
+  border: 1px dashed var(--color-borde);
+}
+
+/* Elemento Unidad */
+.item-unidad {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-s);
+  padding: var(--espacio-m);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-m);
+  background-color: var(--color-superficie);
+  cursor: pointer;
+  transition: var(--transicion);
+  position: relative;
+}
+
+.item-unidad:hover {
+  border-color: var(--color-primario);
+  box-shadow: var(--sombra-1);
+}
+
+.item-unidad--activo {
+  border-color: var(--color-primario);
+  background-color: var(--color-info-fondo);
+  box-shadow: var(--sombra-1);
+  outline: 2px solid var(--color-primario);
+}
+
+.item-unidad__fila-principal {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--espacio-s);
+}
+
+.item-unidad__info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-2xs);
+  flex: 1;
+}
+
+.item-unidad__orden {
+  font-size: var(--tamano-xs);
+  font-weight: var(--peso-negrita);
+  color: var(--color-texto-suave);
+  text-transform: uppercase;
+}
+
+.item-unidad__titulo {
+  font-size: var(--tamano-m);
+  font-weight: var(--peso-negrita);
+  color: var(--color-primario);
+  margin: 0;
+}
+
+.item-unidad__acciones {
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-xs);
+  flex-wrap: wrap;
+  padding-top: var(--espacio-xs);
+  border-top: 1px solid var(--color-borde);
+}
+
+/* Elemento Tema */
+.item-tema {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-s);
+  padding: var(--espacio-m);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-m);
+  background-color: var(--color-superficie);
+  box-shadow: var(--sombra-1);
+  transition: var(--transicion);
+}
+
+.item-tema:hover {
+  box-shadow: var(--sombra-2);
+}
+
+.item-tema__fila-principal {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--espacio-s);
+}
+
+.item-tema__info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-2xs);
+  flex: 1;
+}
+
+.item-tema__orden {
+  font-size: var(--tamano-xs);
+  font-weight: var(--peso-negrita);
+  color: var(--color-texto-suave);
+}
+
+.item-tema__titulo {
+  font-size: var(--tamano-m);
+  font-weight: var(--peso-negrita);
+  color: var(--color-primario);
+  margin: 0;
+}
+
+.item-tema__acciones {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--espacio-xs);
+  flex-wrap: wrap;
+  padding-top: var(--espacio-xs);
+  border-top: 1px solid var(--color-borde);
+}
+
+.item-tema__grupo-orden {
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-2xs);
+}
+
+.item-tema__grupo-acciones {
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-xs);
+  flex-wrap: wrap;
+}
+
+/* Botones pequeños de orden */
+.btn-orden {
+  width: 32px;
+  min-height: 32px;
+  height: 32px;
+  padding: 0;
+  border-radius: var(--radio-s);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--tamano-s);
+  border: 1px solid var(--color-borde);
+  background-color: var(--color-superficie);
+  color: var(--color-texto);
+  cursor: pointer;
+  transition: var(--transicion);
+}
+
+.btn-orden:hover:not(:disabled) {
+  background-color: var(--color-fondo);
+  border-color: var(--color-primario);
+  color: var(--color-primario);
+}
+
+.btn-orden:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+/* Insignias de visibilidad y estado */
+.insignia-estado--publicado {
+  background-color: var(--color-exito);
+  color: var(--color-texto-inverso);
+}
+
+.insignia-estado--borrador {
+  background-color: var(--color-advertencia);
+  color: var(--color-texto-inverso);
+}
+
+.insignia-visible {
+  background-color: var(--color-exito-fondo);
+  color: var(--color-exito);
+  border: 1px solid var(--color-exito);
+}
+
+.insignia-oculto {
+  background-color: var(--color-advertencia-fondo);
+  color: var(--color-advertencia);
+  border: 1px solid var(--color-advertencia);
+}

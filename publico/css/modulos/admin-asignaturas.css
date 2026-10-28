@@ -1,0 +1,89 @@
+/* publico/css/modulos/admin-asignaturas.css · Estilos para la gestión de asignaturas */
+.asignaturas-layout {
+  gap: var(--espacio-l);
+  margin-top: var(--espacio-m);
+}
+
+.asignaturas-cabecera {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--espacio-m);
+  flex-wrap: wrap;
+}
+
+.asignaturas-cabecera__titulo {
+  color: var(--color-primario);
+  font-size: var(--tamano-2xl);
+  margin-bottom: var(--espacio-xs);
+}
+
+.asignaturas-cabecera__subtitulo {
+  color: var(--color-texto-suave);
+  font-size: var(--tamano-s);
+}
+
+.tarjeta-asignatura {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--espacio-m);
+  transition: var(--transicion);
+  height: 100%;
+}
+
+.tarjeta-asignatura:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--sombra-2);
+}
+
+.tarjeta-asignatura__cabecera {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--espacio-s);
+}
+
+.tarjeta-asignatura__titulo {
+  color: var(--color-primario);
+  font-size: var(--tamano-l);
+  font-weight: var(--peso-negrita);
+  line-height: var(--interlineado-apretado);
+}
+
+.tarjeta-asignatura__descripcion {
+  color: var(--color-texto);
+  font-size: var(--tamano-s);
+  line-height: var(--interlineado-base);
+  flex-grow: 1;
+}
+
+.tarjeta-asignatura__pie {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--espacio-s);
+  border-top: 1px solid var(--color-borde);
+  padding-top: var(--espacio-m);
+  margin-top: var(--espacio-s);
+  flex-wrap: wrap;
+}
+
+.tarjeta-asignatura__grupos {
+  font-size: var(--tamano-xs);
+  color: var(--color-texto-suave);
+  font-weight: var(--peso-medio);
+}
+
+.tarjeta-asignatura__acciones {
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-xs);
+}
+
+.form-modal-asignatura {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-m);
+  min-width: 300px;
+}

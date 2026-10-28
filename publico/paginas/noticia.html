@@ -1,0 +1,62 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Noticia · Ecosistema Educativo</title>
+<link rel="stylesheet" href="/css/tokens.css"><link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/componentes.css">
+<link rel="stylesheet" href="/css/modulos/noticia.css"></head>
+<body><div id="plantilla"></div><main id="contenido" class="contenedor">
+  <article class="noticia-detalle-layout pila">
+    <!-- Migas y volver -->
+    <nav class="migas-pan" aria-label="Navegación">
+      <a href="/index.html">Inicio</a>
+      <span class="miga-separador">/</span>
+      <a href="/paginas/noticias.html">Noticias</a>
+      <span class="miga-separador">/</span>
+      <span id="migaTituloNoticia" aria-current="page">Cargando...</span>
+    </nav>
+
+    <!-- Cabecera de la noticia -->
+    <header class="noticia-cabecera-detalle">
+      <div class="noticia-cabecera-detalle__meta">
+        <span class="insignia insignia--secundario" id="badgeCategoria">Categoría</span>
+        <span class="insignia insignia--acento" id="badgeDestacada" style="display: none;">Destacada</span>
+        <span class="insignia insignia--advertencia" id="badgeBorrador" style="display: none;">Borrador</span>
+        <span class="texto-xs texto-suave" id="fechaPublicacion"></span>
+      </div>
+
+      <h1 class="noticia-cabecera-detalle__titulo" id="tituloNoticia">Cargando noticia...</h1>
+
+      <div class="noticia-cabecera-detalle__autor-fila">
+        <span class="texto-s texto-suave" id="autorNoticia"></span>
+        <div id="accionesAdmin" style="display: none;">
+          <a href="#" class="btn btn--secundario btn--pequeno" id="btnEditarNoticia">Editar noticia</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Resumen introductorio -->
+    <div class="noticia-resumen-destacado" id="resumenNoticia"></div>
+
+    <!-- Imagen de portada -->
+    <div id="contenedorImagenPortada" class="noticia-portada-caja" style="display: none;">
+      <img id="imgPortada" src="" alt="Imagen de la noticia" class="noticia-portada-img">
+    </div>
+
+    <!-- Cuerpo completo -->
+    <div class="tarjeta noticia-cuerpo" id="cuerpoNoticia"></div>
+
+    <!-- Bloque de tema relacionado si existe -->
+    <section class="tarjeta noticia-tema-relacionado" id="seccionTemaRelacionado" style="display: none;">
+      <div class="noticia-tema-relacionado__fila">
+        <div>
+          <span class="texto-xs texto-suave">Tema de aprendizaje relacionado</span>
+          <h3 class="texto-m" id="tituloTemaRelacionado" style="color: var(--color-primario); margin: var(--espacio-2xs) 0 0 0;"></h3>
+        </div>
+        <a href="#" class="btn btn--secundario btn--pequeno" id="enlaceTemaRelacionado">
+          Ver tema de estudio →
+        </a>
+      </div>
+    </section>
+  </article>
+</main>
+<script type="module" src="/js/modulos/noticia.js"></script></body></html>

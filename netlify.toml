@@ -1,0 +1,14 @@
+# netlify.toml · Configuración de despliegue para Netlify
+[build]
+  publish = "publico"
+
+# Nota: El backend Express y el almacenamiento en datos/*.json requieren
+# un entorno con servidor Node.js activo (como Render.com, Railway o un VPS).
+# Si usas Netlify únicamente para el frontend, las llamadas a /api/ deben
+# redirigirse al servidor donde esté corriendo Express:
+#
+# [[redirects]]
+#   from = "/api/*"
+#   to = "https://tu-servidor-backend.onrender.com/api/:splat"
+#   status = 200
+#   force = true
