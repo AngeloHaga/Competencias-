@@ -1,0 +1,64 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Encuentra la pareja · Ecosistema Educativo</title>
+<link rel="stylesheet" href="/css/tokens.css"><link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/componentes.css">
+<link rel="stylesheet" href="/css/modulos/pareja.css"></head>
+<body><div id="plantilla"></div><main id="contenido" class="contenedor">
+  <div class="pareja-layout" id="parejaLayout">
+    <!-- Cabecera de la actividad -->
+    <header class="pareja-cabecera">
+      <div class="pareja-cabecera__izq">
+        <nav class="migas-pan" aria-label="Navegación">
+          <a href="/paginas/actividades.html" class="enlace-volver">← Actividades</a>
+          <span aria-hidden="true">·</span>
+          <a id="enlaceTemaCabecera" href="#" class="enlace-tema">Tema</a>
+        </nav>
+        <h1 class="pareja-cabecera__titulo">Encuentra la Pareja</h1>
+      </div>
+
+      <div class="pareja-cabecera__meta">
+        <!-- Selector de Dificultad -->
+        <div class="pareja-dificultad" id="controlDificultad">
+          <label for="selectDificultad" class="etiqueta texto-xs">Parejas:</label>
+          <select id="selectDificultad" class="entrada entrada--pequena">
+            <option value="6">6 parejas (Fácil)</option>
+            <option value="8">8 parejas (Medio)</option>
+            <option value="10">10 parejas (Desafío)</option>
+          </select>
+        </div>
+
+        <!-- Indicadores de juego -->
+        <div class="pareja-stats">
+          <span class="insignia insignia--secundario" id="statParejas">0/0 parejas</span>
+          <span class="insignia insignia--secundario" id="statIntentos">0 intentos</span>
+          <span class="insignia insignia--secundario" id="statTiempo">00:00</span>
+        </div>
+
+        <button type="button" class="btn btn--secundario btn--pequeno" id="btnReiniciar">
+          🔄 Reiniciar
+        </button>
+      </div>
+    </header>
+
+    <!-- Estado vacío si el tema no tiene mínimo 4 términos -->
+    <section class="vacio" id="estadoVacio" style="display: none;">
+      <span class="vacio__icono">🧩</span>
+      <h2 class="vacio__titulo">Términos insuficientes</h2>
+      <p class="vacio__descripcion">Este tema requiere al menos 4 términos en su glosario para jugar a Encuentra la Pareja.</p>
+      <a id="enlaceTemaVacio" href="#" class="btn btn--primario" style="margin-top: var(--espacio-m);">
+        Volver al tema
+      </a>
+    </section>
+
+    <!-- Contenedor del panel retroactivo para la última pareja descubierta -->
+    <div id="contenedorRetroPareja" aria-live="polite"></div>
+
+    <!-- Cuadrícula adaptable de tarjetas 3D -->
+    <section class="pareja-tablero" id="tableroTarjetas" aria-label="Tablero de memoria">
+      <!-- Tarjetas interactivas generadas dinámicamente -->
+    </section>
+  </div>
+</main>
+<script type="module" src="/js/modulos/pareja.js"></script></body></html>
+

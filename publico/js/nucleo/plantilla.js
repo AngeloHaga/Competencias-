@@ -3,6 +3,7 @@ import { MENU } from "./menu.js";
 import { exigirRol, usuarioActual, token, cerrar } from "./sesion.js";
 import { registrarEvento } from "./bitacora.js";
 import { aviso, escapar } from "./ui.js";
+import { logrosDe } from "./gamificacion.js";
 
 const NOMBRE = "Ecosistema Educativo";
 
@@ -76,8 +77,19 @@ export async function montarPlantilla({ titulo = "", roles } = {}) {
   let accionesHtml = "";
   if (tieneSesion) {
     const nombreCompleto = `${usuario.nombre || ""} ${usuario.apellido || ""}`.trim() || "Usuario";
+    const esEstudiante = usuario.rol === "estudiante";
+    const puntosHtml = esEstudiante
+      ? `
+        <span class="puntos-usuario" id="puntos-usuario" title="Puntos acumulados" data-puntos="0">
+          <span class="puntos-usuario__icono" aria-hidden="true">⭐</span>
+          <span class="puntos-usuario__valor">0 pts</span>
+        </span>
+      `
+      : "";
+
     accionesHtml = `
       <div class="encabezado-app__acciones">
+        ${puntosHtml}
         <a href="/paginas/perfil.html" class="encabezado-app__usuario" title="Ver mi perfil">
           <span class="encabezado-app__nombre-usuario">${escapar(nombreCompleto)}</span>
           <span class="insignia insignia--secundario">${escapar(usuario.rol || "")}</span>
@@ -153,6 +165,25 @@ export async function montarPlantilla({ titulo = "", roles } = {}) {
     pie.className = "pie pie-app";
     pie.innerHTML = `<p>&copy; ${new Date().getFullYear()} ${NOMBRE} · Todos los derechos reservados.</p>`;
     document.body.appendChild(pie);
+  }
+
+  // Cargar puntos de gamificación si el usuario es estudiante
+  if (tieneSesion && usuario.rol === "estudiante") {
+    (async () => {
+      try {
+        const datosLogros = await logrosDe("yo");
+        const elPuntos = document.getElementById("puntos-usuario");
+        if (elPuntos && datosLogros && typeof datosLogros.puntos === "number") {
+          elPuntos.dataset.puntos = String(datosLogros.puntos);
+          const spanValor = elPuntos.querySelector(".puntos-usuario__valor");
+          if (spanValor) {
+            spanValor.textContent = `${datosLogros.puntos} pts`;
+          }
+        }
+      } catch {
+        // Silencioso en caso de error de conexión
+      }
+    })();
   }
 
   // Cargar número de noticias publicadas sin leer si hay sesión activa

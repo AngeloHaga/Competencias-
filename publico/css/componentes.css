@@ -664,3 +664,175 @@
   max-width: 400px;
   margin: 0;
 }
+
+/* ==========================================================================
+   P04.2: Componentes de Gamificación y Retroalimentación
+   ========================================================================== */
+
+/* Puntos en el encabezado de usuario */
+.puntos-usuario {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--espacio-xs);
+  padding: 4px 10px;
+  background-color: var(--color-advertencia-fondo);
+  color: var(--color-advertencia);
+  border: 1px solid var(--color-advertencia);
+  border-radius: var(--radio-completo);
+  font-size: var(--tamano-xs);
+  font-weight: var(--peso-negrita);
+  line-height: 1;
+}
+
+.puntos-usuario__icono {
+  font-size: var(--tamano-s);
+}
+
+.puntos-usuario__valor {
+  font-size: var(--tamano-xs);
+  font-weight: var(--peso-extranegrita);
+}
+
+/* Panel de Retroalimentación Inmediata */
+.retro {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--espacio-m);
+  padding: var(--espacio-m);
+  border-radius: var(--radio-m);
+  border: 1px solid var(--color-borde);
+  background-color: var(--color-superficie);
+  margin-top: var(--espacio-m);
+  transition: var(--transicion);
+}
+
+.retro--correcto {
+  border-color: var(--color-exito);
+  background-color: var(--color-exito-fondo);
+  color: var(--color-exito);
+}
+
+.retro--incorrecto {
+  border-color: var(--color-error);
+  background-color: var(--color-error-fondo);
+  color: var(--color-error);
+}
+
+.retro__icono {
+  font-size: var(--tamano-xl);
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.retro__cuerpo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-xs);
+  flex: 1;
+  color: var(--color-texto);
+}
+
+.retro__titulo {
+  font-size: var(--tamano-m);
+  font-weight: var(--peso-negrita);
+  margin: 0;
+}
+
+.retro--correcto .retro__titulo {
+  color: var(--color-exito);
+}
+
+.retro--incorrecto .retro__titulo {
+  color: var(--color-error);
+}
+
+.retro__explicacion {
+  font-size: var(--tamano-s);
+  line-height: var(--interlineado-normal);
+  margin: 0;
+}
+
+.retro__sugerencia {
+  font-size: var(--tamano-xs);
+  color: var(--color-texto-suave);
+  margin: 0;
+}
+
+.retro__enlace {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--espacio-xs);
+  font-size: var(--tamano-xs);
+  font-weight: var(--peso-negrita);
+  color: var(--color-primario);
+  text-decoration: underline;
+  margin-top: var(--espacio-2xs);
+}
+
+.retro__enlace:hover {
+  color: var(--color-acento);
+}
+
+/* Modal de Celebración de Insignias */
+.celebracion {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--espacio-m) 0;
+  gap: var(--espacio-s);
+}
+
+.celebracion__icono-wrap {
+  width: 90px;
+  height: 90px;
+  border-radius: var(--radio-completo);
+  background: radial-gradient(circle, var(--color-advertencia-fondo) 0%, rgba(255, 255, 255, 0) 70%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--espacio-xs);
+}
+
+.celebracion__icono {
+  font-size: 3.5rem;
+  line-height: 1;
+  display: inline-block;
+  animation: celebracion-rebote 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.celebracion__nombre {
+  font-size: var(--tamano-l);
+  font-weight: var(--peso-extranegrita);
+  color: var(--color-primario);
+  margin: 0;
+}
+
+.celebracion__descripcion {
+  font-size: var(--tamano-s);
+  color: var(--color-texto-suave);
+  max-width: 340px;
+  margin: 0;
+}
+
+@keyframes celebracion-rebote {
+  0% {
+    transform: scale(0.3) rotate(-15deg);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.15) rotate(5deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) rotate(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .celebracion__icono {
+    animation: none;
+  }
+}
+

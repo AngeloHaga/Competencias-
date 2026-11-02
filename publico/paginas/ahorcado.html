@@ -1,0 +1,97 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ahorcado · Ecosistema Educativo</title>
+<link rel="stylesheet" href="/css/tokens.css"><link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/componentes.css">
+<link rel="stylesheet" href="/css/modulos/ahorcado.css"></head>
+<body><div id="plantilla"></div><main id="contenido" class="contenedor">
+  <!-- Contenedor del Juego -->
+  <div class="ahorcado-layout" id="ahorcadoLayout">
+    <!-- Cabecera de la partida -->
+    <header class="ahorcado-cabecera">
+      <div class="ahorcado-cabecera__izq">
+        <nav class="migas-pan" aria-label="Navegación">
+          <a href="/paginas/actividades.html" class="enlace-volver">← Actividades</a>
+          <span aria-hidden="true">·</span>
+          <a id="enlaceTemaCabecera" href="#" class="enlace-tema">Tema</a>
+        </nav>
+        <h1 class="ahorcado-cabecera__titulo">Juego del Ahorcado</h1>
+      </div>
+      <div class="ahorcado-cabecera__meta">
+        <span class="insignia insignia--secundario" id="contadorIntentosRestantes">Vidas: 3/3</span>
+        <button type="button" class="btn btn--secundario btn--pequeno" id="btnOtraPalabra">
+          🔄 Otra palabra
+        </button>
+      </div>
+    </header>
+
+    <!-- Estado vacío si el tema no tiene términos de 6 letras -->
+    <section class="vacio" id="estadoVacio" style="display: none;">
+      <span class="vacio__icono">📖</span>
+      <h2 class="vacio__titulo">Sin términos de 6 letras disponibles</h2>
+      <p class="vacio__descripcion">Este tema no cuenta con términos clave de exactamente 6 letras en su glosario para jugar al Ahorcado.</p>
+      <a id="enlaceTemaVacio" href="#" class="btn btn--primario" style="margin-top: var(--espacio-m);">
+        Volver a contenidos del tema
+      </a>
+    </section>
+
+    <!-- Tablero del Juego -->
+    <section class="ahorcado-tablero" id="estadoTablero">
+      <!-- Figura SVG no violenta: Globo aerostático que se desinfla -->
+      <div class="ahorcado-figura" aria-label="Estado del globo" role="img">
+        <svg class="globo-svg" id="globoSvg" viewBox="0 0 200 220" width="200" height="220">
+          <!-- Cesta y cuerdas -->
+          <line x1="80" y1="140" x2="90" y2="180" stroke="var(--color-primario)" stroke-width="2" />
+          <line x1="120" y1="140" x2="110" y2="180" stroke="var(--color-primario)" stroke-width="2" />
+          <rect x="85" y="180" width="30" height="22" rx="4" fill="var(--color-secundario)" stroke="var(--color-primario)" stroke-width="2" />
+          <line x1="85" y1="190" x2="115" y2="190" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" />
+
+          <!-- Nubes decorativas -->
+          <path d="M 20 180 q 15 -15 30 0 q 15 -10 30 0" fill="none" stroke="var(--color-borde)" stroke-width="3" stroke-linecap="round" />
+          <path d="M 130 195 q 15 -15 30 0 q 15 -10 30 0" fill="none" stroke="var(--color-borde)" stroke-width="3" stroke-linecap="round" />
+
+          <!-- Globo principal con transformación por estado de error -->
+          <g id="grupoGlobo" class="globo-grupo">
+            <!-- Cuerpo del globo -->
+            <ellipse id="globoCuerpo" cx="100" cy="85" rx="55" ry="60" fill="var(--color-acento)" />
+            <!-- Franjas del globo -->
+            <path id="globoFranja1" d="M 75 35 Q 85 85 75 135" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="6" />
+            <path id="globoFranja2" d="M 125 35 Q 115 85 125 135" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="6" />
+            <!-- Nudo del globo -->
+            <polygon points="94,145 106,145 100,138" fill="var(--color-primario)" />
+            <!-- Brillo -->
+            <ellipse cx="78" cy="65" rx="12" ry="20" fill="rgba(255,255,255,0.3)" transform="rotate(-20 78 65)" />
+          </g>
+
+          <!-- Ondas de aire saliendo al perder (estado 4) -->
+          <g id="ondasAire" class="ondas-aire" opacity="0">
+            <path d="M 100 148 Q 110 160 100 172" fill="none" stroke="var(--color-info)" stroke-width="2" stroke-dasharray="4,4" />
+            <path d="M 94 152 Q 84 164 94 176" fill="none" stroke="var(--color-info)" stroke-width="2" stroke-dasharray="4,4" />
+          </g>
+        </svg>
+      </div>
+
+      <!-- Área de la Pista y Casillas -->
+      <div class="ahorcado-adivinanza">
+        <div class="ahorcado-pista-card">
+          <span class="ahorcado-pista-card__etiqueta">💡 Pista del glosario:</span>
+          <p class="ahorcado-pista-card__texto" id="textoPista">Cargando pista...</p>
+        </div>
+
+        <div class="ahorcado-casillas" id="contenedorCasillas" aria-label="Letras de la palabra">
+          <!-- 6 casillas renderizadas dinámicamente -->
+        </div>
+
+        <!-- Zona para insertar el panel .retro al terminar -->
+        <div id="contenedorRetro"></div>
+      </div>
+    </section>
+
+    <!-- Teclado en pantalla A–Z + Ñ -->
+    <nav class="ahorcado-teclado" id="tecladoEnPantalla" aria-label="Teclado para adivinar letras">
+      <!-- Botones de letras generados dinámicamente -->
+    </nav>
+  </div>
+</main>
+<script type="module" src="/js/modulos/ahorcado.js"></script></body></html>
+

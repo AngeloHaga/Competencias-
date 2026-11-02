@@ -4,6 +4,7 @@ import * as api from "../nucleo/api.js";
 import * as ui from "../nucleo/ui.js";
 import * as util from "../nucleo/util.js";
 import { ACTIVIDADES } from "../nucleo/catalogo-actividades.js";
+import { registrarIntento } from "../nucleo/gamificacion.js";
 
 await montarPlantilla({ titulo: "Tema de aprendizaje", roles: ["estudiante", "docente", "admin"] });
 
@@ -149,6 +150,14 @@ async function marcarComoRevisado() {
     progreso.push(nuevo);
     actualizarEstadoRevisado();
     ui.aviso("¡Excelente! Has marcado este tema como revisado", "exito");
+
+    // P04.2: Registrar intento para sumar puntos e insignias de gamificación
+    await registrarIntento({
+      actividad: "tema-revisado",
+      temaId: tema.id,
+      puntaje: 1,
+      maximo: 1
+    }).catch(() => {});
   } catch (err) {
     ui.aviso(err.message || "Error al registrar el avance", "error");
     btnMarcarRevisado.disabled = false;

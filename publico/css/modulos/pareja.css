@@ -1,0 +1,211 @@
+/* publico/css/modulos/pareja.css · Estilos para el juego Encuentra la pareja */
+
+.pareja-layout {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-l);
+  max-width: 1040px;
+  margin: 0 auto;
+}
+
+.pareja-cabecera {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--espacio-m);
+  border-bottom: 1px solid var(--color-borde);
+  padding-bottom: var(--espacio-m);
+  flex-wrap: wrap;
+}
+
+.pareja-cabecera__izq {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-xs);
+}
+
+.pareja-cabecera__titulo {
+  font-size: var(--tamano-2xl);
+  font-weight: var(--peso-extranegrita);
+  color: var(--color-primario);
+  margin: 0;
+}
+
+.pareja-cabecera__meta {
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-s);
+  flex-wrap: wrap;
+}
+
+.pareja-dificultad {
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-xs);
+}
+
+.entrada--pequena {
+  padding: 4px 8px;
+  min-height: 36px;
+  font-size: var(--tamano-xs);
+}
+
+.pareja-stats {
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-xs);
+}
+
+/* Cuadrícula adaptable */
+.pareja-tablero {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: var(--espacio-m);
+  perspective: 1000px;
+  padding: var(--espacio-s) 0 var(--espacio-xl) 0;
+}
+
+/* Tarjeta 3D interactiva */
+.carta-pareja {
+  background: transparent;
+  border: none;
+  padding: 0;
+  width: 100%;
+  height: 160px;
+  cursor: pointer;
+  perspective: 1000px;
+  font-family: inherit;
+  outline: none;
+  border-radius: var(--radio-l);
+}
+
+.carta-pareja:focus-visible .carta-pareja__inner {
+  box-shadow: 0 0 0 3px var(--color-anillo);
+}
+
+.carta-pareja__inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+  border-radius: var(--radio-l);
+  box-shadow: var(--sombra-1);
+}
+
+.carta-pareja.volteada .carta-pareja__inner,
+.carta-pareja.acertada .carta-pareja__inner {
+  transform: rotateY(180deg);
+}
+
+/* Caras de la tarjeta */
+.carta-cara {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: var(--radio-l);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--espacio-s);
+  border: 1px solid var(--color-borde);
+  user-select: none;
+  box-sizing: border-box;
+}
+
+/* Cara trasera (boca abajo) */
+.carta-cara--trasera {
+  background: linear-gradient(135deg, var(--color-primario) 0%, var(--color-secundario) 100%);
+  color: var(--color-texto-inverso);
+}
+
+.carta-icono-trasero {
+  font-size: 2.2rem;
+  line-height: 1;
+}
+
+.carta-texto-trasero {
+  font-size: var(--tamano-xs);
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: var(--espacio-xs);
+  font-weight: var(--peso-medio);
+}
+
+/* Cara delantera (descubierta) */
+.carta-cara--delantera {
+  background-color: var(--color-superficie);
+  color: var(--color-texto);
+  transform: rotateY(180deg);
+  overflow-y: auto;
+  border: 2px solid var(--color-primario);
+}
+
+.carta-pareja.acertada .carta-cara--delantera {
+  border-color: var(--color-exito);
+  background-color: var(--color-exito-fondo);
+}
+
+.carta-tipo {
+  font-size: 0.65rem;
+  font-weight: var(--peso-extranegrita);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 2px 6px;
+  border-radius: var(--radio-completo);
+  margin-bottom: var(--espacio-2xs);
+}
+
+.carta-tipo--termino {
+  background-color: var(--color-info-fondo);
+  color: var(--color-primario);
+}
+
+.carta-tipo--definicion {
+  background-color: var(--color-advertencia-fondo);
+  color: var(--color-advertencia);
+}
+
+.carta-contenido {
+  font-size: var(--tamano-s);
+  line-height: 1.3;
+  margin: 0;
+  word-break: break-word;
+}
+
+.carta-contenido--termino {
+  font-size: var(--tamano-m);
+  font-weight: var(--peso-extranegrita);
+  color: var(--color-primario);
+}
+
+/* Animaciones y accesibilidad de movimiento reducido */
+@media (prefers-reduced-motion: reduce) {
+  .carta-pareja__inner {
+    transition: none;
+  }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .pareja-tablero {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--espacio-s);
+  }
+
+  .carta-pareja {
+    height: 140px;
+  }
+
+  .carta-contenido {
+    font-size: var(--tamano-xs);
+  }
+
+  .carta-contenido--termino {
+    font-size: var(--tamano-s);
+  }
+}
+

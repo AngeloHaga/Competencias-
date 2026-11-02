@@ -3,69 +3,81 @@ import * as api from "./api.js";
 import * as ui from "./ui.js";
 
 /**
- * Registra un intento de actividad en el servidor y obtiene recompensas
- * @param {Object} datos
+ * Registra un intento de actividad en el servidor, obtiene recompensas y muestra logros
+ * @param {Object} datos { actividad, temaId, nivel, puntaje, maximo, errores, duracionSeg, detalle }
  * @returns {Promise<{ puntosGanados: number, puntosTotales: number, insigniasNuevas: Array }>}
  */
 export async function registrarIntento(datos) {
-  return await api.llamar("POST", "/api/intentos", datos);
+  const resultado = await api.llamar("POST", "/api/intentos", datos);
+  await mostrarLogros(resultado);
+  return resultado;
 }
 
 /**
- * Muestra una celebración visual con los puntos ganados e insignias desbloqueadas
- * @param {Object} resultado { puntosGanados, insigniasNuevas }
+ * Muestra logros: ui.aviso con puntos ganados (> 0), un modal de celebración
+ * por cada insignia nueva y actualiza el contador #puntos-usuario
+ * @param {Object} resultado { puntosGanados, puntosTotales, insigniasNuevas }
  */
-export function mostrarLogros(resultado) {
+export async function mostrarLogros(resultado) {
   if (!resultado) return;
-  const puntos = Number(resultado.puntosGanados) || 0;
+
+  const puntosGanados = Number(resultado.puntosGanados) || 0;
+  const puntosTotales = resultado.puntosTotales !== undefined ? Number(resultado.puntosTotales) : null;
   const insignias = Array.isArray(resultado.insigniasNuevas) ? resultado.insigniasNuevas : [];
 
-  if (puntos === 0 && insignias.length === 0) return;
-
-  const contenedor = document.createElement("div");
-  contenedor.className = "pila";
-  contenedor.style.textAlign = "center";
-
-  if (puntos > 0) {
-    const pDiv = document.createElement("div");
-    pDiv.style.margin = "var(--espacio-sm) 0";
-    pDiv.innerHTML = `<span style="font-size: var(--tamano-texto-2xl); font-weight: bold; color: var(--color-primario);">+${puntos} Puntos</span>`;
-    contenedor.appendChild(pDiv);
+  // Actualizar indicador #puntos-usuario si está presente en el encabezado
+  if (puntosTotales !== null) {
+    actualizarPuntosUsuarioDOM(puntosTotales);
+  } else if (puntosGanados > 0) {
+    const elPuntos = document.getElementById("puntos-usuario");
+    if (elPuntos) {
+      const numActual = parseInt(elPuntos.dataset.puntos || elPuntos.textContent, 10);
+      if (!isNaN(numActual)) {
+        actualizarPuntosUsuarioDOM(numActual + puntosGanados);
+      }
+    }
   }
 
-  if (insignias.length > 0) {
-    const insTitulo = document.createElement("h3");
-    insTitulo.className = "texto-h3";
-    insTitulo.textContent = "🎖️ ¡Nuevas insignias desbloqueadas!";
-    contenedor.appendChild(insTitulo);
+  // Notificar puntos ganados si son más de 0
+  if (puntosGanados > 0) {
+    ui.aviso(`+${puntosGanados} puntos ganados 🌟`, "exito");
+  }
 
-    const rejilla = document.createElement("div");
-    rejilla.style.display = "flex";
-    rejilla.style.gap = "var(--espacio-md)";
-    rejilla.style.justifyContent = "center";
-    rejilla.style.flexWrap = "wrap";
-    rejilla.style.marginTop = "var(--espacio-sm)";
+  // Mostrar un modal de celebración por cada insignia nueva secuencialmente
+  for (const ins of insignias) {
+    const contenedor = document.createElement("div");
+    contenedor.className = "celebracion";
+    contenedor.innerHTML = `
+      <div class="celebracion__icono-wrap">
+        <span class="celebracion__icono" role="img" aria-label="Insignia">${ui.escapar(ins.icono || "🎖️")}</span>
+      </div>
+      <h3 class="celebracion__nombre">${ui.escapar(ins.nombre || "Nueva insignia")}</h3>
+      ${ins.descripcion ? `<p class="celebracion__descripcion">${ui.escapar(ins.descripcion)}</p>` : ""}
+    `;
 
-    insignias.forEach((ins) => {
-      const tarjeta = document.createElement("div");
-      tarjeta.className = "tarjeta";
-      tarjeta.style.padding = "var(--espacio-sm)";
-      tarjeta.style.minWidth = "120px";
-      tarjeta.style.textAlign = "center";
-      tarjeta.innerHTML = `
-        <div style="font-size: 2.5rem;">${ins.icono || "🏅"}</div>
-        <strong style="display: block; margin-top: var(--espacio-2xs); font-size: var(--tamano-texto-sm);">${ui.escapar(ins.nombre)}</strong>
-      `;
-      rejilla.appendChild(tarjeta);
+    await ui.modal({
+      titulo: "¡Nueva insignia desbloqueada!",
+      contenido: contenedor,
+      acciones: [{ texto: "¡Genial!", tipo: "principal", valor: true }]
     });
-    contenedor.appendChild(rejilla);
   }
+}
 
-  ui.modal({
-    titulo: "¡Felicitaciones!",
-    contenido: contenedor,
-    acciones: [{ texto: "¡Genial!", tipo: "principal", valor: true }]
-  });
+/**
+ * Actualiza el contador de puntos en el DOM (#puntos-usuario)
+ * @param {number} valor
+ */
+export function actualizarPuntosUsuarioDOM(valor) {
+  const elPuntos = document.getElementById("puntos-usuario");
+  if (!elPuntos) return;
+  elPuntos.dataset.puntos = String(valor);
+
+  const spanValor = elPuntos.querySelector(".puntos-usuario__valor");
+  if (spanValor) {
+    spanValor.textContent = `${valor} pts`;
+  } else {
+    elPuntos.textContent = `⭐ ${valor} pts`;
+  }
 }
 
 /**
@@ -76,3 +88,4 @@ export function mostrarLogros(resultado) {
 export async function logrosDe(usuarioId = "yo") {
   return await api.llamar("GET", `/api/logros/${encodeURIComponent(usuarioId)}`);
 }
+

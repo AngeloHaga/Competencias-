@@ -400,6 +400,24 @@ function generarRespaldo(tarea, vars) {
     ];
   }
 
+  if (tarea === "generar-palabras-sopa") {
+    const tema = vars.tema || "Aprendizaje";
+    const palabrasSoporte = [
+      { termino: "DIGITAL", definicion: "Tecnología informática orientada al procesamiento y comunicación de datos.", retroalimentacion: "Concepto clave para los entornos virtuales." },
+      { termino: "MEDIACION", definicion: "Intervención pedagógica para facilitar la asimilación del aprendizaje.", retroalimentacion: "La mediación docente conecta teoría y práctica." },
+      { termino: "RECURSO", definicion: "Material o medio didáctico diseñado para enriquecer la enseñanza.", retroalimentacion: "Seleccionar recursos adecuados potencia el logro de objetivos." },
+      { termino: "DOCENTE", definicion: "Profesional facilitador de procesos educativos y orientador pedagógico.", retroalimentacion: "El rol docente guía el razonamiento crítico del estudiante." },
+      { termino: "CALIDAD", definicion: "Cumplimiento riguroso de estándares formativos en la enseñanza.", retroalimentacion: "La calidad académica asegura competencias sólidas." },
+      { termino: "SABERES", definicion: "Conjunto de conocimientos, destrezas y valores en acción.", retroalimentacion: "Los saberes integrados forman competencias transversales." },
+      { termino: "VIRTUAL", definicion: "Entorno digital no presencial diseñado para la formación continua.", retroalimentacion: "Los ecosistemas virtuales transforman el aula tradicional." },
+      { termino: "LOGROS", definicion: "Metas de aprendizaje alcanzadas mediante esfuerzo y práctica constante.", retroalimentacion: "Cada logro consolida una competencia adquirida." },
+      { termino: "DISENO", definicion: "Planificación estructurada de secuencias didácticas de aprendizaje.", retroalimentacion: "El diseño instruccional organiza los contenidos curriculares." },
+      { termino: "CRITERIO", definicion: "Pauta evaluativa para contrastar el nivel de dominio de una competencia.", retroalimentacion: "Los criterios de evaluación garantizan objetividad." }
+    ];
+    const cant = Number(vars.cantidad) || 10;
+    return palabrasSoporte.slice(0, cant);
+  }
+
   if (tarea === "tutor") {
     const estudiante = vars.estudiante || "Estudiante";
     const asignatura = vars.asignatura || "la asignatura";

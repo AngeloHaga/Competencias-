@@ -78,5 +78,47 @@
     "puntos": 0,
     "id": "int_000005",
     "fecha": "2026-10-28T03:19:30.027Z"
+  },
+  {
+    "usuarioId": "usu_000004",
+    "actividad": "ahorcado",
+    "temaId": "tem_000001",
+    "nivel": null,
+    "puntaje": 0,
+    "maximo": 10,
+    "errores": 4,
+    "duracionSeg": 12,
+    "detalle": {},
+    "puntos": 0,
+    "id": "int_000006",
+    "fecha": "2026-11-02T03:38:27.264Z"
+  },
+  {
+    "usuarioId": "usu_000004",
+    "actividad": "ahorcado",
+    "temaId": "tem_000001",
+    "nivel": null,
+    "puntaje": 0,
+    "maximo": 10,
+    "errores": 4,
+    "duracionSeg": 12,
+    "detalle": {},
+    "puntos": 0,
+    "id": "int_000007",
+    "fecha": "2026-11-02T03:38:55.177Z"
+  },
+  {
+    "usuarioId": "usu_000004",
+    "actividad": "ahorcado",
+    "temaId": "tem_000001",
+    "nivel": null,
+    "puntaje": 0,
+    "maximo": 10,
+    "errores": 4,
+    "duracionSeg": 20,
+    "detalle": {},
+    "puntos": 0,
+    "id": "int_000008",
+    "fecha": "2026-11-02T03:39:18.576Z"
   }
 ]

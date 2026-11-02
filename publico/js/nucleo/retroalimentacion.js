@@ -2,59 +2,51 @@
 import * as ui from "./ui.js";
 
 /**
- * Muestra retroalimentación inmediata sobre la respuesta de una pregunta
+ * Muestra retroalimentación inmediata sobre la respuesta de una pregunta en un panel .retro
  * @param {Object} opciones { correcto, explicacion, sugerencia, enlaceTema }
- * @returns {Promise<boolean>}
+ * @returns {HTMLElement} Elemento DOM del panel .retro insertado o listo
  */
-export async function mostrarRetro({ correcto, explicacion = "", sugerencia = "", enlaceTema = "" }) {
-  return new Promise((resolve) => {
-    const contenedor = document.createElement("div");
-    contenedor.className = "pila";
+export function mostrarRetro({ correcto, explicacion = "", sugerencia = "", enlaceTema = "" }) {
+  const panel = document.createElement("div");
+  panel.className = `retro retro--${correcto ? "correcto" : "incorrecto"}`;
+  panel.setAttribute("role", "status");
+  panel.setAttribute("aria-live", "polite");
 
-    const estadoDiv = document.createElement("div");
-    estadoDiv.className = `alerta alerta--${correcto ? "exito" : "error"}`;
-    estadoDiv.innerHTML = `<strong>${correcto ? "🎉 ¡Respuesta Correcta!" : "❌ Respuesta Incorrecta"}</strong>`;
-    contenedor.appendChild(estadoDiv);
+  const icono = correcto ? "🎉" : "❌";
+  const titulo = correcto ? "¡Correcto!" : "Incorrecto";
 
-    if (explicacion) {
-      const pExp = document.createElement("p");
-      pExp.className = "texto-base";
-      pExp.innerHTML = ui.limpiar(explicacion);
-      contenedor.appendChild(pExp);
-    }
+  let htmlCuerpo = `
+    <h4 class="retro__titulo">${titulo}</h4>
+  `;
 
-    if (sugerencia) {
-      const pSug = document.createElement("p");
-      pSug.className = "texto-suave";
-      pSug.textContent = `💡 Sugerencia: ${sugerencia}`;
-      contenedor.appendChild(pSug);
-    }
+  if (explicacion) {
+    htmlCuerpo += `<p class="retro__explicacion">${ui.limpiar(explicacion)}</p>`;
+  }
 
-    if (!correcto && enlaceTema) {
-      const enlace = document.createElement("a");
-      enlace.href = enlaceTema;
-      enlace.className = "enlace";
-      enlace.target = "_blank";
-      enlace.textContent = "📖 Repasar contenidos del tema";
-      contenedor.appendChild(enlace);
-    }
+  if (sugerencia) {
+    htmlCuerpo += `<p class="retro__sugerencia">💡 ${ui.escapar(sugerencia)}</p>`;
+  }
 
-    ui.modal({
-      titulo: correcto ? "Excelente" : "Retroalimentación",
-      contenido: contenedor,
-      acciones: [
-        {
-          texto: "Continuar",
-          tipo: "principal",
-          valor: true
-        }
-      ]
-    }).then(() => resolve(true));
-  });
+  if (enlaceTema) {
+    htmlCuerpo += `
+      <a href="${ui.escapar(enlaceTema)}" class="retro__enlace" target="_blank" rel="noopener noreferrer">
+        📖 Repasar el tema
+      </a>
+    `;
+  }
+
+  panel.innerHTML = `
+    <span class="retro__icono" aria-hidden="true">${icono}</span>
+    <div class="retro__cuerpo">
+      ${htmlCuerpo}
+    </div>
+  `;
+
+  return panel;
 }
 
 /**
- * Muestra el resumen formativo al culminar un intento de evaluación o actividad
+ * Muestra el resumen formativo al culminar un intento de evaluación o actividad en un modal
  * @param {Object} opciones { titulo, aciertos, errores, recomendaciones, enlaceTema }
  * @returns {Promise<"repetir" | "salir">}
  */
@@ -74,36 +66,39 @@ export async function mostrarResumen({
 
     const stats = document.createElement("div");
     stats.style.display = "flex";
-    stats.style.gap = "var(--espacio-md)";
+    stats.style.gap = "var(--espacio-m)";
     stats.style.justifyContent = "space-around";
-    stats.style.margin = "var(--espacio-sm) 0";
+    stats.style.margin = "var(--espacio-s) 0";
 
     stats.innerHTML = `
       <div style="text-align: center;">
-        <span style="font-size: var(--tamano-texto-2xl); font-weight: bold; color: var(--color-exito);">${aciertos}</span>
-        <div class="texto-suave">Aciertos</div>
+        <span style="font-size: var(--tamano-xl); font-weight: var(--peso-extranegrita); color: var(--color-exito);">${aciertos}</span>
+        <div class="texto-suave texto-xs">Aciertos</div>
       </div>
       <div style="text-align: center;">
-        <span style="font-size: var(--tamano-texto-2xl); font-weight: bold; color: var(--color-error);">${errores}</span>
-        <div class="texto-suave">Errores</div>
+        <span style="font-size: var(--tamano-xl); font-weight: var(--peso-extranegrita); color: var(--color-error);">${errores}</span>
+        <div class="texto-suave texto-xs">Errores</div>
       </div>
       <div style="text-align: center;">
-        <span style="font-size: var(--tamano-texto-2xl); font-weight: bold; color: var(--color-primario);">${porcentaje}%</span>
-        <div class="texto-suave">Calificación</div>
+        <span style="font-size: var(--tamano-xl); font-weight: var(--peso-extranegrita); color: var(--color-primario);">${porcentaje}%</span>
+        <div class="texto-suave texto-xs">Calificación</div>
       </div>
     `;
     contenedor.appendChild(stats);
 
     if (Array.isArray(recomendaciones) && recomendaciones.length > 0) {
       const recTitulo = document.createElement("h4");
-      recTitulo.className = "texto-h4";
-      recTitulo.textContent = "Temas a reforzar:";
+      recTitulo.className = "texto-m texto-negrita";
+      recTitulo.style.margin = "var(--espacio-s) 0 var(--espacio-xs) 0";
+      recTitulo.textContent = "Recomendaciones para repasar:";
       contenedor.appendChild(recTitulo);
 
       const lista = document.createElement("ul");
-      lista.style.paddingLeft = "var(--espacio-lg)";
+      lista.style.paddingLeft = "var(--espacio-l)";
+      lista.style.margin = "0 0 var(--espacio-s) 0";
       recomendaciones.forEach((r) => {
         const li = document.createElement("li");
+        li.className = "texto-s";
         li.textContent = r;
         lista.appendChild(li);
       });
@@ -112,8 +107,12 @@ export async function mostrarResumen({
 
     if (enlaceTema) {
       const linkDiv = document.createElement("div");
-      linkDiv.style.marginTop = "var(--espacio-xs)";
-      linkDiv.innerHTML = `<a href="${ui.escapar(enlaceTema)}" class="enlace" target="_blank">📖 Repasar el tema en el visor de contenidos</a>`;
+      linkDiv.style.margin = "var(--espacio-xs) 0";
+      linkDiv.innerHTML = `
+        <a href="${ui.escapar(enlaceTema)}" class="btn btn--secundario btn--pequeno" target="_blank" rel="noopener noreferrer">
+          📖 Repasar el tema
+        </a>
+      `;
       contenedor.appendChild(linkDiv);
     }
 
@@ -122,7 +121,7 @@ export async function mostrarResumen({
       contenido: contenedor,
       acciones: [
         {
-          texto: "Repetir",
+          texto: "Jugar de nuevo",
           tipo: "secundario",
           valor: "repetir"
         },
@@ -135,3 +134,4 @@ export async function mostrarResumen({
     }).then((val) => resolve(val || "salir"));
   });
 }
+

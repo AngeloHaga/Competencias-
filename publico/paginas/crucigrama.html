@@ -1,0 +1,93 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crucigrama · Ecosistema Educativo</title>
+<link rel="stylesheet" href="/css/tokens.css"><link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/componentes.css">
+<link rel="stylesheet" href="/css/modulos/crucigrama.css"></head>
+<body><div id="plantilla"></div><main id="contenido" class="contenedor">
+  <div class="crucigrama-layout" id="crucigramaLayout">
+    <!-- Cabecera de la actividad -->
+    <header class="crucigrama-cabecera">
+      <div class="crucigrama-cabecera__izq">
+        <nav class="migas-pan" aria-label="Navegación">
+          <a href="/paginas/actividades.html" class="enlace-volver">← Actividades</a>
+          <span aria-hidden="true">·</span>
+          <a id="enlaceTemaCabecera" href="#" class="enlace-tema">Tema</a>
+        </nav>
+        <h1 class="crucigrama-cabecera__titulo">Crucigrama Temático</h1>
+      </div>
+
+      <div class="crucigrama-cabecera__meta">
+        <!-- Indicadores -->
+        <div class="crucigrama-stats">
+          <span class="insignia insignia--secundario" id="statPalabras">0/0 resueltas</span>
+          <span class="insignia insignia--secundario" id="statReveladas">Letras reveladas: 0/3</span>
+          <span class="insignia insignia--secundario" id="statTiempo">00:00</span>
+        </div>
+
+        <button type="button" class="btn btn--secundario btn--pequeno" id="btnReiniciar">
+          🔄 Reiniciar
+        </button>
+      </div>
+    </header>
+
+    <!-- Estado vacío si el tema no tiene suficientes términos -->
+    <section class="vacio" id="estadoVacio" style="display: none;">
+      <span class="vacio__icono">✏️</span>
+      <h2 class="vacio__titulo">Términos insuficientes</h2>
+      <p class="vacio__descripcion">No se encontraron suficientes términos válidos (entre 3 y 12 letras) en el glosario de este tema para construir un crucigrama.</p>
+      <a id="enlaceTemaVacio" href="#" class="btn btn--primario" style="margin-top: var(--espacio-m);">
+        Volver al tema
+      </a>
+    </section>
+
+    <!-- Pista seleccionada en vivo -->
+    <div class="crucigrama-pista-activa" id="pistaActivaBarra" aria-live="polite">
+      <span class="crucigrama-pista-activa__numero" id="pistaActivaNum">-</span>
+      <span class="crucigrama-pista-activa__texto" id="pistaActivaTexto">Haz clic en una casilla o pista para comenzar a responder.</span>
+    </div>
+
+    <!-- Panel de retroalimentación inmediata -->
+    <div id="contenedorRetroCrucigrama" aria-live="polite"></div>
+
+    <!-- Barra de acciones del juego -->
+    <div class="crucigrama-acciones-barra" id="accionesBarra">
+      <button type="button" class="btn btn--primario" id="btnComprobar">
+        ✓ Comprobar palabra
+      </button>
+      <button type="button" class="btn btn--secundario" id="btnRevelarLetra">
+        💡 Revelar letra (3 disponibles)
+      </button>
+      <button type="button" class="btn btn--peligro" id="btnTerminar">
+        🏁 Terminar
+      </button>
+    </div>
+
+    <!-- Área de Juego: Cuadrícula y Listas de Pistas -->
+    <section class="crucigrama-juego" id="areaJuego">
+      <!-- Cuadrícula de casillas -->
+      <div class="crucigrama-grid-wrapper">
+        <div class="crucigrama-grid" id="grillaCrucigrama" role="grid" aria-label="Tablero de crucigrama">
+          <!-- Casillas renderizadas dinámicamente -->
+        </div>
+      </div>
+
+      <!-- Listas de pistas: Horizontales y Verticales -->
+      <aside class="crucigrama-pistas-panel">
+        <!-- Pistas Horizontales -->
+        <div class="crucigrama-pistas-bloque">
+          <h2 class="crucigrama-pistas-bloque__titulo">Horizontales</h2>
+          <ul class="crucigrama-lista-pistas" id="listaPistasH" aria-label="Pistas horizontales"></ul>
+        </div>
+
+        <!-- Pistas Verticales -->
+        <div class="crucigrama-pistas-bloque">
+          <h2 class="crucigrama-pistas-bloque__titulo">Verticales</h2>
+          <ul class="crucigrama-lista-pistas" id="listaPistasV" aria-label="Pistas verticales"></ul>
+        </div>
+      </aside>
+    </section>
+  </div>
+</main>
+<script type="module" src="/js/modulos/crucigrama.js"></script></body></html>
+

@@ -1,0 +1,209 @@
+/* publico/css/modulos/sopa-letras.css · Estilos para el juego Sopa de Letras */
+
+.sopa-layout {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-l);
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.sopa-cabecera {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--espacio-m);
+  border-bottom: 1px solid var(--color-borde);
+  padding-bottom: var(--espacio-m);
+  flex-wrap: wrap;
+}
+
+.sopa-cabecera__izq {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-xs);
+}
+
+.sopa-cabecera__titulo {
+  font-size: var(--tamano-2xl);
+  font-weight: var(--peso-extranegrita);
+  color: var(--color-primario);
+  margin: 0;
+}
+
+.sopa-cabecera__meta {
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-s);
+  flex-wrap: wrap;
+}
+
+.sopa-control-dificultad {
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-xs);
+}
+
+.sopa-stats {
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-xs);
+}
+
+/* Área de Juego */
+.sopa-juego {
+  display: grid;
+  grid-template-columns: auto 280px;
+  gap: var(--espacio-xl);
+  background-color: var(--color-superficie);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-l);
+  padding: var(--espacio-l);
+  box-shadow: var(--sombra-1);
+  align-items: start;
+}
+
+/* Contenedor con scroll para pantallas pequeñas y touch-action none para selección */
+.sopa-grilla-wrapper {
+  overflow-x: auto;
+  padding: var(--espacio-xs);
+  display: flex;
+  justify-content: center;
+  touch-action: none; /* Desactiva scroll en el área de la grilla para capturar Pointer Events */
+}
+
+/* Grilla de celdas */
+.sopa-grilla {
+  display: grid;
+  gap: 3px;
+  background-color: var(--color-borde);
+  border: 2px solid var(--color-primario);
+  border-radius: var(--radio-m);
+  padding: 3px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: none;
+}
+
+.celda-sopa {
+  width: 36px;
+  height: 36px;
+  background-color: var(--color-superficie);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--tamano-m);
+  font-weight: var(--peso-extranegrita);
+  color: var(--color-primario);
+  text-transform: uppercase;
+  border-radius: var(--radio-s);
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease, transform 0.1s ease;
+  user-select: none;
+}
+
+/* Resaltado en vivo durante el arrastre */
+.celda-sopa.seleccionando {
+  background-color: var(--color-anillo);
+  color: var(--color-texto-inverso);
+  transform: scale(1.05);
+  box-shadow: var(--sombra-1);
+}
+
+/* Celdas acertadas fijas */
+.celda-sopa.acertada {
+  background-color: var(--color-exito-fondo);
+  color: var(--color-exito);
+  font-weight: var(--peso-extranegrita);
+}
+
+/* Celdas reveladas al rendirse */
+.celda-sopa.revelada {
+  background-color: var(--color-advertencia-fondo);
+  color: var(--color-advertencia);
+  font-weight: var(--peso-extranegrita);
+}
+
+/* Panel lateral de palabras */
+.sopa-palabras-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-s);
+  background-color: var(--color-fondo);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-m);
+  padding: var(--espacio-m);
+}
+
+.sopa-palabras-panel__titulo {
+  font-size: var(--tamano-m);
+  font-weight: var(--peso-negrita);
+  color: var(--color-primario);
+  margin: 0;
+  border-bottom: 1px solid var(--color-borde);
+  padding-bottom: var(--espacio-xs);
+}
+
+.sopa-lista-palabras {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-xs);
+  max-height: 480px;
+  overflow-y: auto;
+}
+
+.sopa-palabra-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 10px;
+  background-color: var(--color-superficie);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-s);
+  font-size: var(--tamano-s);
+  font-weight: var(--peso-seminegrita);
+  color: var(--color-texto);
+  transition: var(--transicion);
+}
+
+.sopa-palabra-item.encontrada {
+  text-decoration: line-through;
+  color: var(--color-texto-suave);
+  background-color: var(--color-exito-fondo);
+  border-color: var(--color-exito);
+}
+
+.sopa-palabra-item.revelada {
+  text-decoration: line-through;
+  color: var(--color-advertencia);
+  background-color: var(--color-advertencia-fondo);
+  border-color: var(--color-advertencia);
+}
+
+.sopa-palabra-item__badge {
+  font-size: 0.7rem;
+  font-weight: var(--peso-negrita);
+}
+
+/* Responsive */
+@media (max-width: 820px) {
+  .sopa-juego {
+    grid-template-columns: 1fr;
+  }
+
+  .celda-sopa {
+    width: 28px;
+    height: 28px;
+    font-size: var(--tamano-s);
+  }
+
+  .sopa-lista-palabras {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    max-height: none;
+  }
+}
+

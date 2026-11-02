@@ -1,0 +1,82 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sopa de Letras · Ecosistema Educativo</title>
+<link rel="stylesheet" href="/css/tokens.css"><link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/componentes.css">
+<link rel="stylesheet" href="/css/modulos/sopa-letras.css"></head>
+<body><div id="plantilla"></div><main id="contenido" class="contenedor">
+  <div class="sopa-layout" id="sopaLayout">
+    <!-- Cabecera de la actividad -->
+    <header class="sopa-cabecera">
+      <div class="sopa-cabecera__izq">
+        <nav class="migas-pan" aria-label="Navegación">
+          <a href="/paginas/actividades.html" class="enlace-volver">← Actividades</a>
+          <span aria-hidden="true">·</span>
+          <a id="enlaceTemaCabecera" href="#" class="enlace-tema">Tema</a>
+        </nav>
+        <h1 class="sopa-cabecera__titulo">Sopa de Letras</h1>
+      </div>
+
+      <div class="sopa-cabecera__meta">
+        <!-- Selector de Dificultad -->
+        <div class="sopa-control-dificultad" id="controlDificultad">
+          <label for="selectDificultad" class="etiqueta texto-xs">Nivel:</label>
+          <select id="selectDificultad" class="entrada entrada--pequena">
+            <option value="facil">Fácil (8 palabras · 10×10)</option>
+            <option value="media" selected>Medio (10 palabras · 12×12)</option>
+            <option value="dificil">Difícil (12 palabras · 15×15)</option>
+          </select>
+        </div>
+
+        <!-- Indicadores -->
+        <div class="sopa-stats">
+          <span class="insignia insignia--secundario" id="statPalabras">0/0 encontradas</span>
+          <span class="insignia insignia--secundario" id="statTiempo">00:00</span>
+        </div>
+
+        <button type="button" class="btn btn--peligro btn--pequeno" id="btnRendirse">
+          🏳️ Rendirse
+        </button>
+        <button type="button" class="btn btn--primario btn--pequeno" id="btnGenerarIA" title="Generar nuevas palabras con Inteligencia Artificial">
+          ✨ Nuevas palabras IA
+        </button>
+        <button type="button" class="btn btn--secundario btn--pequeno" id="btnReiniciar">
+          🔄 Reiniciar
+        </button>
+      </div>
+    </header>
+
+    <!-- Estado vacío si el tema no tiene términos válidos -->
+    <section class="vacio" id="estadoVacio" style="display: none;">
+      <span class="vacio__icono">🔍</span>
+      <h2 class="vacio__titulo">Términos insuficientes</h2>
+      <p class="vacio__descripcion">No se encontraron términos de una sola palabra de al menos 3 letras en el glosario de este tema para generar la sopa de letras.</p>
+      <a id="enlaceTemaVacio" href="#" class="btn btn--primario" style="margin-top: var(--espacio-m);">
+        Volver al tema
+      </a>
+    </section>
+
+    <!-- Panel de retroalimentación inmediata -->
+    <div id="contenedorRetroSopa" aria-live="polite"></div>
+
+    <!-- Área de Juego: Grilla y Lista de Palabras -->
+    <section class="sopa-juego" id="areaJuego">
+      <!-- Contenedor táctil y responsivo de la Grilla -->
+      <div class="sopa-grilla-wrapper">
+        <div class="sopa-grilla" id="grillaSopa" role="grid" aria-label="Cuadrícula de la sopa de letras">
+          <!-- Celdas generadas dinámicamente -->
+        </div>
+      </div>
+
+      <!-- Barra lateral con la lista de palabras a encontrar -->
+      <aside class="sopa-palabras-panel">
+        <h2 class="sopa-palabras-panel__titulo">Palabras a encontrar</h2>
+        <ul class="sopa-lista-palabras" id="listaPalabras" aria-label="Lista de palabras">
+          <!-- Palabras generadas dinámicamente -->
+        </ul>
+      </aside>
+    </section>
+  </div>
+</main>
+<script type="module" src="/js/modulos/sopa-letras.js"></script></body></html>
+

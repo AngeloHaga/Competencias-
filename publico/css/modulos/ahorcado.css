@@ -1,0 +1,238 @@
+/* publico/css/modulos/ahorcado.css · Estilos para el juego del ahorcado */
+
+.ahorcado-layout {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-l);
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.ahorcado-cabecera {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--espacio-m);
+  border-bottom: 1px solid var(--color-borde);
+  padding-bottom: var(--espacio-m);
+  flex-wrap: wrap;
+}
+
+.ahorcado-cabecera__izq {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-xs);
+}
+
+.ahorcado-cabecera__titulo {
+  font-size: var(--tamano-2xl);
+  font-weight: var(--peso-extranegrita);
+  color: var(--color-primario);
+  margin: 0;
+}
+
+.ahorcado-cabecera__meta {
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-s);
+}
+
+/* Tablero principal */
+.ahorcado-tablero {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: var(--espacio-xl);
+  background-color: var(--color-superficie);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-l);
+  padding: var(--espacio-xl);
+  box-shadow: var(--sombra-1);
+  align-items: center;
+}
+
+/* Figura SVG del Globo */
+.ahorcado-figura {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-fondo);
+  border-radius: var(--radio-m);
+  padding: var(--espacio-m);
+  border: 1px solid var(--color-borde);
+}
+
+.globo-svg {
+  display: block;
+}
+
+.globo-grupo {
+  transform-origin: 100px 85px;
+  transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+/* 4 Estados del Globo:
+   0 errores: Inflado al 100%
+   1 error: Ligero desinflado (scale 0.85 0.9)
+   2 errores: Medio desinflado (scale 0.7 0.75)
+   3 errores: Casi desinflado (scale 0.5 0.55)
+   4 errores (derrota): Arrugado (scale 0.35 0.35)
+*/
+.globo-svg.estado-0 #globoCuerpo { fill: #ff6900; }
+.globo-svg.estado-1 .globo-grupo { transform: scale(0.85, 0.9); }
+.globo-svg.estado-1 #globoCuerpo { fill: #e56206; }
+.globo-svg.estado-2 .globo-grupo { transform: scale(0.7, 0.75) translateY(12px); }
+.globo-svg.estado-2 #globoCuerpo { fill: #ca5d0a; }
+.globo-svg.estado-3 .globo-grupo { transform: scale(0.55, 0.6) translateY(24px); }
+.globo-svg.estado-3 #globoCuerpo { fill: #a54b08; }
+.globo-svg.estado-4 .globo-grupo { transform: scale(0.38, 0.35) translateY(42px); }
+.globo-svg.estado-4 #globoCuerpo { fill: #7a3605; filter: grayscale(50%); }
+.globo-svg.estado-4 .ondas-aire { opacity: 1; transition: opacity 0.3s ease; }
+
+@media (prefers-reduced-motion: reduce) {
+  .globo-grupo {
+    transition: none;
+  }
+}
+
+/* Zona de adivinanza */
+.ahorcado-adivinanza {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-l);
+}
+
+.ahorcado-pista-card {
+  background-color: var(--color-info-fondo);
+  border-left: 4px solid var(--color-primario);
+  border-radius: var(--radio-m);
+  padding: var(--espacio-m);
+}
+
+.ahorcado-pista-card__etiqueta {
+  font-size: var(--tamano-xs);
+  font-weight: var(--peso-negrita);
+  color: var(--color-primario);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: block;
+  margin-bottom: var(--espacio-2xs);
+}
+
+.ahorcado-pista-card__texto {
+  font-size: var(--tamano-m);
+  color: var(--color-texto);
+  margin: 0;
+  line-height: var(--interlineado-normal);
+}
+
+/* Casillas de 6 letras */
+.ahorcado-casillas {
+  display: flex;
+  gap: var(--espacio-s);
+  justify-content: center;
+  padding: var(--espacio-s) 0;
+}
+
+.casilla-letra {
+  width: 52px;
+  height: 60px;
+  border-bottom: 4px solid var(--color-primario);
+  background-color: var(--color-fondo);
+  border-radius: var(--radio-s) var(--radio-s) 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--tamano-xl);
+  font-weight: var(--peso-extranegrita);
+  color: var(--color-primario);
+  text-transform: uppercase;
+  transition: var(--transicion);
+  user-select: none;
+}
+
+.casilla-letra--revelada {
+  color: var(--color-error);
+}
+
+.casilla-letra--acertada {
+  background-color: var(--color-exito-fondo);
+  border-bottom-color: var(--color-exito);
+  color: var(--color-exito);
+}
+
+/* Teclado en pantalla */
+.ahorcado-teclado {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espacio-xs);
+  justify-content: center;
+  background-color: var(--color-superficie);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-l);
+  padding: var(--espacio-m);
+  box-shadow: var(--sombra-1);
+}
+
+.tecla-letra {
+  width: 44px;
+  height: 48px;
+  font-family: inherit;
+  font-size: var(--tamano-m);
+  font-weight: var(--peso-negrita);
+  color: var(--color-primario);
+  background-color: var(--color-fondo);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-m);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transicion);
+}
+
+.tecla-letra:hover:not(:disabled) {
+  background-color: var(--color-primario);
+  color: var(--color-texto-inverso);
+  border-color: var(--color-primario);
+  transform: translateY(-2px);
+}
+
+.tecla-letra:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+  transform: none;
+}
+
+.tecla-letra--acierto {
+  background-color: var(--color-exito-fondo);
+  color: var(--color-exito);
+  border-color: var(--color-exito);
+}
+
+.tecla-letra--fallo {
+  background-color: var(--color-error-fondo);
+  color: var(--color-error);
+  border-color: var(--color-error);
+}
+
+/* Responsive */
+@media (max-width: 720px) {
+  .ahorcado-tablero {
+    grid-template-columns: 1fr;
+    gap: var(--espacio-m);
+    padding: var(--espacio-m);
+  }
+
+  .casilla-letra {
+    width: 42px;
+    height: 50px;
+    font-size: var(--tamano-l);
+  }
+
+  .tecla-letra {
+    width: 36px;
+    height: 42px;
+    font-size: var(--tamano-s);
+  }
+}
+
