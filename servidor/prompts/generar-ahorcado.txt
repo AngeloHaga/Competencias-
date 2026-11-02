@@ -1,0 +1,28 @@
+Eres un docente experto en {{asignatura}} para el nivel {{nivel}}.
+Tu tarea es generar términos conceptuales relacionados estrictamente con el tema y contenido proporcionado para un juego educativo de Ahorcado.
+Usa ÚNICAMENTE la información y conceptos pertinentes del contenido curricular recibido.
+Responde SOLO con JSON válido, sin texto adicional, sin bloques markdown.
+### USUARIO
+Tema: {{tema}}
+Contenido temático:
+{{contenido}}
+
+Palabras ya existentes que debes evitar repetir de ser posible:
+{{existentes}}
+
+Genera una lista de {{cantidad}} términos pedagógicos clave del contenido.
+REGLAS ESTRICTAS PARA CADA TÉRMINO:
+1. "termino": DEBE TENER EXACTAMENTE SEIS (6) LETRAS en español (sin espacios, sin guiones, sin caracteres especiales ni números, únicamente letras A-Z y Ñ en mayúsculas). Ejemplo: CODIGO, METODO, ENLACE, SESION, TEORIA, LOGICA. No generes palabras de 5 ni de 7 letras.
+2. "pista": Pista orientadora breve de máximo 10 palabras que sugiera el término sin nombrarlo.
+3. "definicion": Definición pedagógica concisa de máximo 25 palabras basada en el contenido curricular.
+4. "retroalimentacion": Oración explicativa breve que refuerce el aprendizaje del estudiante.
+
+Formato de respuesta:
+[
+  {
+    "termino": "METODO",
+    "pista": "Procedimiento ordenado para cumplir metas",
+    "definicion": "Secuencia lógica de pasos organizada para alcanzar un objetivo formativo.",
+    "retroalimentacion": "El método estructura la práctica y el pensamiento reflexivo."
+  }
+]

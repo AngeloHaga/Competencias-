@@ -25,6 +25,9 @@
           <span class="insignia insignia--secundario" id="statTiempo">00:00</span>
         </div>
 
+        <button type="button" class="btn btn--primario btn--pequeno" id="btnGenerarIA" title="Generar nuevo crucigrama con Inteligencia Artificial">
+          ✨ Nuevo crucigrama IA
+        </button>
         <button type="button" class="btn btn--secundario btn--pequeno" id="btnReiniciar">
           🔄 Reiniciar
         </button>
@@ -36,9 +39,14 @@
       <span class="vacio__icono">✏️</span>
       <h2 class="vacio__titulo">Términos insuficientes</h2>
       <p class="vacio__descripcion">No se encontraron suficientes términos válidos (entre 3 y 12 letras) en el glosario de este tema para construir un crucigrama.</p>
-      <a id="enlaceTemaVacio" href="#" class="btn btn--primario" style="margin-top: var(--espacio-m);">
-        Volver al tema
-      </a>
+      <div style="display: flex; gap: var(--espacio-s); margin-top: var(--espacio-m); flex-wrap: wrap; justify-content: center;">
+        <button type="button" class="btn btn--primario" id="btnGenerarIAVacio">
+          ✨ Generar con IA
+        </button>
+        <a id="enlaceTemaVacio" href="#" class="btn btn--secundario">
+          Volver al tema
+        </a>
+      </div>
     </section>
 
     <!-- Pista seleccionada en vivo -->

@@ -19,6 +19,9 @@
       </div>
       <div class="ahorcado-cabecera__meta">
         <span class="insignia insignia--secundario" id="contadorIntentosRestantes">Vidas: 3/3</span>
+        <button type="button" class="btn btn--primario btn--pequeno" id="btnGenerarIA" title="Generar nueva palabra con Inteligencia Artificial">
+          ✨ Nueva palabra IA
+        </button>
         <button type="button" class="btn btn--secundario btn--pequeno" id="btnOtraPalabra">
           🔄 Otra palabra
         </button>
@@ -30,9 +33,14 @@
       <span class="vacio__icono">📖</span>
       <h2 class="vacio__titulo">Sin términos de 6 letras disponibles</h2>
       <p class="vacio__descripcion">Este tema no cuenta con términos clave de exactamente 6 letras en su glosario para jugar al Ahorcado.</p>
-      <a id="enlaceTemaVacio" href="#" class="btn btn--primario" style="margin-top: var(--espacio-m);">
-        Volver a contenidos del tema
-      </a>
+      <div style="display: flex; gap: var(--espacio-s); margin-top: var(--espacio-m); flex-wrap: wrap; justify-content: center;">
+        <button type="button" class="btn btn--primario" id="btnGenerarIAVacio">
+          ✨ Generar con IA
+        </button>
+        <a id="enlaceTemaVacio" href="#" class="btn btn--secundario">
+          Volver a contenidos del tema
+        </a>
+      </div>
     </section>
 
     <!-- Tablero del Juego -->

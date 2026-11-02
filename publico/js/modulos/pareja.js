@@ -16,9 +16,11 @@ const selectDificultad = document.getElementById("selectDificultad");
 const statParejas = document.getElementById("statParejas");
 const statIntentos = document.getElementById("statIntentos");
 const statTiempo = document.getElementById("statTiempo");
+const btnGenerarIA = document.getElementById("btnGenerarIA");
 const btnReiniciar = document.getElementById("btnReiniciar");
 const estadoVacio = document.getElementById("estadoVacio");
 const enlaceTemaVacio = document.getElementById("enlaceTemaVacio");
+const btnGenerarIAVacio = document.getElementById("btnGenerarIAVacio");
 const contenedorRetroPareja = document.getElementById("contenedorRetroPareja");
 const tableroTarjetas = document.getElementById("tableroTarjetas");
 
@@ -34,6 +36,72 @@ let intentos = 0;
 let tiempoSegundos = 0;
 let intervaloTiempo = null;
 let juegoTerminado = false;
+
+/**
+ * Genera nuevas parejas didácticas con IA conectada al contenido curricular
+ * @param {Object} opciones { silencioso: boolean }
+ */
+async function generarParejasConIA({ silencioso = false } = {}) {
+  if (!temaActual) return false;
+  if (!silencioso) ui.cargando(true);
+
+  try {
+    const cantSolicitada = parseInt(selectDificultad.value, 10) || 8;
+    const nuevas = await api.ia("generar-parejas", {
+      temaId: temaActual.id,
+      cantidad: Math.max(10, cantSolicitada + 2)
+    });
+
+    if (Array.isArray(nuevas) && nuevas.length > 0) {
+      // Filtrar y estructurar parejas válidas
+      const validas = nuevas.filter((item) => {
+        return item.termino && item.definicion && String(item.termino).trim().length > 1;
+      }).map((item, idx) => ({
+        id: item.id || `ia_pareja_${Date.now()}_${idx}`,
+        temaId: temaActual.id,
+        termino: String(item.termino).trim(),
+        definicion: String(item.definicion).trim(),
+        retroalimentacion: item.retroalimentacion || "",
+        esIA: true
+      }));
+
+      if (validas.length >= 4) {
+        // Enriquecer el glosario sin duplicados por término normalizado
+        const mapa = new Map(glosarioTema.map((g) => [util.normalizar(g.termino), g]));
+        validas.forEach((v) => {
+          const k = util.normalizar(v.termino);
+          if (!mapa.has(k)) {
+            glosarioTema.push(v);
+          }
+        });
+
+        tableroTarjetas.style.display = "";
+        controlDificultad.style.display = "";
+        btnReiniciar.style.display = "";
+        estadoVacio.style.display = "none";
+
+        if (!silencioso) {
+          ui.aviso(`✨ Se generaron ${validas.length} nuevas parejas didácticas con IA`, "exito");
+        }
+
+        iniciarPartida();
+        return true;
+      }
+    }
+
+    if (!silencioso) {
+      ui.aviso("La IA no devolvió suficientes parejas, usando conceptos existentes.", "advertencia");
+    }
+    return false;
+  } catch (err) {
+    if (!silencioso) {
+      ui.aviso(`No se pudo conectar con la IA (${err.message}). Usando conceptos del contenido.`, "advertencia");
+    }
+    return false;
+  } finally {
+    if (!silencioso) ui.cargando(false);
+  }
+}
 
 /**
  * Inicializa la actividad
@@ -54,10 +122,15 @@ async function inicializar() {
     glosarioTema = glosario.filter((g) => g.termino && g.definicion);
 
     if (glosarioTema.length < 4) {
-      tableroTarjetas.style.display = "none";
-      controlDificultad.style.display = "none";
-      btnReiniciar.style.display = "none";
-      estadoVacio.style.display = "flex";
+      // Intentar generar automáticamente con IA si el tema no tiene suficientes términos
+      const logradaConIA = await generarParejasConIA({ silencioso: true });
+      if (!logradaConIA) {
+        tableroTarjetas.style.display = "none";
+        controlDificultad.style.display = "none";
+        btnReiniciar.style.display = "none";
+        estadoVacio.style.display = "flex";
+        return;
+      }
       return;
     }
 
@@ -270,7 +343,7 @@ async function finalizarJuego() {
   });
 
   if (accion === "repetir") {
-    iniciarPartida();
+    generarParejasConIA({ silencioso: true });
   }
 }
 
@@ -305,12 +378,24 @@ function actualizarIndicadores() {
 }
 
 selectDificultad.addEventListener("change", () => {
-  iniciarPartida();
+  generarParejasConIA({ silencioso: true });
 });
 
 btnReiniciar.addEventListener("click", () => {
-  iniciarPartida();
+  generarParejasConIA({ silencioso: false });
 });
+
+if (btnGenerarIA) {
+  btnGenerarIA.addEventListener("click", () => {
+    generarParejasConIA({ silencioso: false });
+  });
+}
+
+if (btnGenerarIAVacio) {
+  btnGenerarIAVacio.addEventListener("click", () => {
+    generarParejasConIA({ silencioso: false });
+  });
+}
 
 await inicializar();
 

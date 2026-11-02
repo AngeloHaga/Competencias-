@@ -400,6 +400,57 @@ function generarRespaldo(tarea, vars) {
     ];
   }
 
+  if (tarea === "generar-ahorcado") {
+    const palabrasAhorcado = [
+      { termino: "METODO", pista: "Procedimiento ordenado para cumplir metas formativas", definicion: "Secuencia lógica de pasos organizada para alcanzar un objetivo didáctico.", retroalimentacion: "El método estructura la práctica y el pensamiento reflexivo." },
+      { termino: "ENLACE", pista: "Conexión o hipervínculo entre recursos digitales", definicion: "Vínculo electrónico que conecta contenidos o páginas en entornos virtuales.", retroalimentacion: "Los enlaces facilitan la navegación estructurada del aprendizaje." },
+      { termino: "CODIGO", pista: "Instrucciones que procesa un ordenador", definicion: "Conjunto de instrucciones estructuradas en un lenguaje de programación.", retroalimentacion: "El código da vida a las aplicaciones educativas." },
+      { termino: "SESION", pista: "Espacio sincrónico o asincrónico de clase", definicion: "Periodo temporal planificado para el desarrollo de actividades formativas.", retroalimentacion: "La sesión organiza el ritmo de interacción docente-estudiante." },
+      { termino: "TEORIA", pista: "Conjunto de principios abstractos y científicos", definicion: "Estructura conceptual explicativa que fundamenta el conocimiento.", retroalimentacion: "La teoría proporciona las bases racionales de la práctica." },
+      { termino: "LOGICA", pista: "Razonamiento coherente y estructurado", definicion: "Método de razonamiento en el que las ideas se desarrollan de forma consistente.", retroalimentacion: "La lógica permite validar argumentos y resolver problemas." },
+      { termino: "ACCESO", pista: "Entrada o disponibilidad a una plataforma", definicion: "Permiso y capacidad técnica de ingresar a recursos del aula virtual.", retroalimentacion: "El acceso equitativo es clave para la inclusión educativa." },
+      { termino: "MODULO", pista: "Bloque o componente formativo independiente", definicion: "Unidad temática autónoma que forma parte de un programa curricular.", retroalimentacion: "La modularidad flexibiliza el itinerario formativo." }
+    ];
+    const cant = Number(vars.cantidad) || 6;
+    return palabrasAhorcado.slice(0, cant);
+  }
+
+  if (tarea === "generar-parejas") {
+    const parejasSoporte = [
+      { termino: "Evaluación formativa", definicion: "Proceso continuo de retroalimentación para mejorar los aprendizajes.", retroalimentacion: "Permite reajustar metodologías durante el trayecto." },
+      { termino: "Entorno virtual", definicion: "Espacio digital diseñado para la interacción didáctica y gestión académica.", retroalimentacion: "El aula virtual supera las barreras geográficas y temporales." },
+      { termino: "Competencia", definicion: "Integración articulada de saberes, destrezas y valores en acción.", retroalimentacion: "Demuestra la capacidad de resolver problemas en contextos reales." },
+      { termino: "Rúbrica", definicion: "Matriz evaluativa con criterios y niveles de desempeño explícitos.", retroalimentacion: "Brinda transparencia y objetividad en la valoración formativa." },
+      { termino: "Pensamiento crítico", definicion: "Capacidad reflexiva de análisis, síntesis y valoración fundamentada.", retroalimentacion: "Impulsa la autonomía intelectual y el criterio argumentado." },
+      { termino: "Recurso didáctico", definicion: "Material o medio elaborado con la intencionalidad de facilitar el aprendizaje.", retroalimentacion: "Enriquece la asimilación conceptual mediante experiencias significativas." },
+      { termino: "Gamificación", definicion: "Uso de mecánicas y dinámicas de juego en contextos pedagógicos.", retroalimentacion: "Aumenta la motivación intrínseca y el compromiso con la tarea." },
+      { termino: "Andamiaje", definicion: "Acompañamiento temporal docente para que el alumno alcance una nueva meta.", retroalimentacion: "Se retira progresivamente a medida que el estudiante gana autonomía." },
+      { termino: "Metacognición", definicion: "Conciencia y autorregulación de los propios procesos de pensamiento.", retroalimentacion: "Aprender a aprender es una meta central de la educación moderna." },
+      { termino: "Aprendizaje activo", definicion: "Estrategia donde el estudiante investiga, colabora y produce conocimiento.", retroalimentacion: "El estudiante asume el rol protagonista de su propio aprendizaje." }
+    ];
+    const cant = Number(vars.cantidad) || 8;
+    return parejasSoporte.slice(0, cant);
+  }
+
+  if (tarea === "generar-crucigrama") {
+    const palabrasCrucigrama = [
+      { termino: "METODOLOGIA", pista: "Marco sistemático de procedimientos y técnicas didácticas", definicion: "Organización de estrategias docentes para facilitar el aprendizaje.", retroalimentacion: "Guía el proceso formativo integral." },
+      { termino: "DIGITAL", pista: "Relativo a la tecnología informática y redes", definicion: "Ecosistema tecnológico que procesa y transmite información en bits.", retroalimentacion: "Transforma la interacción pedagógica." },
+      { termino: "DOCENTE", pista: "Facilitador y guía del proceso de enseñanza", definicion: "Profesional que diseña secuencias pedagógicas y acompaña al estudiante.", retroalimentacion: "El rol docente orienta el pensamiento reflexivo." },
+      { termino: "CRITERIO", pista: "Pauta o estándar evaluativo de desempeño", definicion: "Regla o parámetro para determinar el nivel de logro de una competencia.", retroalimentacion: "Los criterios aseguran una evaluación transparente y justa." },
+      { termino: "FORMATIVA", pista: "Evaluación orientada al perfeccionamiento continuo", definicion: "Modalidad evaluativa que aporta retroalimentación durante el curso.", retroalimentacion: "Permite corregir desvíos antes de la evaluación final." },
+      { termino: "CODIGO", pista: "Instrucciones en un lenguaje de programación", definicion: "Secuencia de enunciados lógicos que el ordenador interpreta.", retroalimentacion: "Fundamento de las soluciones tecnológicas." },
+      { termino: "ENLACE", pista: "Conexión web hacia otro recurso formativo", definicion: "Hipervínculo que conecta páginas o documentos en línea.", retroalimentacion: "Conecta diferentes nodos del conocimiento." },
+      { termino: "VIRTUAL", pista: "Entorno no presencial soportado por internet", definicion: "Espacio informático diseñado para la interacción pedagógica remota.", retroalimentacion: "Flexibiliza el acceso a la educación superior." },
+      { termino: "SABERES", pista: "Conjunto integrado de conocimientos y destrezas", definicion: "Bases cognitivas, procedimentales y axiológicas del estudiante.", retroalimentacion: "Fundamentan las competencias profesionales." },
+      { termino: "RECURSO", pista: "Material o medio de apoyo pedagógico", definicion: "Elemento didáctico diseñado para enriquecer una lección.", retroalimentacion: "Dinamiza la asimilación conceptual." },
+      { termino: "MODULO", pista: "Bloque temático estructurado del plan de estudios", definicion: "Unidad didáctica independiente dentro de un curso general.", retroalimentacion: "Permite una progresión escalonada del aprendizaje." },
+      { termino: "RUBRICA", pista: "Guía de puntuación con niveles cualitativos", definicion: "Instrumento con escala descriptiva para evaluar tareas.", retroalimentacion: "Clarifica las expectativas de rendimiento." }
+    ];
+    const cant = Number(vars.cantidad) || 12;
+    return palabrasCrucigrama.slice(0, cant);
+  }
+
   if (tarea === "generar-palabras-sopa") {
     const tema = vars.tema || "Aprendizaje";
     const palabrasSoporte = [

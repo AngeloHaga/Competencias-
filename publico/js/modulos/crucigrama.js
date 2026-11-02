@@ -269,9 +269,11 @@ const enlaceTemaCabecera = document.getElementById("enlaceTemaCabecera");
 const statPalabras = document.getElementById("statPalabras");
 const statReveladas = document.getElementById("statReveladas");
 const statTiempo = document.getElementById("statTiempo");
+const btnGenerarIA = document.getElementById("btnGenerarIA");
 const btnReiniciar = document.getElementById("btnReiniciar");
 const estadoVacio = document.getElementById("estadoVacio");
 const enlaceTemaVacio = document.getElementById("enlaceTemaVacio");
+const btnGenerarIAVacio = document.getElementById("btnGenerarIAVacio");
 const pistaActivaNum = document.getElementById("pistaActivaNum");
 const pistaActivaTexto = document.getElementById("pistaActivaTexto");
 const contenedorRetroCrucigrama = document.getElementById("contenedorRetroCrucigrama");
@@ -299,6 +301,75 @@ let tiempoSegundos = 0;
 let intervaloTiempo = null;
 
 /**
+ * Genera nuevas palabras y pistas de crucigrama con IA conectada al contenido temático
+ * @param {Object} opciones { silencioso: boolean }
+ */
+async function generarCrucigramaConIA({ silencioso = false } = {}) {
+  if (!temaActual) return false;
+  if (!silencioso) ui.cargando(true);
+
+  try {
+    const nuevas = await api.ia("generar-crucigrama", {
+      temaId: temaActual.id,
+      cantidad: 15
+    });
+
+    if (Array.isArray(nuevas) && nuevas.length > 0) {
+      // Filtrar términos de una sola palabra normalizada (entre 3 y 12 letras)
+      const validas = nuevas.filter((item) => {
+        const terminoLimpio = String(item.termino || "").trim();
+        const norm = util.normalizar(terminoLimpio);
+        return !terminoLimpio.includes(" ") && norm.length >= 3 && norm.length <= 12 && /^[A-ZÑ]+$/.test(norm);
+      }).map((item, idx) => ({
+        id: item.id || `ia_crucigrama_${Date.now()}_${idx}`,
+        temaId: temaActual.id,
+        termino: String(item.termino).trim().toUpperCase(),
+        pista: item.pista || "Concepto clave del contenido",
+        definicion: item.definicion || `Definición de ${item.termino}`,
+        retroalimentacion: item.retroalimentacion || "",
+        esIA: true
+      }));
+
+      if (validas.length >= 3) {
+        // Enriquecer el listado sin duplicados
+        const mapa = new Map(glosarioTema.map((g) => [util.normalizar(g.termino), g]));
+        validas.forEach((v) => {
+          const k = util.normalizar(v.termino);
+          if (!mapa.has(k)) {
+            glosarioTema.push(v);
+          }
+        });
+
+        areaJuego.style.display = "";
+        accionesBarra.style.display = "";
+        pistaActivaBarra.style.display = "";
+        btnReiniciar.style.display = "";
+        estadoVacio.style.display = "none";
+
+        if (!silencioso) {
+          ui.aviso(`✨ Se generaron ${validas.length} palabras con IA y se configuró el crucigrama`, "exito");
+        }
+
+        iniciarPartida();
+        return true;
+      }
+    }
+
+    if (!silencioso) {
+      ui.aviso("La IA no devolvió suficientes términos de 3 a 12 letras, usando palabras disponibles.", "advertencia");
+    }
+    return false;
+  } catch (err) {
+    if (!silencioso) {
+      ui.aviso(`No se pudo conectar con la IA (${err.message}). Usando palabras del contenido.`, "advertencia");
+    }
+    return false;
+  } finally {
+    if (!silencioso) ui.cargando(false);
+  }
+}
+
+/**
  * Inicialización
  */
 async function inicializar() {
@@ -322,7 +393,11 @@ async function inicializar() {
     });
 
     if (glosarioTema.length < 4) {
-      mostrarVacio();
+      const logradaConIA = await generarCrucigramaConIA({ silencioso: true });
+      if (!logradaConIA) {
+        mostrarVacio();
+        return;
+      }
       return;
     }
 
@@ -820,13 +895,25 @@ async function finalizarCrucigrama() {
   });
 
   if (accion === "repetir") {
-    iniciarPartida();
+    generarCrucigramaConIA({ silencioso: true });
   }
 }
 
 btnReiniciar.addEventListener("click", () => {
-  iniciarPartida();
+  generarCrucigramaConIA({ silencioso: false });
 });
+
+if (btnGenerarIA) {
+  btnGenerarIA.addEventListener("click", () => {
+    generarCrucigramaConIA({ silencioso: false });
+  });
+}
+
+if (btnGenerarIAVacio) {
+  btnGenerarIAVacio.addEventListener("click", () => {
+    generarCrucigramaConIA({ silencioso: false });
+  });
+}
 
 /**
  * Temporizador y Métricas

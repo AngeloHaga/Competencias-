@@ -18,10 +18,12 @@ const LETRAS = [
 // Elementos DOM
 const enlaceTemaCabecera = document.getElementById("enlaceTemaCabecera");
 const contadorIntentosRestantes = document.getElementById("contadorIntentosRestantes");
+const btnGenerarIA = document.getElementById("btnGenerarIA");
 const btnOtraPalabra = document.getElementById("btnOtraPalabra");
 const estadoVacio = document.getElementById("estadoVacio");
 const estadoTablero = document.getElementById("estadoTablero");
 const enlaceTemaVacio = document.getElementById("enlaceTemaVacio");
+const btnGenerarIAVacio = document.getElementById("btnGenerarIAVacio");
 const globoSvg = document.getElementById("globoSvg");
 const textoPista = document.getElementById("textoPista");
 const contenedorCasillas = document.getElementById("contenedorCasillas");
@@ -39,6 +41,74 @@ let letrasIntentadas = new Set();
 let errores = 0;
 let juegoTerminado = false;
 let tiempoInicio = Date.now();
+
+/**
+ * Genera nuevas palabras de 6 letras mediante IA conectada al contenido temático
+ * @param {Object} opciones { silencioso: boolean }
+ */
+async function generarPalabrasConIA({ silencioso = false } = {}) {
+  if (!temaActual) return false;
+  if (!silencioso) ui.cargando(true);
+
+  try {
+    const nuevas = await api.ia("generar-ahorcado", {
+      temaId: temaActual.id,
+      cantidad: 6
+    });
+
+    if (Array.isArray(nuevas) && nuevas.length > 0) {
+      // Filtrar estrictamente términos de exactamente 6 letras válidas
+      const validas = nuevas.filter((item) => {
+        const texto = String(item.termino || "").trim();
+        const norm = util.normalizar(texto);
+        return norm.length === 6 && /^[A-ZÑ]+$/.test(norm);
+      }).map((item, idx) => ({
+        id: item.id || `ia_ahorcado_${Date.now()}_${idx}`,
+        termino: item.termino.trim().toUpperCase(),
+        pista: item.pista || "Concepto clave del tema",
+        definicion: item.definicion || `Definición de ${item.termino}`,
+        retroalimentacion: item.retroalimentacion || "",
+        esIA: true
+      }));
+
+      if (validas.length > 0) {
+        // Integrar al listado sin duplicados
+        const mapa = new Map(terminosDisponibles.map((t) => [util.normalizar(t.termino), t]));
+        validas.forEach((v) => {
+          const k = util.normalizar(v.termino);
+          if (!mapa.has(k)) {
+            terminosDisponibles.push(v);
+          }
+        });
+
+        // Asegurar que la interfaz esté visible si estaba en estado vacío
+        estadoVacio.style.display = "none";
+        estadoTablero.style.display = "grid";
+        tecladoEnPantalla.style.display = "grid";
+        btnOtraPalabra.style.display = "";
+
+        if (!silencioso) {
+          ui.aviso(`✨ Se generaron ${validas.length} palabras de 6 letras con IA`, "exito");
+        }
+
+        iniciarPartida();
+        return true;
+      }
+    }
+
+    if (!silencioso) {
+      ui.aviso("La IA no devolvió palabras de 6 letras válidas. Usando términos disponibles.", "advertencia");
+    }
+    return false;
+  } catch (err) {
+    if (!silencioso) {
+      ui.aviso(`No se pudo conectar con la IA (${err.message}).`, "advertencia");
+    }
+    return false;
+  } finally {
+    if (!silencioso) ui.cargando(false);
+  }
+}
 
 /**
  * Inicializa la partida cargando el tema y sus términos de 6 letras
@@ -63,10 +133,15 @@ async function inicializar() {
     });
 
     if (terminosDisponibles.length === 0) {
-      estadoTablero.style.display = "none";
-      tecladoEnPantalla.style.display = "none";
-      btnOtraPalabra.style.display = "none";
-      estadoVacio.style.display = "flex";
+      // Intentar generar automáticamente con IA si el contenido temático no tiene términos de 6 letras
+      const logradaConIA = await generarPalabrasConIA({ silencioso: true });
+      if (!logradaConIA) {
+        estadoTablero.style.display = "none";
+        tecladoEnPantalla.style.display = "none";
+        btnOtraPalabra.style.display = "none";
+        estadoVacio.style.display = "flex";
+        return;
+      }
       return;
     }
 
@@ -261,11 +336,31 @@ window.addEventListener("keydown", (e) => {
   }
 });
 
-btnOtraPalabra.addEventListener("click", () => {
-  if (terminosDisponibles.length > 0) {
+btnOtraPalabra.addEventListener("click", async () => {
+  // Si ya se usaron todos los términos disponibles, intentar traer nuevos con IA
+  const pendientes = terminosDisponibles.filter((t) => !terminosUsados.has(t.id));
+  if (pendientes.length === 0) {
+    const nuevosGenerados = await generarPalabrasConIA({ silencioso: true });
+    if (!nuevosGenerados) {
+      terminosUsados.clear();
+      iniciarPartida();
+    }
+  } else {
     iniciarPartida();
   }
 });
+
+if (btnGenerarIA) {
+  btnGenerarIA.addEventListener("click", () => {
+    generarPalabrasConIA({ silencioso: false });
+  });
+}
+
+if (btnGenerarIAVacio) {
+  btnGenerarIAVacio.addEventListener("click", () => {
+    generarPalabrasConIA({ silencioso: false });
+  });
+}
 
 await inicializar();
 
