@@ -24,6 +24,9 @@
           <option value="" disabled selected>Cargando asignaturas...</option>
         </select>
         <span id="badgeNivelAsignatura" class="insignia insignia--secundario" style="display: none;"></span>
+        <a href="/paginas/admin-asignaturas.html" class="btn btn--secundario btn--pequeno" style="margin-left: auto;" title="Gestionar asignaturas y niveles">
+          ⚙️ Asignaturas y niveles
+        </a>
       </div>
     </section>
 
@@ -67,7 +70,10 @@
     <!-- Mensaje si no tiene asignaturas asignadas -->
     <div id="mensajeSinAsignaturas" class="alerta alerta--info" style="display: none;">
       <strong>Sin asignaturas disponibles</strong>
-      <p>No tienes asignaturas asignadas en el distributivo académico actualmente.</p>
+      <p>No tienes asignaturas registradas en tu distributivo académico actualmente.</p>
+      <a href="/paginas/admin-asignaturas.html" class="btn btn--primario btn--pequeno" style="margin-top: var(--espacio-s); display: inline-block;">
+        + Crear o configurar asignatura
+      </a>
     </div>
   </div>
 

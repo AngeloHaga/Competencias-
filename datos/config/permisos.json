@@ -9,7 +9,7 @@
   },
   "asignaturas": {
     "leer": ["sesion"],
-    "escribir": ["admin"]
+    "escribir": ["docente", "admin"]
   },
   "distributivo": {
     "leer": ["sesion"],

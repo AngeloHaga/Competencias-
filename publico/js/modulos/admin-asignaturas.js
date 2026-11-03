@@ -1,9 +1,90 @@
-// publico/js/modulos/admin-asignaturas.js · Gestión y CRUD de asignaturas para administradores
+// publico/js/modulos/admin-asignaturas.js · Gestión y CRUD de asignaturas y niveles para docentes y administradores
 import { montarPlantilla } from "../nucleo/plantilla.js";
 import * as api from "../nucleo/api.js";
 import * as ui from "../nucleo/ui.js";
 
-await montarPlantilla({ titulo: "Asignaturas", roles: ["admin"] });
+await montarPlantilla({ titulo: "Asignaturas", roles: ["docente", "admin"] });
+
+/**
+ * Catálogo completo de niveles educativos (Escuela, Colegio y Educación Superior)
+ */
+export const NIVELES_ACADEMICOS = [
+  {
+    grupo: "Educación Básica (Escuela - EGB)",
+    opciones: [
+      { valor: "Educación Inicial / Preescolar", texto: "Educación Inicial / Preescolar (3 a 5 años)" },
+      { valor: "1.° de Básica (Preparatoria)", texto: "1.° de Básica (Preparatoria)" },
+      { valor: "2.° de Básica (Elemental)", texto: "2.° de Básica (Elemental)" },
+      { valor: "3.° de Básica (Elemental)", texto: "3.° de Básica (Elemental)" },
+      { valor: "4.° de Básica (Elemental)", texto: "4.° de Básica (Elemental)" },
+      { valor: "5.° de Básica (Media)", texto: "5.° de Básica (Media)" },
+      { valor: "6.° de Básica (Media)", texto: "6.° de Básica (Media)" },
+      { valor: "7.° de Básica (Media)", texto: "7.° de Básica (Media)" },
+      { valor: "8.° de Básica (Superior)", texto: "8.° de Básica (Superior)" },
+      { valor: "9.° de Básica (Superior)", texto: "9.° de Básica (Superior)" },
+      { valor: "10.° de Básica (Superior)", texto: "10.° de Básica (Superior)" },
+      { valor: "EGB Subnivel Elemental", texto: "EGB Subnivel Elemental (2.° a 4.°)" },
+      { valor: "EGB Subnivel Medio", texto: "EGB Subnivel Medio (5.° a 7.°)" },
+      { valor: "EGB Subnivel Superior", texto: "EGB Subnivel Superior (8.° a 10.°)" },
+      { valor: "Educación General Básica (EGB)", texto: "Educación General Básica (EGB General)" }
+    ]
+  },
+  {
+    grupo: "Bachillerato (Colegio - BGU)",
+    opciones: [
+      { valor: "1.° de Bachillerato", texto: "1.° de Bachillerato" },
+      { valor: "2.° de Bachillerato", texto: "2.° de Bachillerato" },
+      { valor: "3.° de Bachillerato", texto: "3.° de Bachillerato" },
+      { valor: "Bachillerato General Unificado (BGU)", texto: "Bachillerato General Unificado (BGU)" },
+      { valor: "Bachillerato en Ciencias", texto: "Bachillerato en Ciencias" },
+      { valor: "Bachillerato Técnico", texto: "Bachillerato Técnico" },
+      { valor: "Bachillerato Internacional", texto: "Bachillerato Internacional (BI)" }
+    ]
+  },
+  {
+    grupo: "Educación Superior y Posgrados",
+    opciones: [
+      { valor: "Técnico / Tecnológico Superior", texto: "Técnico / Tecnológico Superior" },
+      { valor: "Pregrado", texto: "Pregrado (Licenciatura / Ingeniería)" },
+      { valor: "Maestría", texto: "Maestría" },
+      { valor: "Doctorado", texto: "Doctorado (PhD)" },
+      { valor: "Diplomado", texto: "Diplomado / Formación Continua" }
+    ]
+  }
+];
+
+function generarOpcionesNivel(nivelActual) {
+  const normActual = String(nivelActual || "").trim().toUpperCase();
+  let html = `<option value="" disabled ${!nivelActual ? "selected" : ""}>Selecciona el nivel académico...</option>`;
+  let coincidencia = false;
+
+  for (const grupo of NIVELES_ACADEMICOS) {
+    html += `<optgroup label="${ui.escapar(grupo.grupo)}">`;
+    for (const op of grupo.opciones) {
+      const normOp = op.valor.trim().toUpperCase();
+      let match = normActual === normOp;
+
+      // Compatibilidad retroactiva con valores en mayúsculas
+      if (!match) {
+        if (normActual === "PREGRADO" && normOp === "PREGRADO") match = true;
+        if (normActual === "MAESTRÍA" && normOp === "MAESTRÍA") match = true;
+        if (normActual === "DOCTORADO" && normOp === "DOCTORADO") match = true;
+        if (normActual === "DIPLOMADO" && normOp === "DIPLOMADO") match = true;
+      }
+
+      if (match) coincidencia = true;
+      html += `<option value="${ui.escapar(op.valor)}" ${match ? "selected" : ""}>${ui.escapar(op.texto)}</option>`;
+    }
+    html += `</optgroup>`;
+  }
+
+  // Si existe un valor previo personalizado fuera de la lista estándar, mantenerlo seleccionado
+  if (nivelActual && !coincidencia) {
+    html = `<option value="${ui.escapar(nivelActual)}" selected>${ui.escapar(nivelActual)} (Personalizado)</option>` + html;
+  }
+
+  return html;
+}
 
 const gridAsignaturas = document.getElementById("gridAsignaturas");
 const btnNuevaAsignatura = document.getElementById("btnNuevaAsignatura");
@@ -89,12 +170,16 @@ function asignarEventos() {
     btn.addEventListener("click", async () => {
       const id = btn.getAttribute("data-id");
       const nombre = btn.getAttribute("data-nombre");
-      const cantGrupos = parseInt(btn.getAttribute("data-grupos") || "0", 10);
 
-      // Regla de negocio: solo eliminar si no tiene grupos
-      if (cantGrupos > 0) {
+      // Regla de negocio: solo bloquear eliminación si tiene estudiantes inscritos
+      const gruposAsig = distributivo.filter((g) => g.asignaturaId === id);
+      const tieneEstudiantes = gruposAsig.some(
+        (g) => Array.isArray(g.estudiantes) && g.estudiantes.length > 0
+      );
+
+      if (tieneEstudiantes) {
         ui.aviso(
-          `No se puede eliminar la asignatura "${nombre}" porque tiene ${cantGrupos} grupo(s) asignado(s) en el distributivo.`,
+          `No se puede eliminar la asignatura "${nombre}" porque tiene estudiantes inscritos en el distributivo académico.`,
           "advertencia"
         );
         return;
@@ -133,10 +218,7 @@ function abrirModalAsignatura(asignatura = null) {
     <div class="campo" id="grupoModalNivel">
       <label for="modalNivel">Nivel académico</label>
       <select id="modalNivel" required>
-        <option value="PREGRADO" ${asignatura?.nivel === "PREGRADO" ? "selected" : ""}>Pregrado</option>
-        <option value="MAESTRÍA" ${asignatura?.nivel === "MAESTRÍA" || !esEdicion ? "selected" : ""}>Maestría</option>
-        <option value="DOCTORADO" ${asignatura?.nivel === "DOCTORADO" ? "selected" : ""}>Doctorado</option>
-        <option value="DIPLOMADO" ${asignatura?.nivel === "DIPLOMADO" ? "selected" : ""}>Diplomado</option>
+        ${generarOpcionesNivel(asignatura?.nivel)}
       </select>
       <span class="campo__error" id="errorModalNivel" aria-live="polite"></span>
     </div>
@@ -168,6 +250,11 @@ function abrirModalAsignatura(asignatura = null) {
 
     if (!nombre) {
       ui.aviso("El nombre de la asignatura es obligatorio", "error");
+      return;
+    }
+
+    if (!nivel) {
+      ui.aviso("Debes seleccionar el nivel académico de la asignatura", "error");
       return;
     }
 
