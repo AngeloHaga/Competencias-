@@ -16,6 +16,9 @@ const btnVerClave = document.getElementById("btn-ver-clave-admin");
 const btnProbar = document.getElementById("btn-probar-conexion");
 const divResultado = document.getElementById("resultado-prueba-ia");
 const badgeEstadoIa = document.getElementById("badge-estado-ia");
+const btnExportar = document.getElementById("btn-exportar-datos");
+const inputImportar = document.getElementById("input-importar-datos");
+const divRespaldo = document.getElementById("resultado-respaldo");
 
 function obtenerModeloAjustes() {
   if (inputModelo?.value === "otro") {
@@ -145,3 +148,60 @@ async function cargarConfiguracion() {
 }
 
 cargarConfiguracion();
+
+btnExportar?.addEventListener("click", async () => {
+  ui.cargando(true);
+  try {
+    const res = await api.llamar("GET", "/api/respaldo/exportar");
+    const jsonStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(res, null, 2));
+    const a = document.createElement("a");
+    a.href = jsonStr;
+    a.download = `respaldo-ecosistema-${new Date().toISOString().slice(0, 10)}.json`;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    ui.aviso("Copia de seguridad descargada con éxito", "exito");
+  } catch (err) {
+    ui.aviso(err.message || "Error al exportar los datos", "error");
+  } finally {
+    ui.cargando(false);
+  }
+});
+
+inputImportar?.addEventListener("change", async (e) => {
+  const archivo = e.target.files?.[0];
+  if (!archivo) return;
+
+  const confirmar = await ui.confirmar(
+    `¿Deseas restaurar los contenidos desde "${archivo.name}"? Los datos actuales serán reemplazados por los del respaldo.`
+  );
+  if (!confirmar) {
+    inputImportar.value = "";
+    return;
+  }
+
+  ui.cargando(true);
+  try {
+    const texto = await archivo.text();
+    const parseado = JSON.parse(texto);
+    const payload = parseado.datos ? parseado : { datos: parseado };
+
+    const res = await api.llamar("POST", "/api/respaldo/importar", payload);
+    ui.aviso(res.mensaje || "Contenidos restaurados con éxito", "exito");
+    if (divRespaldo) {
+      divRespaldo.className = "alerta alerta--exito";
+      divRespaldo.textContent = `✅ ${res.mensaje}`;
+      divRespaldo.classList.remove("oculto");
+    }
+  } catch (err) {
+    ui.aviso(err.message || "Error al restaurar el respaldo", "error");
+    if (divRespaldo) {
+      divRespaldo.className = "alerta alerta--error";
+      divRespaldo.textContent = `❌ ${err.message}`;
+      divRespaldo.classList.remove("oculto");
+    }
+  } finally {
+    inputImportar.value = "";
+    ui.cargando(false);
+  }
+});

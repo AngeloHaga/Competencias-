@@ -72,6 +72,25 @@
         </form>
       </section>
 
+      <!-- Tarjeta Respaldo y Restauración de Contenidos -->
+      <section class="tarjeta pila" aria-labelledby="titulo-respaldo">
+        <h2 id="titulo-respaldo" class="tarjeta__titulo">Copia de Seguridad y Contenidos</h2>
+        <p class="texto-suave">
+          Descarga un respaldo completo de tus asignaturas, unidades, temas, glosarios y preguntas para proteger tu contenido y restaurarlo en cualquier momento.
+        </p>
+
+        <div class="acciones-formulario" style="display: flex; gap: var(--espacio-s); flex-wrap: wrap;">
+          <button type="button" id="btn-exportar-datos" class="btn btn--primario">
+            📥 Descargar respaldo de contenidos (JSON)
+          </button>
+          <label class="btn btn--secundario" style="cursor: pointer; margin: 0;">
+            📤 Restaurar desde archivo JSON
+            <input type="file" id="input-importar-datos" accept=".json,application/json" style="display: none;">
+          </label>
+        </div>
+        <div id="resultado-respaldo" class="alerta oculto" role="status"></div>
+      </section>
+
       <!-- Tarjeta Información del Sistema -->
       <section class="tarjeta pila" aria-labelledby="titulo-sistema">
         <h2 id="titulo-sistema" class="tarjeta__titulo">Información del Entorno</h2>
