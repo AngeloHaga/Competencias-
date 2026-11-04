@@ -1,92 +1,227 @@
 [
   {
-    "id": "tem_000001",
     "unidadId": "uni_000001",
-    "titulo": "Alfabetización Digital y Mediación Pedagógica",
+    "titulo": "Comprensión e interpretación de mitos y leyendas.",
     "orden": 1,
-    "objetivos": [
-      "Comprender los marcos de competencia digital docente",
-      "Evaluar críticamente recursos y herramientas digitales para el aula"
+    "estado": "publicado",
+    "id": "tem_000001",
+    "fecha": "2026-11-03T23:23:21.230Z",
+    "dificultad": 2,
+    "palabrasClave": [
+      "Comprensión lectora; narración tradicional; mito; leyenda; inferencia; propósito comunicativo; personajes; ambiente; acontecimientos; tradición oral; interpretación; memoria colectiva."
     ],
-    "resumen": "Estudio de las dimensiones de la alfabetización digital orientada a la práctica docente universitaria y la gestión del conocimiento.",
+    "fuentes": "Ministerio de Educación del Ecuador. Texto de Lengua y Literatura, 6.º EGB.. PDF oficial para lecturas y actividades del nivel. https://recursos.educacion.gob.ec/wp-content/uploads/2024/Textos/Media/6to_EGB/6to_EGB_LENGUA_Y_LITERATURA.pdf  UNESCO. Tradiciones y expresiones orales.. Página institucional sobre la transmisión de conocimientos y memoria colectiva. https://ich.unesco.org/es/tradiciones-y-expresiones-orales-00053  Ministerio de Educación del Ecuador. Lecturas – Sexto grado – Lengua y Literatura.. Compendio de lecturas breves para el nivel. https://recursos.educacion.gob.ec/red/lecturas-sexto-grado-lengua-y-literatura/  Universidad de Oxford, TORCH. Where do myths, legends and folktales come from?. Artículo divulgativo académico para ampliar la diferenciación de relatos. https://torch.web.ox.ac.uk/article/where-do-myths-legends-and-folktales-come-from-0",
+    "resumen": "La comprensión e interpretación de mitos y leyendas es un proceso lector que va más allá de reconocer palabras o recordar acontecimientos. Implica identificar información explícita, realizar inferencias, reconocer la organización narrativa, interpretar símbolos y relacionar el relato con el contexto social y cultural en el que surgió. En sexto año de Educación General Básica, este aprendizaje permite que los estudiantes se acerquen a narraciones que explican cómo distintas comunidades comprenden su entorno, transmiten valores y conservan recuerdos colectivos.\n\nLos mitos suelen abordar preguntas fundamentales sobre el origen del mundo, los seres humanos, los fenómenos naturales, las divinidades o determinadas creencias. Las leyendas, por su parte, suelen vincularse con lugares, personajes, sucesos y tradiciones reconocibles para una comunidad, combinando elementos históricos, locales y extraordinarios. Estas distinciones son orientadoras: los relatos tradicionales presentan variaciones entre culturas y versiones, por lo que no siempre es adecuado clasificarlos mediante reglas rígidas. La UNESCO incluye mitos y leyendas dentro de las tradiciones y expresiones orales que transmiten conocimientos, valores sociales y memoria colectiva.\n\nPara interpretar un relato, el estudiante puede seguir una secuencia: realizar una lectura o escucha atenta; reconocer quiénes participan, dónde y cuándo ocurre la historia; ordenar los acontecimientos; identificar el conflicto y su desenlace; distinguir hechos cotidianos de sucesos extraordinarios; y formular una interpretación sustentada en indicios del texto. También debe preguntarse qué intenta explicar o conservar la narración, qué valores presenta y qué relación mantiene con la comunidad. La interpretación no consiste en adivinar una respuesta, sino en justificarla con información textual y conocimientos pertinentes.\n\nEn la experiencia “Guardianes de los mitos y leyendas”, este tema se trabaja progresivamente. En “El Templo de los Mitos”, el estudiante reconoce personajes, acontecimientos extraordinarios y propósitos explicativos. En “El Bosque de las Leyendas”, compara dos relatos, los clasifica y justifica su decisión con características identificables. La retroalimentación después de cada intento permite revisar la lectura y corregir confusiones. La gamificación puede aumentar la participación cuando los retos tienen relación directa con los objetivos y ofrecen oportunidades para aprender del error; no debe convertirse únicamente en acumulación de puntos.\n\nEl aprendizaje esperado es que el estudiante lea, comprenda, compare e interprete relatos tradicionales con argumentos sencillos, reconociendo tanto sus elementos narrativos como su significado cultural. El docente acompaña el proceso mediante preguntas, selección de textos adecuados a la edad y evaluación de las justificaciones, evitando imponer una única interpretación cuando el texto admite más de una lectura razonable.",
+    "objetivos": [
+      "Identificar información explícita e implícita en mitos y leyendas mediante la lectura o escucha atenta.",
+      "Explicar el propósito general de un relato y sustentar interpretaciones con indicios del texto.",
+      "Comparar narraciones tradicionales atendiendo a sus personajes, acontecimientos, ambiente y vínculo cultural."
+    ],
     "ejemplos": [
-      "Implementación de repositorios abiertos para el acceso a material bibliográfico",
-      "Diseño de actividades de curaduría de contenidos en línea"
+      "Lectura compartida: leer una versión breve de un mito de origen y completar una ficha con personajes, fenómeno que explica, acontecimiento extraordinario y enseñanza o creencia presente.",
+      "Comparación por parejas: leer una leyenda local y un mito; completar un diagrama de Venn y escribir dos razones para clasificar cada relato",
+      "Reto del Guardián: ante una respuesta incorrecta, el estudiante recibe una pista (“¿el relato explica el origen de algo o está vinculado con un lugar y una tradición?”), vuelve al texto y corrige su clasificación."
     ],
     "erroresFrecuentes": [
-      "Considerar que el dominio instrumental de una aplicación equivale a competencia pedagógica digital",
-      "Utilizar herramientas digitales sin vincularlas a los resultados de aprendizaje"
+      "Confundir comprensión con memorización: Pedir que el estudiante explique con sus propias palabras por qué ocurrió un hecho y qué pistas del texto lo demuestran.",
+      "Clasificar solo porque aparece un personaje sobrenatural: Analizar el propósito, el contexto y la función del relato; lo extraordinario puede aparecer tanto en mitos como en leyendas.",
+      "Aceptar opiniones sin evidencia textual: Solicitar que subraye una frase o describa un acontecimiento que respalde su interpretación.",
+      "Suponer que existe una única versión auténtica: Comparar variantes y explicar que la tradición oral puede cambiar según la comunidad y el narrador."
     ],
     "preguntasGuia": [
-      "¿Cómo impacta la brecha digital en el rendimiento académico?",
-      "¿Qué criterios permiten verificar la confiabilidad de una fuente digital?"
+      "¿Qué pistas del texto permiten sostener que se trata de un mito o de una leyenda?",
+      "¿Qué intenta explicar, recordar o transmitir este relato?",
+      "¿Cómo cambiaría el significado del relato si se modificara el lugar o el personaje principal?",
+      "¿Qué podemos conocer de una comunidad a través de sus narraciones?",
+      "¿Es posible que dos lectores interpreten de manera diferente un relato? ¿Qué límites impone el texto?"
     ],
-    "recursos": [
-      {
-        "tipo": "lectura",
-        "titulo": "Marco DigCompEdu",
-        "url": "https://ec.europa.eu/jrc/en/digcompedu"
-      },
-      {
-        "tipo": "video",
-        "titulo": "Ecosistemas digitales educativos",
-        "url": "https://ejemplo.edu.ec/recursos/video1.mp4"
-      }
-    ],
-    "palabrasClave": [
-      "competencia",
-      "alfabetizacion",
-      "ecosistema",
-      "virtualidad"
-    ],
-    "dificultad": 2,
-    "fuentes": "UNESCO (2022). Marco de competencias digitales para docentes. París.",
-    "estado": "publicado",
-    "fecha": "2026-10-25T12:00:00.000Z"
+    "recursos": []
   },
   {
-    "id": "tem_000002",
     "unidadId": "uni_000001",
-    "titulo": "Estrategias Tecnológicas y Gamificación en Educación",
+    "titulo": "Subtema 1.1: Características, estructura y elementos del mito y la leyenda",
     "orden": 2,
-    "objetivos": [
-      "Diseñar dinámicas de gamificación orientadas al logro de objetivos formativos",
-      "Integrar analíticas de aprendizaje para el seguimiento y retroalimentación"
+    "estado": "publicado",
+    "id": "tem_000002",
+    "fecha": "2026-11-03T23:28:36.526Z",
+    "dificultad": 2,
+    "palabrasClave": [
+      "Mito; leyenda; narrador; personajes; espacio; tiempo; inicio; conflicto; desarrollo; desenlace; hechos extraordinarios; origen; tradición local; oralidad."
     ],
-    "resumen": "Fundamentos y aplicación de dinámicas gamificadas y mecánicas lúdicas en entornos virtuales para incentivar la motivación y el aprendizaje activo.",
+    "fuentes": "UNESCO. Tradiciones y expresiones orales.. Contextualiza mitos y leyendas como expresiones de tradición oral. https://ich.unesco.org/es/tradiciones-y-expresiones-orales-00053  Oxford TORCH. Where do myths, legends and folktales come from?. Explicación comparativa de mitos, leyendas y folclore. https://torch.web.ox.ac.uk/article/where-do-myths-legends-and-folktales-come-from-0  Ministerio de Educación del Ecuador. Relato mitológico.. Ficha pedagógica sobre el mito y sus componentes. https://recursos.educacion.gob.ec/red/relato-mitologico/  Ministerio de Educación del Ecuador. Texto de Lengua y Literatura, 6.º EGB.. Texto escolar oficial para trabajar narraciones y elementos literarios. https://recursos.educacion.gob.ec/wp-content/uploads/2024/Textos/Media/6to_EGB/6to_EGB_LENGUA_Y_LITERATURA.pdf",
+    "resumen": "Los mitos y las leyendas son narraciones tradicionales que forman parte de la memoria cultural de los pueblos. Aunque ambos géneros pueden incluir acontecimientos extraordinarios, personajes sobrenaturales y explicaciones transmitidas de generación en generación, presentan propósitos y vínculos culturales que ayudan a diferenciarlos. Conocer sus características, estructura y elementos permite al estudiante comprender cómo está construido un relato y justificar su clasificación.\n\nEl mito suele presentar relatos relacionados con el origen del mundo, de los seres humanos, de ciertos fenómenos naturales, de las divinidades o de prácticas y creencias. Sus personajes pueden ser dioses, seres sobrenaturales, héroes o fuerzas de la naturaleza. El tiempo narrado suele ubicarse en un pasado remoto o primordial, y los acontecimientos extraordinarios cumplen una función explicativa o simbólica. Por ejemplo, un relato que explica cómo apareció el fuego o por qué se produce un fenómeno natural puede tener rasgos mitológicos.\n\nLa leyenda suele relacionarse con una comunidad, un territorio, un edificio, una montaña, un río o un personaje conocido por la tradición local. Puede partir de un lugar o referencia que se considera real y añadir sucesos misteriosos, fantásticos o extraordinarios. Su transmisión ayuda a conservar recuerdos, advertencias, creencias y formas de entender el entorno. Sin embargo, no todas las leyendas tienen una base histórica comprobable; por eso, el estudiante debe distinguir entre lo que el relato cuenta y lo que puede verificarse mediante otras fuentes.\n\nEn ambos géneros se reconocen elementos narrativos: narrador, personajes, espacio, tiempo, acontecimientos, conflicto y desenlace. Una estructura frecuente comprende inicio o situación inicial, desarrollo —donde aparecen acciones y conflictos— y desenlace o cierre. Esta organización es una guía para analizar relatos, aunque las narraciones orales pueden presentar repeticiones, episodios adicionales o comienzos distintos. El narrador es la voz que cuenta; los personajes realizan o experimentan las acciones; el espacio y el tiempo sitúan los hechos; y la secuencia de acontecimientos permite comprender cómo avanza la historia.\n\nEn “El Templo de los Mitos”, los estudiantes identifican personajes y hechos extraordinarios. En “El Bosque de las Leyendas”, comparan relatos y justifican su clasificación mediante evidencias. Una estrategia eficaz consiste en utilizar una tabla de doble entrada: propósito del relato, personajes, espacio, tiempo, acontecimiento extraordinario y relación con una comunidad. El docente debe insistir en que ningún rasgo aislado determina siempre el género; la clasificación se realiza considerando el conjunto de características y el contexto.\n\nAl finalizar, el estudiante debe reconocer los elementos internos de cada narración y explicar semejanzas y diferencias entre mito y leyenda. Así desarrolla vocabulario literario, comprensión de estructuras narrativas y capacidad para argumentar sus decisiones.",
+    "objetivos": [
+      "Reconocer las características generales que distinguen al mito de la leyenda.",
+      "Identificar narrador, personajes, espacio, tiempo, acontecimientos, conflicto y desenlace.",
+      "Organizar la secuencia narrativa y justificar la clasificación de un texto mediante varios indicios."
+    ],
     "ejemplos": [
-      "Creación de rutas de insignias para reconocer competencias transversales",
-      "Uso de cuestionarios gamificados con retroalimentación inmediata"
+      "Entregar tarjetas con fragmentos de una narración y pedir que las ordenen en inicio, desarrollo y desenlace.",
+      "Completar una matriz comparativa entre un mito de origen y una leyenda vinculada con un lugar del Ecuador.",
+      "Subrayar con distintos símbolos los personajes, el espacio, el tiempo y el acontecimiento extraordinario de un relato."
     ],
     "erroresFrecuentes": [
-      "Confundir juego recreativo con gamificación educativa intencionada",
-      "Premiar únicamente la velocidad y no la calidad de la resolución de problemas"
+      "Creer que todo relato con seres sobrenaturales es un mito: Examinar también la finalidad y el vínculo comunitario; una leyenda puede incluir apariciones o seres fantásticos.",
+      "Pensar que una leyenda siempre ocurrió exactamente como se cuenta: Diferenciar tradición, creencia y hecho históricamente comprobado; contrastar con fuentes cuando corresponda.",
+      "Confundir narrador con autor: Explicar que el autor crea el texto escrito, mientras el narrador es la voz que cuenta la historia.",
+      "Reducir la estructura a tres párrafos obligatorios: Trabajar las funciones narrativas de inicio, desarrollo y desenlace, no una cantidad fija de párrafos."
     ],
     "preguntasGuia": [
-      "¿Qué elementos motivacionales activan las mecánicas de juego en adultos?",
-      "¿Cómo diseñar un sistema de recompensas formativo y equitativo?"
+      "¿Qué característica del relato es más útil para reconocer su propósito?",
+      "¿Por qué un personaje sobrenatural no basta para clasificar una narración como mito?",
+      "¿Qué relación existe entre el espacio de una leyenda y la comunidad que la conserva?",
+      "¿Cómo influye el narrador en la información que recibe el lector?",
+      "¿Qué se perdería si elimináramos el conflicto o el desenlace?"
     ],
-    "recursos": [
-      {
-        "tipo": "lectura",
-        "titulo": "Gamificación en el aula universitaria",
-        "url": "https://ejemplo.edu.ec/recursos/lectura2.pdf"
-      },
-      {
-        "tipo": "audio",
-        "titulo": "Podcast sobre metodologías activas",
-        "url": "https://ejemplo.edu.ec/recursos/audio2.mp3"
-      }
-    ],
-    "palabrasClave": [
-      "gamificacion",
-      "estrategias",
-      "motivacion",
-      "retroalimentacion"
-    ],
-    "dificultad": 3,
-    "fuentes": "Kapp, K. M. (2020). The Gamification of Learning and Instruction. Wiley.",
+    "recursos": []
+  },
+  {
+    "unidadId": "uni_000001",
+    "titulo": "Subtema 2: Comprensión, interpretación y dimensión cultural de mitos y leyendas",
+    "orden": 3,
     "estado": "publicado",
-    "fecha": "2026-10-25T12:00:00.000Z"
+    "id": "tem_000003",
+    "fecha": "2026-11-03T23:33:01.236Z",
+    "dificultad": 2,
+    "palabrasClave": [
+      "Contexto cultural; identidad; patrimonio inmaterial; tradición oral; memoria colectiva; cosmovisión; valores; símbolos; comunidad; diversidad; interpretación crítica."
+    ],
+    "fuentes": "UNESCO. Tradiciones y expresiones orales.. Fuente principal sobre oralidad, identidad y memoria colectiva. https://ich.unesco.org/es/tradiciones-y-expresiones-orales-00053  UNESCO. Patrimonio cultural inmaterial.. Marco general para comprender la salvaguardia del patrimonio vivo. https://ich.unesco.org/es/que-es-el-patrimonio-inmaterial-00003  Ministerio de Educación del Ecuador. Textos de sexto EGB.. Material oficial del nivel, con recursos de Lengua y Literatura. https://recursos.educacion.gob.ec/red/textossexto/  UNESCO. En los orígenes del mundo: de los primeros mitos a la ciencia actual.. Artículo sobre la diversidad de explicaciones míticas del origen. https://courier.unesco.org/es/articles/en-los-origenes-del-mundo-de-los-primeros-mitos-la-ciencia-actual",
+    "resumen": "La comprensión e interpretación de mitos y leyendas adquiere mayor profundidad cuando se considera su dimensión cultural. Estos relatos no son únicamente historias destinadas al entretenimiento: también pueden conservar explicaciones del mundo, recuerdos, valores, temores, normas de convivencia y formas de relación con la naturaleza. La UNESCO reconoce que las tradiciones y expresiones orales —entre ellas los mitos y las leyendas— transmiten conocimientos, valores culturales y sociales, y contribuyen a mantener viva la memoria colectiva.\n\nCada comunidad produce y transmite relatos desde sus propias experiencias y maneras de comprender el mundo. Por ello, una misma temática puede aparecer en narraciones diferentes según el territorio, la lengua, la época o las creencias de quienes las cuentan. Los relatos pueden explicar el origen de un río, una montaña, un animal o una costumbre; advertir sobre determinados comportamientos; representar conflictos entre seres humanos y naturaleza; o fortalecer el sentido de pertenencia a un lugar. Interpretarlos exige preguntarse quiénes los transmiten, en qué contexto circulan y qué significado pueden tener para esa comunidad.\n\nLa dimensión cultural también requiere una actitud respetuosa. El estudiante debe evitar calificar una tradición como absurda o inferior por no coincidir con sus propias creencias. En el aula, los relatos se estudian como manifestaciones culturales y literarias, distinguiendo la interpretación simbólica de la comprobación científica o histórica. Esto permite dialogar sobre diversidad cultural sin presentar una creencia como verdad universal ni desvalorizar a quienes la conservan.\n\nUna lectura cultural puede organizarse en cuatro pasos. Primero, identificar los elementos del relato: personajes, espacio, acontecimientos y símbolos. Segundo, reconocer qué aspecto de la vida comunitaria aparece representado: naturaleza, origen, normas, memoria o identidad. Tercero, relacionar el texto con información contextual confiable, como testimonios autorizados, materiales educativos o fuentes patrimoniales. Cuarto, formular una interpretación y justificarla con evidencias. Cuando se recogen relatos familiares o comunitarios, se debe solicitar autorización y respetar la decisión de no compartir conocimientos que la comunidad considere privados o reservados.\n\nEn “El Bosque de las Leyendas”, la propuesta invita a identificar la relación del relato con los lugares, personajes y tradiciones de una comunidad. Una actividad pertinente es comparar versiones de una leyenda local, observar qué elementos permanecen y cuáles cambian, y conversar sobre las razones posibles de esas variaciones. El docente puede incorporar relatos de distintas regiones del Ecuador para reconocer la diversidad cultural del país.\n\nEl objetivo no es que todos los estudiantes interpreten exactamente lo mismo, sino que desarrollen una lectura fundamentada, sensible al contexto y respetuosa de la diversidad. Así, la literatura se convierte en una oportunidad para comprender la identidad, valorar el patrimonio oral y reconocer que las narraciones ayudan a las comunidades a transmitir su memoria entre generaciones.",
+    "objetivos": [
+      "Explicar cómo los mitos y las leyendas transmiten memoria, valores, conocimientos y formas de interpretar el entorno.",
+      "Relacionar elementos de un relato con el contexto cultural o territorial al que se vincula.",
+      "Comparar versiones de una narración con respeto por la diversidad de comunidades y tradiciones."
+    ],
+    "ejemplos": [
+      "Mapa cultural: ubicar en un mapa del Ecuador el lugar asociado a una leyenda y describir qué elemento del territorio aparece en el relato.",
+      "Conversatorio: analizar qué valor, advertencia o recuerdo comunitario transmite una leyenda, diferenciando interpretación de hecho comprobado."
+    ],
+    "erroresFrecuentes": [
+      "Tratar las creencias tradicionales como datos científicos comprobados: Aclarar que se analizan como expresiones culturales y simbólicas; contrastar afirmaciones históricas o naturales con fuentes apropiadas.",
+      "Generalizar una versión como la única existente: Buscar variantes y reconocer que la tradición oral cambia con el tiempo y los narradores.",
+      "Burlarse o desvalorizar las creencias de otra comunidad: Establecer normas de diálogo respetuoso y evaluar la calidad de la interpretación, no la creencia personal.",
+      "Apropiarse de relatos comunitarios sin contexto ni permiso: Solicitar autorización, reconocer la procedencia cuando sea posible y respetar restricciones culturales."
+    ],
+    "preguntasGuia": [
+      "¿Qué nos cuenta esta narración sobre la comunidad que la conserva?",
+      "¿Qué valores, temores o conocimientos aparecen representados?",
+      "¿Por qué una leyenda puede cambiar cuando pasa de una generación a otra?",
+      "¿Cómo podemos respetar una tradición sin afirmar que todos sus elementos son hechos verificables?",
+      "¿Qué responsabilidad tenemos al compartir relatos que pertenecen a la memoria de otras comunidades?"
+    ],
+    "recursos": []
+  },
+  {
+    "unidadId": "uni_000001",
+    "titulo": "Tema 2: Creación y recreación de relatos tradicionales",
+    "orden": 4,
+    "estado": "publicado",
+    "id": "tem_000004",
+    "fecha": "2026-11-03T23:38:09.155Z",
+    "dificultad": 2,
+    "palabrasClave": [
+      "Producción escrita; planificación; borrador; revisión; edición; creatividad; tradición; reinvención; coherencia; cohesión; audiencia; autoría; relato original."
+    ],
+    "fuentes": "",
+    "resumen": "La creación y recreación de relatos tradicionales es un proceso de producción literaria en el que el estudiante utiliza conocimientos sobre narraciones para elaborar una historia propia o transformar una narración conocida. Crear no significa copiar un texto ni cambiar únicamente los nombres de los personajes. Supone planificar una idea, seleccionar elementos narrativos, construir una secuencia de acontecimientos, desarrollar un conflicto y revisar el texto para que tenga sentido para sus lectores.\n\nLa recreación parte de una narración, motivo o elemento de la tradición —por ejemplo, un lugar, un personaje, un objeto simbólico o una situación extraordinaria— y lo transforma de manera intencional. El estudiante puede cambiar el punto de vista, trasladar la historia a otro tiempo, imaginar un desenlace diferente o incorporar un personaje nuevo. Para que exista una relación reconocible con la tradición, debe conservar al menos algún elemento de referencia y evitar presentar la nueva versión como si fuera una versión original transmitida por la comunidad.\n\nLa escritura creativa puede desarrollarse en etapas. En la planificación se define el propósito, el lector, el tema, los personajes, el espacio y el conflicto. En la textualización se redacta un primer borrador, procurando que los acontecimientos mantengan un orden comprensible. En la revisión se comprueba si el relato tiene inicio, desarrollo y desenlace, si las acciones se relacionan entre sí y si los personajes actúan de forma coherente. En la edición se corrigen ortografía, puntuación y presentación. La revisión no debe limitarse a buscar errores mecánicos: también debe mejorar la claridad, el ritmo y la expresividad.\n\nEn la propuesta “Guardianes de los mitos y leyendas”, el tercer escenario, “El Taller de los Relatos”, pide crear una leyenda breve y original, conservar algún elemento de la tradición, modificar creativamente un personaje, escenario o desenlace e incorporar al menos un símil o una metáfora. La producción puede acompañarse de una ilustración digital. La rúbrica debe valorar la estructura narrativa, coherencia, creatividad, relación con la tradición y uso pertinente del recurso literario, sin imponer que todos los relatos tengan la misma solución.\n\nLa retroalimentación puede provenir del docente, de compañeros y de herramientas digitales. En el diseño grupal se plantea que “El Guardián Inteligente de los Relatos” ofrezca sugerencias para mejorar estructura, coherencia y figuras literarias, pero no redacte el relato en lugar del estudiante. Este límite es esencial: la herramienta debe apoyar la revisión y preservar la autoría. El estudiante decide qué sugerencias acepta y debe poder explicar sus elecciones.\n\nEl aprendizaje se evidencia en un texto propio, revisado y comprensible, que muestre comprensión de los relatos tradicionales y capacidad para transformarlos con creatividad y respeto cultural. La creación literaria integra lectura, imaginación, planificación, escritura y reflexión sobre el lenguaje.",
+    "objetivos": [
+      "Planificar y redactar una leyenda breve con personajes, ambiente, conflicto y desenlace.",
+      "Recrear de forma original un elemento de una tradición, conservando una referencia reconocible y respetando su contexto.",
+      "Revisar y mejorar el texto atendiendo a coherencia, estructura, creatividad, ortografía y recursos expresivos."
+    ],
+    "ejemplos": [
+      "Después de leer una leyenda local, cada estudiante conserva el lugar y cambia el desenlace para construir una versión alternativa.",
+      "Crear una leyenda sobre el origen imaginario de un elemento del entorno escolar, con tres personajes y un conflicto central.",
+      "Realizar revisión entre pares usando una lista: ¿se entiende el inicio?, ¿hay un conflicto?, ¿los hechos están ordenados?, ¿el final responde al conflicto?, ¿se reconoce el elemento tradicional?"
+    ],
+    "erroresFrecuentes": [
+      "Copiar una leyenda y cambiar solo los nombres: Pedir transformaciones narrativas concretas y que el estudiante explique qué conservó y qué reinventó.",
+      "Escribir sin planificación: Utilizar un organizador previo de personajes, ambiente, conflicto, secuencia y desenlace.",
+      "Incluir sucesos que no guardan relación entre sí: Revisar la cadena causa-efecto y preguntar cómo cada acontecimiento conduce al siguiente."
+    ],
+    "preguntasGuia": [
+      "¿Qué elemento de la tradición decidiste conservar y por qué?",
+      "¿Qué cambio hace que tu versión sea una recreación y no una copia?",
+      "¿Cómo se relaciona el desenlace con el conflicto presentado?",
+      "¿Qué parte de tu relato necesita más claridad para que el lector la comprenda?",
+      "¿Qué sugerencias de revisión aceptaste o rechazaste y con qué criterio?"
+    ],
+    "recursos": []
+  },
+  {
+    "unidadId": "uni_000001",
+    "titulo": "Subtema 2.1: Escritura creativa y reinvención de leyendas mediante símil y metáfora",
+    "orden": 5,
+    "estado": "publicado",
+    "id": "tem_000005",
+    "fecha": "2026-11-03T23:43:37.735Z",
+    "dificultad": 2,
+    "palabrasClave": [
+      "Escritura creativa; leyenda; reinvención; lenguaje figurado; símil; comparación; metáfora; imagen poética; borrador; revisión; expresividad."
+    ],
+    "fuentes": "Ministerio de Educación del Ecuador. Lenguaje figurado.. Recurso oficial relacionado con lenguaje figurado y creación literaria. https://recursos.educacion.gob.ec/red/lenguaje-figurado/  INTEF. Metáforas, comparaciones y personificaciones (6.º Primaria).. Recurso interactivo para identificar y producir figuras literarias. https://descargas.intef.es/recursos_educativos/It_didac/Leng_Pri/6/12/03_Metaforas_comparaciones_personificaciones/index.html  Ministerio de Educación del Ecuador. Texto de Lengua y Literatura, 9.º EGB, sección de símil y metáfora.. PDF con definiciones y ejemplos; seleccionar únicamente el fragmento apropiado para el nivel. https://educacion.gob.ec/wp-content/uploads/downloads/2017/05/L9P1-240-marzo_low.pdf  Educa Panamá. Figuras literarias: recursos para embellecer el lenguaje.. Recurso didáctico y PDF sobre figuras literarias. https://educapanama.edu.pa/?q=node%2F21025",
+    "resumen": "La escritura creativa permite que los estudiantes expresen ideas, emociones e imaginación mediante textos propios. Al reinventar una leyenda, el estudiante parte de un elemento narrativo o cultural conocido y lo transforma con decisiones personales. Esta actividad fortalece la producción escrita porque exige planificar, seleccionar palabras, organizar acontecimientos y considerar el efecto que se desea producir en el lector. En la propuesta “Guardianes de los mitos y leyendas”, el reto final solicita una leyenda breve y original que conserve algún elemento de la tradición, modifique creativamente un personaje, escenario o desenlace e incorpore al menos un símil o una metáfora.\n\nEl símil o comparación establece una relación explícita entre dos elementos que comparten alguna característica. Suele utilizar conectores como “como”, “parece”, “igual que”, “semejante a” o “cual”. Por ejemplo: “La neblina cubrió el cerro como un manto de lana”. La comparación ayuda al lector a imaginar una cualidad del objeto o ambiente. La metáfora, en cambio, traslada el significado de un término a otro por una relación de semejanza, sin presentar necesariamente un conector comparativo. Por ejemplo: “El cerro era un guardián de piedra”. La metáfora invita al lector a interpretar la imagen y puede condensar una descripción en pocas palabras.\n\nPara enseñar estas figuras, conviene comenzar con ejemplos cercanos y pedir a los estudiantes que identifiquen qué dos elementos se relacionan y qué característica comparten. Después pueden transformar una descripción literal en una comparación y luego en una metáfora. No basta con añadir “como” a cualquier frase: la relación debe ser comprensible y aportar una imagen. Del mismo modo, una metáfora no es simplemente una frase extraña; debe existir una conexión que el lector pueda inferir.\n\nLa reinvención puede seguir una secuencia: seleccionar una leyenda o motivo tradicional; identificar qué elemento se conservará; decidir qué se cambiará; planificar personajes, ambiente, conflicto y desenlace; escribir un borrador; incorporar símil o metáfora de forma pertinente; y revisar el texto. Una lista de cotejo puede comprobar si el relato tiene una secuencia clara, si la transformación es original, si el recurso literario contribuye a la descripción y si la escritura mantiene coherencia.\n\nEn “El Taller de los Relatos”, la retroalimentación de la IA debe formular preguntas o sugerencias, por ejemplo: “¿Qué imagen podría ayudar al lector a imaginar la oscuridad del bosque?” o “¿Podrías comparar el sonido del río con algo conocido?”. No debe sustituir la voz del estudiante ni entregar el texto terminado. El docente valida los comentarios y evalúa el producto mediante criterios transparentes.\n\nEl resultado esperado es una leyenda breve que combine comprensión de la tradición, creatividad narrativa y uso intencional del lenguaje figurado. La calidad no depende de incluir muchas figuras, sino de que el símil o la metáfora sea pertinente, comprensible y contribuya al efecto literario.",
+    "objetivos": [
+      "Distinguir el símil de la metáfora e identificar la relación de semejanza que construyen.",
+      "Crear comparaciones y metáforas pertinentes para describir personajes, espacios o acontecimientos.",
+      "Reescribir una leyenda de forma original, conservando un elemento tradicional y revisando la coherencia del relato."
+    ],
+    "ejemplos": [
+      "Transformación: “El viento soplaba fuerte” → “El viento rugía como un jaguar” (símil).",
+      "Transformación: “La luna iluminaba el camino” → “La luna era una lámpara de plata” (metáfora).",
+      "En la leyenda creada, describir el bosque mediante una figura literaria y explicar qué sensación busca producir en el lector."
+    ],
+    "erroresFrecuentes": [
+      "Confundir símil y metáfora: Comparar pares de ejemplos y destacar que el símil expresa la comparación con un nexo; la metáfora la presenta de forma figurada.",
+      "Usar “como” sin una semejanza clara:  Preguntar qué atributo comparten los elementos comparados y si la imagen ayuda a comprender.",
+      "Añadir figuras literarias solo para cumplir la consigna: Revisar si la figura mejora una descripción, crea ambiente o expresa una emoción.",
+      "Creer que la metáfora debe interpretarse literalmente: Guiar al estudiante a buscar el sentido figurado y la característica compartida."
+    ],
+    "preguntasGuia": [
+      "¿Qué característica comparten los elementos de tu símil o metáfora?",
+      "¿Qué imagen mental quieres provocar en el lector?",
+      "¿Qué cambia en la descripción cuando sustituyes una frase literal por una metáfora?",
+      "¿La figura literaria ayuda a comprender el relato o lo vuelve confuso?",
+      "¿Cómo puedes conservar la esencia de una leyenda y, al mismo tiempo, crear una versión propia?"
+    ],
+    "recursos": []
+  },
+  {
+    "unidadId": "uni_000001",
+    "titulo": "Subtema 2.2: Recreación digital y multimodal de mitos y leyendas mediante TIC",
+    "orden": 6,
+    "estado": "publicado",
+    "id": "tem_000006",
+    "fecha": "2026-11-03T23:49:27.223Z",
+    "dificultad": 2,
+    "palabrasClave": [
+      "TIC; alfabetización digital; narración digital; multimodalidad; texto; imagen; audio; video; Canva; HTML; CSS; JavaScript; IA generativa; ciudadanía digital; privacidad."
+    ],
+    "fuentes": "UNESCO. Guía para el uso de IA generativa en educación e investigación (2024, edición en español).. PDF institucional sobre enfoque humano, privacidad y validación educativa. https://unesdoc.unesco.org/ark:/48223/pf0000389227  UNESCO. Marco de competencias de los docentes en materia de TIC, versión 3.. PDF para orientar la integración pedagógica de tecnologías. https://unesdoc.unesco.org/ark:/48223/pf0000371024  UNESCO. Marco de competencias TIC para docentes.. Página institucional con niveles y ámbitos de competencia digital. https://www.unesco.org/en/digital-competencies-skills/ict-cft  Canva para Educación.. Herramienta para diseñar presentaciones, historietas y recursos gráficos; revisar condiciones de edad y acceso. https://www.canva.com/education/  Ministerio de Educación del Ecuador. Textos de sexto EGB.. Material curricular de apoyo para crear contenidos digitales basados en lecturas. https://recursos.educacion.gob.ec/red/textossexto/",
+    "resumen": "La recreación digital y multimodal consiste en transformar o presentar un relato utilizando distintos modos de comunicación, como texto, imagen, ilustración, audio, música, animación o video. En lugar de limitarse a escribir una leyenda en papel, los estudiantes pueden crear una historieta digital, un audiocuento, una presentación narrada, un cartel interactivo o una secuencia de imágenes con texto. La combinación de recursos debe ayudar a comunicar la historia y no convertirse en un adorno que distraiga del contenido.\n\nLas tecnologías de información y comunicación (TIC) ofrecen oportunidades para planificar, producir, revisar y compartir narraciones. En el diseño de “Guardianes de los mitos y leyendas” se proyecta utilizar Canva u otra herramienta gráfica para elaborar personajes, escenarios e insignias; HTML y CSS para estructurar y diseñar pantallas; JavaScript para gestionar preguntas, respuestas, intentos, puntuación y navegación; y una API de IA generativa para ofrecer pistas y explicaciones. El documento aclara que estas tecnologías son alternativas para una etapa posterior: la actividad presentada es conceptual y no demuestra que la aplicación o el asistente estén implementados.\n\nLa multimodalidad requiere tomar decisiones sobre el propósito de cada recurso. Una ilustración puede representar el escenario; un audio puede apoyar la narración oral; los subtítulos pueden facilitar el seguimiento; y una secuencia visual puede mostrar el orden de los acontecimientos. El estudiante debe cuidar que los textos sean legibles, que las imágenes correspondan al contenido y que los sonidos no dificulten la comprensión. También debe respetar derechos de autor, atribuir recursos ajenos cuando corresponda y preferir materiales propios o con licencias que permitan su reutilización.\n\nEl uso de herramientas digitales implica desarrollar competencias de búsqueda, selección, creación y comunicación responsable. El docente debe comprobar la pertinencia de las plataformas, considerar la disponibilidad de dispositivos y conexión, y ofrecer alternativas para quienes tengan dificultades de acceso. La evaluación debe centrarse en el aprendizaje literario y comunicativo, no únicamente en la sofisticación técnica del producto.\n\nLa propuesta también contempla un asistente de IA llamado “El Guardián Inteligente de los Relatos”. Su función sería ofrecer pistas progresivas, explicar errores y sugerir mejoras, sin escribir la leyenda por el estudiante. Para ello recibiría solo el contexto necesario: relato, pregunta, respuesta y criterios de aprendizaje. No se deberían solicitar nombres completos, direcciones, fotografías ni datos personales innecesarios. La UNESCO recomienda un enfoque centrado en las personas, con protección de datos, validación pedagógica, adecuación a la edad y supervisión humana. La IA puede equivocarse, generar información inventada o reproducir sesgos; por eso, sus respuestas deben ser revisadas por el docente y contrastadas con materiales fiables.\n\nEl aprendizaje esperado es que los estudiantes comuniquen una narración tradicional en un formato digital o multimodal coherente, creativo, accesible y seguro. La tecnología debe ampliar las formas de expresión y apoyar los objetivos de Lengua y Literatura, sin reemplazar la lectura, la escritura, el pensamiento crítico ni la orientación docente.",
+    "objetivos": [
+      "Transformar una leyenda en un producto digital que combine de manera coherente texto e imagen, audio o video.",
+      "Seleccionar herramientas TIC según el propósito comunicativo, los recursos disponibles y las necesidades de los destinatarios.",
+      "Aplicar criterios básicos de seguridad, privacidad, derechos de autor y verificación de información al crear y compartir contenidos."
+    ],
+    "ejemplos": [
+      "Crear una historieta digital de seis viñetas que presente inicio, conflicto y desenlace de una leyenda, con textos breves e ilustraciones propias.",
+      "Grabar un audiocuento en equipos, incorporar una portada y añadir una transcripción para facilitar el acceso.",
+      "Diseñar una diapositiva interactiva del “Templo de los Mitos” con una pregunta de comprensión, opciones de respuesta y retroalimentación revisada por el docente."
+    ],
+    "erroresFrecuentes": [
+      "Priorizar efectos visuales sobre el contenido: Evaluar primero la comprensión, secuencia y claridad narrativa; los efectos deben apoyar el mensaje.",
+      "Usar imágenes, música o textos sin permiso ni atribución: Enseñar a utilizar recursos propios, de dominio público o con licencias compatibles y registrar la fuente.",
+      "Compartir datos personales en herramientas de IA: Trabajar con datos mínimos y ficticios; no ingresar nombres, direcciones, fotografías ni información identificable."
+    ],
+    "preguntasGuia": [
+      "¿Qué aporta la imagen, el audio o el video que no comunica el texto por sí solo?",
+      "¿Cómo sabemos que una herramienta digital es adecuada para la edad y el propósito de la actividad?",
+      "¿Qué riesgos aparecen cuando compartimos datos o usamos contenido de otras personas?",
+      "¿Qué debemos hacer si la IA ofrece una explicación que contradice el texto o parece inventada?",
+      "¿Cómo podemos garantizar que un compañero sin conexión o dispositivo también participe?"
+    ],
+    "recursos": []
   }
 ]

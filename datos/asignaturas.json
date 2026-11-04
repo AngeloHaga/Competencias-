@@ -1,16 +1,9 @@
 [
   {
     "id": "asi_000001",
-    "nombre": "COMPETENCIAS DIGITALES Y ESTRATEGIAS TEGNOLOGICAS",
-    "descripcion": "Desarrollo de competencias digitales avanzadas y estrategias tecno-pedagógicas aplicadas al aprendizaje.",
-    "nivel": "MAESTRÍA",
+    "nombre": "LENGUA Y LITERATURA",
+    "descripcion": "El propósito de la creación de estos recursos digitales es ayudar el fortalecimiento de la compresión lectora, la escritura creativa y la valoración de la identidad cultural en estudiantes de 6to año de EGB. Tomando en consideración que el currículo de Lengua y Literatura para EGB Media contempla reconocer los elementos que dan sentido a los textos literarios, por medio del desarrollo de la lectura crítica, empleando diversos medios.",
+    "nivel": "6.° de Básica (Media)",
     "fecha": "2026-10-25T12:00:00.000Z"
-  },
-  {
-    "nombre": "Sistema contra Incendios",
-    "nivel": "PREGRADO",
-    "descripcion": "Materia complementaria para estudiantes de Ingeniería Civil e Industrial",
-    "id": "asi_000002",
-    "fecha": "2026-10-26T23:07:45.721Z"
   }
 ]

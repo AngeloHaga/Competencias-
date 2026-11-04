@@ -83,8 +83,8 @@ async function generarPalabrasConIA({ silencioso = false } = {}) {
 
         // Asegurar que la interfaz esté visible si estaba en estado vacío
         estadoVacio.style.display = "none";
-        estadoTablero.style.display = "grid";
-        tecladoEnPantalla.style.display = "grid";
+        estadoTablero.style.display = "";
+        tecladoEnPantalla.style.display = "";
         btnOtraPalabra.style.display = "";
 
         if (!silencioso) {

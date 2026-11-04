@@ -2,265 +2,169 @@
   {
     "id": "glo_000001",
     "temaId": "tem_000001",
-    "termino": "ACCESO",
-    "definicion": "Posibilidad de ingresar y utilizar recursos informáticos o redes de información.",
-    "pista": "Entrada o disponibilidad para ingresar a un recurso.",
-    "retroalimentacion": "El acceso universal y equitativo a la tecnología es la base de la inclusión digital educativa.",
-    "origen": "docente",
-    "estado": "aprobado",
-    "fecha": "2026-10-25T12:00:00.000Z"
+    "termino": "LECTOR",
+    "pista": "Persona que realiza el proceso de comprensión textual.",
+    "definicion": "Sujeto que decodifica, analiza e interpreta el sentido de un texto escrito o narración.",
+    "retroalimentacion": "El lector activo formula hipótesis e inferencias a partir de las pistas del relato."
   },
   {
     "id": "glo_000002",
     "temaId": "tem_000001",
-    "termino": "ENLACE",
-    "definicion": "Vínculo de hipertexto que conecta un documento digital con otro recurso en la web.",
-    "pista": "Conexión que te lleva a otra página al hacer clic.",
-    "retroalimentacion": "Los enlaces estructuran la navegación hipertextual y facilitan la consulta de fuentes abiertas.",
-    "origen": "docente",
-    "estado": "aprobado",
-    "fecha": "2026-10-25T12:00:00.000Z"
+    "termino": "RELATO",
+    "pista": "Narración estructurada de hechos reales o imaginarios.",
+    "definicion": "Narración que transmite acontecimientos, tradiciones y memoria colectiva.",
+    "retroalimentacion": "El relato oral conserva la cosmovisión y valores de los pueblos."
   },
   {
     "id": "glo_000003",
     "temaId": "tem_000001",
-    "termino": "BRECHA",
-    "definicion": "Desigualdad en el acceso, uso o impacto de las tecnologías de la información.",
-    "pista": "Diferencia o distancia socioeconómica en el uso de la tecnología.",
-    "retroalimentacion": "La brecha digital no es solo material, sino también de habilidades de uso pedagógico.",
-    "origen": "docente",
-    "estado": "aprobado",
-    "fecha": "2026-10-25T12:00:00.000Z"
+    "termino": "ORIGEN",
+    "pista": "Principio o nacimiento de algo en un mito.",
+    "definicion": "Momento o causa primordial que explica el inicio del cosmos, humanos o fenómenos.",
+    "retroalimentacion": "Los mitos de origen explican cómo surgió el mundo y sus elementos."
   },
   {
     "id": "glo_000004",
     "temaId": "tem_000001",
-    "termino": "CODIGO",
-    "definicion": "Conjunto de instrucciones estructuradas que una computadora interpreta y ejecuta.",
-    "pista": "Lenguaje formal que da instrucciones a un programa.",
-    "retroalimentacion": "El código fuente es la base sobre la que se construyen los entornos virtuales de aprendizaje.",
-    "origen": "docente",
-    "estado": "aprobado",
-    "fecha": "2026-10-25T12:00:00.000Z"
+    "termino": "SUCESO",
+    "pista": "Acontecimiento que ocurre en la narración.",
+    "definicion": "Hecho relevante que acontece dentro de la secuencia narrativa.",
+    "retroalimentacion": "Identificar los sucesos clave permite comprender el desarrollo del relato."
   },
   {
     "id": "glo_000005",
     "temaId": "tem_000001",
-    "termino": "CORREO",
-    "definicion": "Sistema de transmisión asíncrona de mensajes y archivos a través de redes informáticas.",
-    "pista": "Medio asíncrono para enviar mensajes por internet.",
-    "retroalimentacion": "El correo electrónico institucional garantiza un canal formal de comunicación académica.",
-    "origen": "docente",
-    "estado": "aprobado",
-    "fecha": "2026-10-25T12:00:00.000Z"
+    "termino": "LEYENDA",
+    "pista": "Relato tradicional ligado a lugares y personajes comunitarios.",
+    "definicion": "Narración popular que combina hechos históricos locales con elementos sobrenaturales.",
+    "retroalimentacion": "Las leyendas transmiten lecciones éticas y tradiciones vivas de una comunidad."
   },
   {
     "id": "glo_000006",
     "temaId": "tem_000001",
-    "termino": "MEDIOS",
-    "definicion": "Canales o soportes tecnológicos a través de los cuales se transmite contenido educativo.",
-    "pista": "Instrumentos y soportes para transmitir contenidos.",
-    "retroalimentacion": "La integración de múltiples medios enriquece los estilos de aprendizaje en entornos virtuales.",
-    "origen": "docente",
-    "estado": "aprobado",
-    "fecha": "2026-10-25T12:00:00.000Z"
+    "termino": "MEMORIA",
+    "pista": "Conservación colectiva de saberes orales.",
+    "definicion": "Recuerdo compartido por una comunidad transmitido a través de generaciones.",
+    "retroalimentacion": "La memoria colectiva fortalece la identidad cultural de los pueblos."
   },
   {
     "id": "glo_000007",
     "temaId": "tem_000001",
-    "termino": "DATOS",
-    "definicion": "Información en bruto que puede ser procesada y analizada por sistemas informáticos.",
-    "pista": "Valores cuantitativos o cualitativos sin procesar.",
-    "retroalimentacion": "Los datos educativos permiten a los docentes comprender los patrones de interacción estudiantil.",
-    "origen": "docente",
-    "estado": "aprobado",
-    "fecha": "2026-10-25T12:00:00.000Z"
+    "termino": "SIMBOLO",
+    "pista": "Elemento que representa una idea o valor cultural.",
+    "definicion": "Figura u objeto que remite a un significado espiritual o comunitario profundo.",
+    "retroalimentacion": "En los mitos, los símbolos revelan cómo se entendía la naturaleza."
   },
   {
     "id": "glo_000008",
     "temaId": "tem_000001",
-    "termino": "REDES",
-    "definicion": "Conjunto de equipos y nodos interconectados para compartir recursos e información.",
-    "pista": "Estructuras interconectadas que comparten información.",
-    "retroalimentacion": "Las redes telemáticas sustentan el trabajo colaborativo en comunidades de aprendizaje.",
-    "origen": "docente",
-    "estado": "aprobado",
-    "fecha": "2026-10-25T12:00:00.000Z"
+    "termino": "TRADICION",
+    "pista": "Transmisión oral de costumbres y relatos.",
+    "definicion": "Conjunto de relatos y expresiones culturales transmitidas de padres a hijos.",
+    "retroalimentacion": "La tradición oral es la base sobre la que se fundamenta la literatura popular."
   },
   {
     "id": "glo_000009",
-    "temaId": "tem_000001",
-    "termino": "NUBE",
-    "definicion": "Modelo de almacenamiento y procesamiento remoto de datos accesible a través de internet.",
-    "pista": "Servicio de almacenamiento remoto en internet.",
-    "retroalimentacion": "La computación en la nube permite acceder a recursos educativos desde cualquier dispositivo.",
-    "origen": "docente",
-    "estado": "aprobado",
-    "fecha": "2026-10-25T12:00:00.000Z"
+    "temaId": "tem_000002",
+    "termino": "TIEMPO",
+    "pista": "Época o momento en que se sitúa una historia.",
+    "definicion": "Marco cronológico o mítico primordial en que suceden las acciones narradas.",
+    "retroalimentacion": "El tiempo del mito es primordial o sagrado, mientras que la leyenda suele situarse en épocas identificables."
   },
   {
     "id": "glo_000010",
-    "temaId": "tem_000001",
-    "termino": "INTERNET",
-    "definicion": "Red informática mundial descentralizada que interconecta redes mediante protocolos estándar.",
-    "pista": "Red de redes a escala global.",
-    "retroalimentacion": "Internet es la infraestructura habilitadora del ecosistema educativo moderno.",
-    "origen": "docente",
-    "estado": "aprobado",
-    "fecha": "2026-10-25T12:00:00.000Z"
+    "temaId": "tem_000002",
+    "termino": "ACCION",
+    "pista": "Hecho que realizan los personajes en la trama.",
+    "definicion": "Conducta o suceso emprendido por los protagonistas que hace avanzar la historia.",
+    "retroalimentacion": "Las acciones principales modifican la situación y provocan el desenlace."
   },
   {
     "id": "glo_000011",
-    "temaId": "tem_000001",
-    "termino": "VIRTUAL",
-    "definicion": "Entorno o recurso generado por tecnología digital que simula la interacción real.",
-    "pista": "Que existe en el entorno digital y no físicamente.",
-    "retroalimentacion": "El aula virtual extiende el tiempo y espacio del aprendizaje más allá de la presencialidad.",
-    "origen": "docente",
-    "estado": "aprobado",
-    "fecha": "2026-10-25T12:00:00.000Z"
+    "temaId": "tem_000002",
+    "termino": "NARRADOR",
+    "pista": "Voz que relata los acontecimientos del texto.",
+    "definicion": "Instancia ficticia creada por el autor para contar la historia al lector.",
+    "retroalimentacion": "No debe confundirse al narrador con el autor real del texto."
   },
   {
     "id": "glo_000012",
-    "temaId": "tem_000001",
-    "termino": "COMPETENCIA",
-    "definicion": "Capacidad compleja de movilizar conocimientos, habilidades y actitudes en contextos diversos.",
-    "pista": "Saber actuar de manera fundamentada y eficaz.",
-    "retroalimentacion": "La competencia digital docente permite transformar pedagógicamente los entornos formativos.",
-    "origen": "docente",
-    "estado": "aprobado",
-    "fecha": "2026-10-25T12:00:00.000Z"
+    "temaId": "tem_000002",
+    "termino": "ESPACIO",
+    "pista": "Lugar geográfico donde transcurren los hechos.",
+    "definicion": "Entorno físico, cultural o simbólico donde habitan los personajes del relato.",
+    "retroalimentacion": "En las leyendas, el espacio suele ser un pueblo, montaña o ciudad real."
   },
   {
     "id": "glo_000013",
     "temaId": "tem_000002",
-    "termino": "DISENO",
-    "definicion": "Proceso de planificación intencionada y estructuración previa de una experiencia didáctica.",
-    "pista": "Plan o esquema previo para estructurar una experiencia.",
-    "retroalimentacion": "El diseño instruccional orienta la selección adecuada de herramientas digitales según el objetivo.",
-    "origen": "docente",
-    "estado": "aprobado",
-    "fecha": "2026-10-25T12:00:00.000Z"
+    "termino": "CONFLICTO",
+    "pista": "Problema o reto que enfrentan los personajes.",
+    "definicion": "Oposición entre fuerzas o metas que desencadena las acciones narrativas.",
+    "retroalimentacion": "El conflicto es el motor principal que mantiene el interés de la lectura."
   },
   {
     "id": "glo_000014",
     "temaId": "tem_000002",
-    "termino": "LOGROS",
-    "definicion": "Metas alcanzadas que reconocen el progreso y dominio de competencias por parte del estudiante.",
-    "pista": "Objetivos alcanzados que se reconocen al estudiante.",
-    "retroalimentacion": "Visibilizar los logros motiva al estudiante y le permite autogestionar su trayectoria formativa.",
-    "origen": "docente",
-    "estado": "aprobado",
-    "fecha": "2026-10-25T12:00:00.000Z"
+    "termino": "DESENLACE",
+    "pista": "Resolución final de la narración.",
+    "definicion": "Cierre o resolución del conflicto que concluye las acciones de los personajes.",
+    "retroalimentacion": "El desenlace muestra las consecuencias de las decisiones tomadas en el relato."
   },
   {
     "id": "glo_000015",
-    "temaId": "tem_000002",
-    "termino": "METODO",
-    "definicion": "Procedimiento ordenado y sistemático seguido para facilitar el aprendizaje formativo.",
-    "pista": "Forma o camino estructurado para enseñar o aprender.",
-    "retroalimentacion": "El método pedagógico debe primar sobre la tecnología utilizada en cualquier secuencia didáctica.",
-    "origen": "docente",
-    "estado": "aprobado",
-    "fecha": "2026-10-25T12:00:00.000Z"
+    "temaId": "tem_000003",
+    "termino": "CULTURA",
+    "pista": "Conjunto de saberes y valores de un pueblo.",
+    "definicion": "Manifestaciones materiales, espirituales y simbólicas de una comunidad.",
+    "retroalimentacion": "Mitos y leyendas expresan la identidad cultural única de cada territorio."
   },
   {
     "id": "glo_000016",
-    "temaId": "tem_000002",
-    "termino": "PAUTAS",
-    "definicion": "Reglas claras y directrices que orientan el desarrollo y evaluación de una tarea académica.",
-    "pista": "Normas o instrucciones que guían un procedimiento.",
-    "retroalimentacion": "Tener pautas claras en actividades virtuales reduce la incertidumbre y mejora la participación.",
-    "origen": "docente",
-    "estado": "aprobado",
-    "fecha": "2026-10-25T12:00:00.000Z"
+    "temaId": "tem_000003",
+    "termino": "VALORES",
+    "pista": "Principios éticos transmitidos por las narraciones.",
+    "definicion": "Cualidades y normas de convivencia enseñadas mediante las acciones ejemplares.",
+    "retroalimentacion": "Las leyendas refuerzan valores como la honradez, el respeto y la solidaridad."
   },
   {
     "id": "glo_000017",
-    "temaId": "tem_000002",
-    "termino": "JUEGOS",
-    "definicion": "Actividades regladas de carácter lúdico adaptadas para potenciar el aprendizaje significativo.",
-    "pista": "Dinámicas lúdicas basadas en retos y reglas.",
-    "retroalimentacion": "El aprendizaje basado en juegos aprovecha la inmersión lúdica para reforzar conceptos complejos.",
-    "origen": "docente",
-    "estado": "aprobado",
-    "fecha": "2026-10-25T12:00:00.000Z"
+    "temaId": "tem_000003",
+    "termino": "PUEBLO",
+    "pista": "Comunidad humana que comparte memoria y territorio.",
+    "definicion": "Colectivo social que crea, preserva y renueva sus relatos tradicionales.",
+    "retroalimentacion": "Cada pueblo recrea sus historias según sus propias vivencias y paisajes."
   },
   {
     "id": "glo_000018",
-    "temaId": "tem_000002",
-    "termino": "RUTINA",
-    "definicion": "Secuencia habitual de hábitos y prácticas regulares que ordenan el estudio virtual.",
-    "pista": "Costumbre o hábito de estudio que se repite periódicamente.",
-    "retroalimentacion": "Establecer rutinas de ingreso al entorno virtual fomenta la constancia y disciplina académica.",
-    "origen": "docente",
-    "estado": "aprobado",
-    "fecha": "2026-10-25T12:00:00.000Z"
+    "temaId": "tem_000004",
+    "termino": "CREACION",
+    "pista": "Proceso de inventar o recrear un relato.",
+    "definicion": "Producción de nuevas historias combinando tradición e imaginación personal.",
+    "retroalimentacion": "Recrear relatos permite a los estudiantes expresarse con voz propia."
   },
   {
     "id": "glo_000019",
-    "temaId": "tem_000002",
-    "termino": "AVATAR",
-    "definicion": "Representación gráfica digital de la identidad del usuario en entornos interactivos.",
-    "pista": "Imagen o personaje que representa tu identidad virtual.",
-    "retroalimentacion": "Un avatar personaliza la experiencia y genera sentido de pertenencia en la comunidad de aprendizaje.",
-    "origen": "docente",
-    "estado": "aprobado",
-    "fecha": "2026-10-25T12:00:00.000Z"
+    "temaId": "tem_000005",
+    "termino": "METAFORA",
+    "pista": "Figura literaria de comparación implícita.",
+    "definicion": "Recurso retórico que traslada el sentido de una palabra a otra por semejanza.",
+    "retroalimentacion": "La metáfora enriquece la descripción poética de leyendas y personajes."
   },
   {
     "id": "glo_000020",
-    "temaId": "tem_000002",
-    "termino": "PUNTOS",
-    "definicion": "Métrica cuantitativa acumulable que recompensa la resolución de retos formativos.",
-    "pista": "Unidades acumulables que miden el progreso en una actividad.",
-    "retroalimentacion": "El puntaje es una mecánica de retroalimentación inmediata que incentiva la perseverancia.",
-    "origen": "docente",
-    "estado": "aprobado",
-    "fecha": "2026-10-25T12:00:00.000Z"
+    "temaId": "tem_000005",
+    "termino": "SIMIL",
+    "pista": "Comparación directa usando conectores como el como.",
+    "definicion": "Figura literaria que compara dos elementos mediante un nexo explícito.",
+    "retroalimentacion": "El símil ayuda a visualizar imágenes sensoriales en los relatos fantásticos."
   },
   {
     "id": "glo_000021",
-    "temaId": "tem_000002",
-    "termino": "SESION",
-    "definicion": "Período de tiempo sincrónico o asincrónico dedicado a la interacción en la plataforma.",
-    "pista": "Jornada o período de conexión a la plataforma.",
-    "retroalimentacion": "Cada sesión de aprendizaje debe contar con un propósito claro y momentos de síntesis reflexiva.",
-    "origen": "docente",
-    "estado": "aprobado",
-    "fecha": "2026-10-25T12:00:00.000Z"
-  },
-  {
-    "id": "glo_000022",
-    "temaId": "tem_000002",
-    "termino": "RUBRICA",
-    "definicion": "Matriz de evaluación auténtica con criterios de calidad y escalas de valoración explícitas.",
-    "pista": "Guía o escala detallada para evaluar tareas de forma objetiva.",
-    "retroalimentacion": "Las rúbricas transparentan la evaluación y fomentan la autoevaluación en los estudiantes.",
-    "origen": "docente",
-    "estado": "aprobado",
-    "fecha": "2026-10-25T12:00:00.000Z"
-  },
-  {
-    "id": "glo_000023",
-    "temaId": "tem_000002",
-    "termino": "FORO",
-    "definicion": "Espacio de comunicación asíncrona para debatir reflexivamente en comunidad.",
-    "pista": "Lugar virtual para dialogar y debatir sobre un tema.",
-    "retroalimentacion": "El foro virtual promueve la argumentación y la construcción social del conocimiento.",
-    "origen": "docente",
-    "estado": "aprobado",
-    "fecha": "2026-10-25T12:00:00.000Z"
-  },
-  {
-    "id": "glo_000024",
-    "temaId": "tem_000002",
-    "termino": "INSIGNIA",
-    "definicion": "Distintivo visual digital que acredita la adquisición verificable de una habilidad concreta.",
-    "pista": "Emblema o medalla digital que certifica una habilidad.",
-    "retroalimentacion": "Las insignias digitales reconocen aprendizajes específicos dentro del trayecto formativo.",
-    "origen": "docente",
-    "estado": "aprobado",
-    "fecha": "2026-10-25T12:00:00.000Z"
+    "temaId": "tem_000006",
+    "termino": "DIGITAL",
+    "pista": "Recursos multimedia para contar historias.",
+    "definicion": "Herramientas tecnológicas para crear y difundir relatos interactivos.",
+    "retroalimentacion": "Las TIC permiten enriquecer mitos tradicionales con sonido e imagen."
   }
 ]

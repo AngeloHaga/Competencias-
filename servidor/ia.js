@@ -338,6 +338,88 @@ export async function ejecutarTarea(tarea, datos, usuario, { formato = "json" } 
   return resultadoFinal;
 }
 
+/**
+ * Extrae dinámicamente términos conceptuales a partir del contenido, tema y glosario provistos
+ * para garantizar que las actividades siempre reflejen el contenido cargado en la plataforma.
+ * @param {Object} vars Variables del tema (tema, contenido, existentes, asignatura)
+ * @param {Object} opciones Filtros { longitudExacta, minLong, maxLong }
+ * @returns {Array<Object>} Lista de términos extraídos con pistas y retroalimentación
+ */
+function extraerTerminosContenido(vars = {}, opciones = {}) {
+  const contenido = `${vars.tema || ""} ${vars.contenido || ""} ${vars.existentes || ""}`;
+  const oraciones = contenido.split(/[.\n;]+/).map((s) => s.trim()).filter((s) => s.length > 15);
+
+  const stopwords = new Set([
+    "DE", "LA", "QUE", "EL", "EN", "Y", "A", "LOS", "DEL", "SE", "LAS", "POR", "UN", "PARA", "CON", "NO", "UNA",
+    "SU", "AL", "LO", "COMO", "MAS", "PERO", "SUS", "LE", "YA", "O", "FUE", "ESTE", "HA", "SI", "SOBRE", "SIN",
+    "ENTRE", "ESTA", "SON", "ERA", "SER", "ESTAN", "ESTAR", "TIENE", "TIENEN", "HACER", "HACE", "HACIA", "HACEN",
+    "DONDE", "CUANDO", "QUIEN", "CUAL", "CUYO", "CADA", "TODO", "TODA", "TODOS", "TODAS", "OTRO", "OTRA", "OTROS",
+    "OTRAS", "PUEDE", "PUEDEN", "DEBE", "DEBEN", "ESTOS", "ESTAS", "AQUEL", "AQUELLA", "DESDE", "HASTA", "DURANTE",
+    "CONTENIDO", "OBJETIVO", "OBJETIVOS", "EJEMPLO", "EJEMPLOS", "PALABRAS", "CLAVE", "RESUMEN", "UNIDAD", "LECCION",
+    "NINGUNO", "NINGUNA", "TAMBIEN", "PUEDE", "PODER", "DESPUES", "ANTES", "SEGÚN", "SEGUN", "MISMO", "MISMA"
+  ]);
+
+  const normalizar = (txt) =>
+    (txt || "")
+      .toUpperCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u0302\u0304-\u036f]/g, "") // Conserva la Ñ
+      .replace(/[^A-ZÑ]/g, "");
+
+  const candidatosMap = new Map();
+
+  // 1. Dar prioridad a términos existentes del glosario si vienen en vars.existentes
+  if (vars.existentes && vars.existentes !== "Ninguno") {
+    const listGlosario = String(vars.existentes).split(",");
+    for (const term of listGlosario) {
+      const limpia = normalizar(term);
+      if (!limpia || stopwords.has(limpia)) continue;
+      if (opciones.longitudExacta && limpia.length !== opciones.longitudExacta) continue;
+      if (opciones.minLong && limpia.length < opciones.minLong) continue;
+      if (opciones.maxLong && limpia.length > opciones.maxLong) continue;
+      candidatosMap.set(limpia, 100);
+    }
+  }
+
+  // 2. Extraer del texto completo
+  const palabrasBrutas = contenido.split(/[\s,.:;()""«»/\\-]+/);
+  for (const pb of palabrasBrutas) {
+    const limpia = normalizar(pb);
+    if (!limpia || stopwords.has(limpia)) continue;
+
+    if (opciones.longitudExacta && limpia.length !== opciones.longitudExacta) continue;
+    if (opciones.minLong && limpia.length < opciones.minLong) continue;
+    if (opciones.maxLong && limpia.length > opciones.maxLong) continue;
+
+    candidatosMap.set(limpia, (candidatosMap.get(limpia) || 0) + 1);
+  }
+
+  const palabrasOrdenadas = Array.from(candidatosMap.entries())
+    .sort((a, b) => b[1] - a[1])
+    .map(([w]) => w);
+
+  const temaNom = vars.tema || "el tema";
+  const asigNom = vars.asignatura || "la materia";
+
+  return palabrasOrdenadas.map((termino) => {
+    const oracion = oraciones.find((o) => normalizar(o).includes(termino));
+    const pista = oracion
+      ? `Concepto clave: ${oracion.slice(0, 80)}...`
+      : `Concepto esencial sobre ${temaNom}.`;
+    const definicion = oracion
+      ? oracion.slice(0, 120)
+      : `Término fundamental estudiado en ${temaNom} (${asigNom}).`;
+    const retroalimentacion = `El concepto '${termino}' es esencial en el estudio de ${temaNom}.`;
+
+    return {
+      termino,
+      pista,
+      definicion,
+      retroalimentacion
+    };
+  });
+}
+
 function generarRespaldo(tarea, vars) {
   if (tarea === "generar-preguntas") {
     const cantidad = Number(vars.cantidad) || 5;
@@ -401,71 +483,82 @@ function generarRespaldo(tarea, vars) {
   }
 
   if (tarea === "generar-ahorcado") {
-    const palabrasAhorcado = [
-      { termino: "METODO", pista: "Procedimiento ordenado para cumplir metas formativas", definicion: "Secuencia lógica de pasos organizada para alcanzar un objetivo didáctico.", retroalimentacion: "El método estructura la práctica y el pensamiento reflexivo." },
-      { termino: "ENLACE", pista: "Conexión o hipervínculo entre recursos digitales", definicion: "Vínculo electrónico que conecta contenidos o páginas en entornos virtuales.", retroalimentacion: "Los enlaces facilitan la navegación estructurada del aprendizaje." },
-      { termino: "CODIGO", pista: "Instrucciones que procesa un ordenador", definicion: "Conjunto de instrucciones estructuradas en un lenguaje de programación.", retroalimentacion: "El código da vida a las aplicaciones educativas." },
-      { termino: "SESION", pista: "Espacio sincrónico o asincrónico de clase", definicion: "Periodo temporal planificado para el desarrollo de actividades formativas.", retroalimentacion: "La sesión organiza el ritmo de interacción docente-estudiante." },
-      { termino: "TEORIA", pista: "Conjunto de principios abstractos y científicos", definicion: "Estructura conceptual explicativa que fundamenta el conocimiento.", retroalimentacion: "La teoría proporciona las bases racionales de la práctica." },
-      { termino: "LOGICA", pista: "Razonamiento coherente y estructurado", definicion: "Método de razonamiento en el que las ideas se desarrollan de forma consistente.", retroalimentacion: "La lógica permite validar argumentos y resolver problemas." },
-      { termino: "ACCESO", pista: "Entrada o disponibilidad a una plataforma", definicion: "Permiso y capacidad técnica de ingresar a recursos del aula virtual.", retroalimentacion: "El acceso equitativo es clave para la inclusión educativa." },
-      { termino: "MODULO", pista: "Bloque o componente formativo independiente", definicion: "Unidad temática autónoma que forma parte de un programa curricular.", retroalimentacion: "La modularidad flexibiliza el itinerario formativo." }
-    ];
     const cant = Number(vars.cantidad) || 6;
+    const extraidas = extraerTerminosContenido(vars, { longitudExacta: 6 });
+    if (extraidas.length >= 3) {
+      return extraidas.slice(0, cant);
+    }
+    const palabrasAhorcado = [
+      { termino: "RELATO", pista: "Narración estructurada de hechos o valores", definicion: "Narración tradicional que explica acontecimientos o creencias de un pueblo.", retroalimentacion: "El relato transmite memoria e identidad comunitaria." },
+      { termino: "ORIGEN", pista: "Principio o nacimiento en un mito", definicion: "Causa o momento inicial que explica la creación del cosmos o seres.", retroalimentacion: "Los mitos de origen explican cómo empezó el mundo." },
+      { termino: "LECTOR", pista: "Persona que realiza el proceso de comprensión textual", definicion: "Sujeto que analiza e interpreta los sentidos de una obra literaria.", retroalimentacion: "El lector crítico descubre las pistas e intenciones del autor." },
+      { termino: "SUCESO", pista: "Acontecimiento relevante narrado", definicion: "Hecho que acontece en el desarrollo de la trama narrativa.", retroalimentacion: "Reconocer los sucesos permite reconstruir la historia." },
+      { termino: "TIEMPO", pista: "Época o momento en que se sitúa una historia", definicion: "Marco cronológico o mítico en que transcurre el relato.", retroalimentacion: "El tiempo sitúa la narración en el pasado o presente." },
+      { termino: "ACCION", pista: "Hecho que realizan los personajes", definicion: "Actos y decisiones que impulsan el desarrollo de la narración.", retroalimentacion: "Las acciones de los personajes construyen el desenlace." }
+    ];
     return palabrasAhorcado.slice(0, cant);
   }
 
   if (tarea === "generar-parejas") {
-    const parejasSoporte = [
-      { termino: "Evaluación formativa", definicion: "Proceso continuo de retroalimentación para mejorar los aprendizajes.", retroalimentacion: "Permite reajustar metodologías durante el trayecto." },
-      { termino: "Entorno virtual", definicion: "Espacio digital diseñado para la interacción didáctica y gestión académica.", retroalimentacion: "El aula virtual supera las barreras geográficas y temporales." },
-      { termino: "Competencia", definicion: "Integración articulada de saberes, destrezas y valores en acción.", retroalimentacion: "Demuestra la capacidad de resolver problemas en contextos reales." },
-      { termino: "Rúbrica", definicion: "Matriz evaluativa con criterios y niveles de desempeño explícitos.", retroalimentacion: "Brinda transparencia y objetividad en la valoración formativa." },
-      { termino: "Pensamiento crítico", definicion: "Capacidad reflexiva de análisis, síntesis y valoración fundamentada.", retroalimentacion: "Impulsa la autonomía intelectual y el criterio argumentado." },
-      { termino: "Recurso didáctico", definicion: "Material o medio elaborado con la intencionalidad de facilitar el aprendizaje.", retroalimentacion: "Enriquece la asimilación conceptual mediante experiencias significativas." },
-      { termino: "Gamificación", definicion: "Uso de mecánicas y dinámicas de juego en contextos pedagógicos.", retroalimentacion: "Aumenta la motivación intrínseca y el compromiso con la tarea." },
-      { termino: "Andamiaje", definicion: "Acompañamiento temporal docente para que el alumno alcance una nueva meta.", retroalimentacion: "Se retira progresivamente a medida que el estudiante gana autonomía." },
-      { termino: "Metacognición", definicion: "Conciencia y autorregulación de los propios procesos de pensamiento.", retroalimentacion: "Aprender a aprender es una meta central de la educación moderna." },
-      { termino: "Aprendizaje activo", definicion: "Estrategia donde el estudiante investiga, colabora y produce conocimiento.", retroalimentacion: "El estudiante asume el rol protagonista de su propio aprendizaje." }
-    ];
     const cant = Number(vars.cantidad) || 8;
+    const extraidas = extraerTerminosContenido(vars, { minLong: 4, maxLong: 14 });
+    if (extraidas.length >= 4) {
+      return extraidas.slice(0, cant).map((t) => ({
+        termino: t.termino,
+        definicion: t.definicion,
+        retroalimentacion: t.retroalimentacion
+      }));
+    }
+    const parejasSoporte = [
+      { termino: "Mito", definicion: "Relato sagrado que explica el origen del mundo o fenómenos naturales.", retroalimentacion: "Explica preguntas primordiales de la humanidad." },
+      { termino: "Leyenda", definicion: "Narración tradicional vinculada a lugares y personajes comunitarios.", retroalimentacion: "Combina elementos históricos con aspectos maravillosos." },
+      { termino: "Narrador", definicion: "Voz ficticia que cuenta los acontecimientos de la historia.", retroalimentacion: "Es la perspectiva a través de la cual conocemos los hechos." },
+      { termino: "Personajes", definicion: "Seres reales o ficticios que realizan las acciones del relato.", retroalimentacion: "Protagonizan los sucesos y resuelven el conflicto." },
+      { termino: "Conflicto", definicion: "Problema o reto principal que desencadena las acciones.", retroalimentacion: "Es el motor que hace avanzar la narración." },
+      { termino: "Desenlace", definicion: "Cierre o resolución final de los acontecimientos.", retroalimentacion: "Muestra las consecuencias de las acciones emprendidas." },
+      { termino: "Memoria colectiva", definicion: "Saberes y tradiciones compartidos por una comunidad.", retroalimentacion: "Conserva la identidad cultural de generación en generación." },
+      { termino: "Tradición oral", definicion: "Transmisión de relatos y vivencias mediante la palabra hablada.", retroalimentacion: "Mantiene vivas las historias populares de los pueblos." }
+    ];
     return parejasSoporte.slice(0, cant);
   }
 
   if (tarea === "generar-crucigrama") {
-    const palabrasCrucigrama = [
-      { termino: "METODOLOGIA", pista: "Marco sistemático de procedimientos y técnicas didácticas", definicion: "Organización de estrategias docentes para facilitar el aprendizaje.", retroalimentacion: "Guía el proceso formativo integral." },
-      { termino: "DIGITAL", pista: "Relativo a la tecnología informática y redes", definicion: "Ecosistema tecnológico que procesa y transmite información en bits.", retroalimentacion: "Transforma la interacción pedagógica." },
-      { termino: "DOCENTE", pista: "Facilitador y guía del proceso de enseñanza", definicion: "Profesional que diseña secuencias pedagógicas y acompaña al estudiante.", retroalimentacion: "El rol docente orienta el pensamiento reflexivo." },
-      { termino: "CRITERIO", pista: "Pauta o estándar evaluativo de desempeño", definicion: "Regla o parámetro para determinar el nivel de logro de una competencia.", retroalimentacion: "Los criterios aseguran una evaluación transparente y justa." },
-      { termino: "FORMATIVA", pista: "Evaluación orientada al perfeccionamiento continuo", definicion: "Modalidad evaluativa que aporta retroalimentación durante el curso.", retroalimentacion: "Permite corregir desvíos antes de la evaluación final." },
-      { termino: "CODIGO", pista: "Instrucciones en un lenguaje de programación", definicion: "Secuencia de enunciados lógicos que el ordenador interpreta.", retroalimentacion: "Fundamento de las soluciones tecnológicas." },
-      { termino: "ENLACE", pista: "Conexión web hacia otro recurso formativo", definicion: "Hipervínculo que conecta páginas o documentos en línea.", retroalimentacion: "Conecta diferentes nodos del conocimiento." },
-      { termino: "VIRTUAL", pista: "Entorno no presencial soportado por internet", definicion: "Espacio informático diseñado para la interacción pedagógica remota.", retroalimentacion: "Flexibiliza el acceso a la educación superior." },
-      { termino: "SABERES", pista: "Conjunto integrado de conocimientos y destrezas", definicion: "Bases cognitivas, procedimentales y axiológicas del estudiante.", retroalimentacion: "Fundamentan las competencias profesionales." },
-      { termino: "RECURSO", pista: "Material o medio de apoyo pedagógico", definicion: "Elemento didáctico diseñado para enriquecer una lección.", retroalimentacion: "Dinamiza la asimilación conceptual." },
-      { termino: "MODULO", pista: "Bloque temático estructurado del plan de estudios", definicion: "Unidad didáctica independiente dentro de un curso general.", retroalimentacion: "Permite una progresión escalonada del aprendizaje." },
-      { termino: "RUBRICA", pista: "Guía de puntuación con niveles cualitativos", definicion: "Instrumento con escala descriptiva para evaluar tareas.", retroalimentacion: "Clarifica las expectativas de rendimiento." }
-    ];
     const cant = Number(vars.cantidad) || 12;
+    const extraidas = extraerTerminosContenido(vars, { minLong: 4, maxLong: 12 });
+    if (extraidas.length >= 4) {
+      return extraidas.slice(0, cant);
+    }
+    const palabrasCrucigrama = [
+      { termino: "LEYENDA", pista: "Relato tradicional ligado a lugares comunitarios", definicion: "Narración popular de una comunidad.", retroalimentacion: "Fortalece la identidad local." },
+      { termino: "RELATO", pista: "Narración estructurada de acontecimientos", definicion: "Historia que transmite vivencias.", retroalimentacion: "Estructura la memoria colectiva." },
+      { termino: "LECTOR", pista: "Persona que interpreta el texto escrito", definicion: "Sujeto que decodifica la lectura.", retroalimentacion: "Desarrolla el pensamiento crítico." },
+      { termino: "ORIGEN", pista: "Principio o nacimiento en un mito", definicion: "Explicación primordial del cosmos.", retroalimentacion: "Base de las cosmogonías míticas." },
+      { termino: "NARRADOR", pista: "Voz que cuenta los hechos en el relato", definicion: "Instancia narrativa del texto.", retroalimentacion: "Orienta el punto de vista del lector." },
+      { termino: "MEMORIA", pista: "Recuerdo y preservación comunitaria", definicion: "Saberes compartidos por generaciones.", retroalimentacion: "Conserva la riqueza cultural." },
+      { termino: "SUCESO", pista: "Acontecimiento que ocurre en la trama", definicion: "Hecho narrado en la historia.", retroalimentacion: "Secuencia de la acción narrativa." },
+      { termino: "SIMBOLO", pista: "Elemento con significado cultural profundo", definicion: "Representación simbólica de ideas.", retroalimentacion: "Revela cosmovisiones ancestrales." }
+    ];
     return palabrasCrucigrama.slice(0, cant);
   }
 
   if (tarea === "generar-palabras-sopa") {
-    const tema = vars.tema || "Aprendizaje";
-    const palabrasSoporte = [
-      { termino: "DIGITAL", definicion: "Tecnología informática orientada al procesamiento y comunicación de datos.", retroalimentacion: "Concepto clave para los entornos virtuales." },
-      { termino: "MEDIACION", definicion: "Intervención pedagógica para facilitar la asimilación del aprendizaje.", retroalimentacion: "La mediación docente conecta teoría y práctica." },
-      { termino: "RECURSO", definicion: "Material o medio didáctico diseñado para enriquecer la enseñanza.", retroalimentacion: "Seleccionar recursos adecuados potencia el logro de objetivos." },
-      { termino: "DOCENTE", definicion: "Profesional facilitador de procesos educativos y orientador pedagógico.", retroalimentacion: "El rol docente guía el razonamiento crítico del estudiante." },
-      { termino: "CALIDAD", definicion: "Cumplimiento riguroso de estándares formativos en la enseñanza.", retroalimentacion: "La calidad académica asegura competencias sólidas." },
-      { termino: "SABERES", definicion: "Conjunto de conocimientos, destrezas y valores en acción.", retroalimentacion: "Los saberes integrados forman competencias transversales." },
-      { termino: "VIRTUAL", definicion: "Entorno digital no presencial diseñado para la formación continua.", retroalimentacion: "Los ecosistemas virtuales transforman el aula tradicional." },
-      { termino: "LOGROS", definicion: "Metas de aprendizaje alcanzadas mediante esfuerzo y práctica constante.", retroalimentacion: "Cada logro consolida una competencia adquirida." },
-      { termino: "DISENO", definicion: "Planificación estructurada de secuencias didácticas de aprendizaje.", retroalimentacion: "El diseño instruccional organiza los contenidos curriculares." },
-      { termino: "CRITERIO", definicion: "Pauta evaluativa para contrastar el nivel de dominio de una competencia.", retroalimentacion: "Los criterios de evaluación garantizan objetividad." }
-    ];
     const cant = Number(vars.cantidad) || 10;
+    const extraidas = extraerTerminosContenido(vars, { minLong: 3, maxLong: 12 });
+    if (extraidas.length >= 4) {
+      return extraidas.slice(0, cant).map((t) => ({
+        termino: t.termino,
+        definicion: t.definicion,
+        retroalimentacion: t.retroalimentacion
+      }));
+    }
+    const palabrasSoporte = [
+      { termino: "LEYENDA", definicion: "Relato popular tradicional.", retroalimentacion: "Expresa tradiciones comunitarias." },
+      { termino: "RELATO", definicion: "Narración estructurada.", retroalimentacion: "Comunica experiencias humanas." },
+      { termino: "ORIGEN", definicion: "Principio de las cosas en un mito.", retroalimentacion: "Explica el cosmos primordial." },
+      { termino: "LECTOR", definicion: "Sujeto que interpreta un texto.", retroalimentacion: "Construye significados en la lectura." },
+      { termino: "CULTURA", definicion: "Conjunto de saberes de un pueblo.", retroalimentacion: "Identidad compartida de una comunidad." },
+      { termino: "MEMORIA", definicion: "Preservación oral de tradiciones.", retroalimentacion: "Mantiene vivas las raíces de los pueblos." }
+    ];
     return palabrasSoporte.slice(0, cant);
   }
 
