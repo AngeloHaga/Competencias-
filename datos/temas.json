@@ -35,7 +35,18 @@
       "¿Qué podemos conocer de una comunidad a través de sus narraciones?",
       "¿Es posible que dos lectores interpreten de manera diferente un relato? ¿Qué límites impone el texto?"
     ],
-    "recursos": []
+    "recursos": [
+      {
+        "tipo": "enlace",
+        "titulo": "UNESCO: Tradiciones y expresiones orales",
+        "url": "https://ich.unesco.org/es/tradiciones-y-expresiones-orales-00053"
+      },
+      {
+        "tipo": "enlace",
+        "titulo": "Ministerio de Educación: Lecturas de 6.° EGB",
+        "url": "https://recursos.educacion.gob.ec/red/lecturas-sexto-grado-lengua-y-literatura/"
+      }
+    ]
   },
   {
     "unidadId": "uni_000001",

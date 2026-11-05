@@ -189,6 +189,12 @@ function configurarEventos() {
   tabBtnFicha.addEventListener("click", () => cambiarPestana("ficha"));
   tabBtnGlosario.addEventListener("click", () => cambiarPestana("glosario"));
 
+  // Evitar recarga de página por submit nativo con tecla Enter dentro del formulario
+  formFichaTema.addEventListener("submit", (e) => {
+    e.preventDefault();
+    guardarFichaTema();
+  });
+
   // Guardar Ficha
   btnGuardarTema.addEventListener("click", guardarFichaTema);
 
@@ -396,7 +402,38 @@ function renderizarListaSimple(contenedor, coleccion, tipo) {
 // RECURSOS MULTIMEDIA Y DOCUMENTOS
 // -------------------------------------------------------------------
 
+function sincronizarRecursosDesdeDOM() {
+  const tarjetas = listaRecursos.querySelectorAll(".tarjeta-recurso");
+  if (!tarjetas || tarjetas.length === 0) {
+    return;
+  }
+
+  const sincronizados = [];
+  tarjetas.forEach((tarjeta) => {
+    const selTipo = tarjeta.querySelector(".rec-tipo");
+    const inputTitulo = tarjeta.querySelector(".rec-titulo");
+    const inputUrl = tarjeta.querySelector(".rec-url");
+
+    const tipo = selTipo ? selTipo.value : "enlace";
+    let titulo = inputTitulo ? inputTitulo.value.trim() : "";
+    let url = inputUrl ? inputUrl.value.trim() : "";
+
+    if (url) {
+      if (tipo === "enlace" && !url.startsWith("http://") && !url.startsWith("https://") && !url.startsWith("/")) {
+        url = `https://${url}`;
+      }
+      if (!titulo) {
+        titulo = tipo === "enlace" ? "Enlace web complementario" : "Recurso complementario";
+      }
+      sincronizados.push({ tipo, titulo, url });
+    }
+  });
+
+  recursos = sincronizados;
+}
+
 function agregarNuevoRecurso() {
+  sincronizarRecursosDesdeDOM();
   recursos.push({
     tipo: "enlace",
     titulo: "",
@@ -404,9 +441,14 @@ function agregarNuevoRecurso() {
   });
   marcarCambio();
   renderizarRecursos();
+  setTimeout(() => {
+    const ultimoInput = listaRecursos.querySelector(".tarjeta-recurso:last-child .rec-url");
+    if (ultimoInput) ultimoInput.focus();
+  }, 50);
 }
 
 function eliminarRecurso(indice) {
+  sincronizarRecursosDesdeDOM();
   recursos.splice(indice, 1);
   marcarCambio();
   renderizarRecursos();
@@ -442,7 +484,7 @@ function renderizarRecursos() {
 
             <div class="campo" style="margin-bottom: 0;">
               <label for="rec-titulo-${idx}" class="texto-xs">Título del recurso</label>
-              <input type="text" id="rec-titulo-${idx}" class="rec-titulo" data-idx="${idx}" value="${ui.escapar(rec.titulo || "")}" placeholder="Ej: Guía de lectura DigCompEdu">
+              <input type="text" id="rec-titulo-${idx}" class="rec-titulo" data-idx="${idx}" value="${ui.escapar(rec.titulo || "")}" placeholder="Ej: UNESCO - Tradiciones orales">
             </div>
 
             <div class="campo" style="margin-bottom: 0;">
@@ -472,7 +514,10 @@ function renderizarRecursos() {
   listaRecursos.querySelectorAll(".rec-tipo").forEach((sel) => {
     sel.addEventListener("change", (e) => {
       const idx = parseInt(e.target.getAttribute("data-idx"), 10);
-      recursos[idx].tipo = e.target.value;
+      sincronizarRecursosDesdeDOM();
+      if (recursos[idx]) {
+        recursos[idx].tipo = e.target.value;
+      }
       marcarCambio();
       renderizarRecursos();
     });
@@ -481,7 +526,11 @@ function renderizarRecursos() {
   listaRecursos.querySelectorAll(".rec-titulo").forEach((input) => {
     input.addEventListener("input", (e) => {
       const idx = parseInt(e.target.getAttribute("data-idx"), 10);
-      recursos[idx].titulo = e.target.value;
+      if (recursos[idx]) recursos[idx].titulo = e.target.value;
+      marcarCambio();
+    });
+    input.addEventListener("change", () => {
+      sincronizarRecursosDesdeDOM();
       marcarCambio();
     });
   });
@@ -489,7 +538,11 @@ function renderizarRecursos() {
   listaRecursos.querySelectorAll(".rec-url").forEach((input) => {
     input.addEventListener("input", (e) => {
       const idx = parseInt(e.target.getAttribute("data-idx"), 10);
-      recursos[idx].url = e.target.value;
+      if (recursos[idx]) recursos[idx].url = e.target.value;
+      marcarCambio();
+    });
+    input.addEventListener("change", () => {
+      sincronizarRecursosDesdeDOM();
       marcarCambio();
     });
   });
@@ -545,6 +598,9 @@ async function manejarSubidaArchivo(e) {
 // -------------------------------------------------------------------
 
 async function guardarFichaTema() {
+  // Sincronizar estado actual de recursos desde el DOM antes de guardar
+  sincronizarRecursosDesdeDOM();
+
   const titulo = campoTitulo.value.trim();
   if (!titulo) {
     ui.aviso("El título del tema es obligatorio", "error");

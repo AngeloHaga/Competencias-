@@ -227,7 +227,13 @@ function renderizarRecursos() {
     return;
   }
 
-  gridRecursos.innerHTML = tema.recursos
+  const recursosValidos = tema.recursos.filter((r) => r && typeof r.url === "string" && r.url.trim().length > 0);
+  if (recursosValidos.length === 0) {
+    seccionRecursos.style.display = "none";
+    return;
+  }
+
+  gridRecursos.innerHTML = recursosValidos
     .map((rec) => {
       const embedUrl = obtenerEmbedVideo(rec.url);
       const tituloRecurso = ui.escapar(rec.titulo || "Recurso complementario");
@@ -267,12 +273,17 @@ function renderizarRecursos() {
       }
 
       // Enlace web o lectura general
+      let enlaceHref = (rec.url || "").trim();
+      if (!enlaceHref.startsWith("http://") && !enlaceHref.startsWith("https://") && !enlaceHref.startsWith("/")) {
+        enlaceHref = `https://${enlaceHref}`;
+      }
+
       return `
         <div class="tarjeta-recurso-vista">
           <h3 class="tarjeta-recurso-vista__titulo">${tituloRecurso}</h3>
           <div>
-            <a href="${ui.escapar(rec.url)}" target="_blank" rel="noopener noreferrer" class="btn btn--texto">
-              🔗 Visitar recurso externo
+            <a href="${ui.escapar(enlaceHref)}" target="_blank" rel="noopener noreferrer" class="btn btn--secundario btn--pequeno">
+              🔗 Abrir enlace web
             </a>
           </div>
         </div>
